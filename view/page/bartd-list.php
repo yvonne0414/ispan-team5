@@ -20,7 +20,7 @@ require("../../db-connect.php");
     <div class="container">
         <div class="d-flex justify-content-between py-3">
             <h2>酒譜列表</h2>
-            <a class="shadow-sm px-3" href=""><i class="fa-solid fa-plus display-5 text-dark"></i></a>
+            <a class="shadow-sm px-3" href="create-bartd.php"><i class="fa-solid fa-plus display-5 text-dark"></i></a>
         </div>
         <table class="table table-bordered">
             <tr>
