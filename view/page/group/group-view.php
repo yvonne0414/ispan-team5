@@ -41,9 +41,9 @@ require("../../../db-connect.php");
         <tr>
           <td>0000</td>
           <td>
-            酒品賞
+            酒品會
           </td>
-          <td>官方人</td>
+          <td>官方</td>
           <td class="text-success">開團中</td>
           <td>
             2022/04/15
