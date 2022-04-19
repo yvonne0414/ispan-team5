@@ -1,6 +1,33 @@
 <?php
 require("../../../db-connect.php");
 
+// $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list"
+// $result = $conn->query($sql);
+// $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+// $data=[
+//   {
+//   "order":1,
+//   "id":1,
+//   "img":"AB11.jpeg",
+//   "num":"AB11",
+//   "name":"人頭馬VSOP",
+//   "price":123,
+//   "status":1
+//   },
+//   {
+//   "order":2,
+//   "id":2,
+//   "img":"AB11.jpeg",
+//   "num":"AB11",
+//   "name":"人頭馬VSOP",
+//   "price":123,
+//   "status":2
+//   }
+// ]
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -16,10 +43,10 @@ require("../../../db-connect.php");
 <body>
   <?php require("../../component/header.php")?>
   <?php require("../../component/sidemenu.php")?>
-  <div class="container">
+  <div class="container py-5">
     <h2>商品列表</h2>
 
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center mt-4">
       <div class="form-floating mb-3">
         <input type="text" class="form-control round-0 border-0 border-bottom" id="searchInput">
         <label for="searchInput">search</label>
