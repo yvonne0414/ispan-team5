@@ -1,5 +1,5 @@
-<!-- 拉下來後這個檔案不要上傳 -->
 <?php
+//拉下來後這個檔案不要上傳
 // 連接資料庫
 $serername = "localhost";
 $username = "admin";
