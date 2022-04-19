@@ -1,6 +1,11 @@
 <?php
 require("../../../db-connect.php");
 
+// $sql = "SELECT * FROM prd_material_cate";
+// $result = $conn->query($sql);
+// $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +20,9 @@ require("../../../db-connect.php");
   <style>
     .form-label{
       width: 100px;
-      
+    }
+    .prd_origin-wraper, .prd_brand-wraper, .prd_capacity-wraper, .prd_abv-wraper,  .prd_mater-wraper, .prd_cate_m-wraper, .prd_cate_s-wraper {
+      display: none;
     }
   </style>
 </head>
@@ -106,7 +113,7 @@ require("../../../db-connect.php");
           </select>
         </div>
       </div>
-      <div class="d-flex align-items-center w-50 pe-4 mb-3">
+      <div class="align-items-center w-50 pe-4 mb-3 prd_origin-wraper">
         <div>
           <label for="prd_cate_l" class="form-label mb-0">產地</label>
         </div>
@@ -116,7 +123,7 @@ require("../../../db-connect.php");
           </select>
         </div>
       </div>
-      <div class="d-flex align-items-center w-50 pe-4 mb-3">
+      <div class="align-items-center w-50 pe-4 mb-3 prd_brand-wraper">
         <div>
           <label for="prd_brand" class="form-label mb-0">品牌</label>
         </div>
@@ -124,7 +131,7 @@ require("../../../db-connect.php");
           <input type="text"  class="form-control" name="prd_brand" id="prd_brand">
         </div>
       </div>
-      <div class="d-flex align-items-center w-50 pe-4 mb-3">
+      <div class=" align-items-center w-50 pe-4 mb-3 prd_capacity-wraper">
         <div>
           <label for="prd_capacity" class="form-label mb-0">容量</label>
         </div>
@@ -132,8 +139,7 @@ require("../../../db-connect.php");
           <input type="text"  class="form-control" name="prd_capacity" id="prd_capacity" placeholder="ml">
         </div>
       </div>
-      <?php if(cate):?>
-      <div class="d-flex align-items-center w-50 pe-4 mb-3">
+      <div class=" align-items-center w-50 pe-4 mb-3 prd_abv-wraper">
         <div>
           <label for="prd_abv" class="form-label mb-0">酒精濃度</label>
         </div>
@@ -141,8 +147,7 @@ require("../../../db-connect.php");
           <input type="number"  class="form-control" name="prd_abv" id="prd_abv" placeholder="%">
         </div>
       </div>
-      <?php endif;?>
-      <div class="d-flex align-items-center w-50 pe-4 mb-3">
+      <div class="align-items-center w-50 pe-4 mb-3 prd_mater-wraper">
         <div>
           <label for="prd_mater" class="form-label mb-0">材質</label>
         </div>
@@ -152,7 +157,7 @@ require("../../../db-connect.php");
           </select>
         </div>
       </div>
-      <div class="d-flex align-items-center w-50 pe-4 mb-3">
+      <div class="align-items-center w-50 pe-4 mb-3 prd_cate_m-wraper">
         <div>
           <label class="form-label mb-0">分類</label>
         </div>
@@ -160,7 +165,7 @@ require("../../../db-connect.php");
           <select class="form-select" name="prd_cate_m" id="prd_cate_m">
             <option selected>中分類</option>
           </select>
-          <select class="form-select ms-3" name="prd_cate_s" id="prd_cate_s">
+          <select class="form-select ms-3 prd_cate_s-wraper" name="prd_cate_s" id="prd_cate_s">
             <option selected>小分類</option>
             <option value="1">特選伏特加</option>
             <option value="2">高濃度伏特加</option>
@@ -202,6 +207,97 @@ require("../../../db-connect.php");
     }).fail(function(jqXHR, textStatus) {
       console.log("Request failed: " + textStatus);
     });
+    let prdOriginWraper  = document.querySelector(".prd_origin-wraper")
+    let prdBrandWraper = document.querySelector(".prd_brand-wraper")
+    let prdCapacityWraper = document.querySelector(".prd_capacity-wraper")
+    let prdAbvWraper = document.querySelector(".prd_abv-wraper")
+    let prdMaterWraper = document.querySelector(".prd_mater-wraper")
+    let prdCateMWraper = document.querySelector(".prd_cate_m-wraper")
+    let prdCateSWraper = document.querySelector(".prd_cate_s-wraper")
+
+    // 呼叫中分類
+    let cateL = document.querySelector("#prd_cate_l")
+    cateL.addEventListener("change",function(){
+      prdOriginWraper.style.display = "none"
+      prdBrandWraper.style.display = "none"
+      prdAbvWraper.style.display = "none"
+      prdCapacityWraper.style.display = "none"
+      prdCateMWraper.style.display = "none"
+      prdCateSWraper.style.display = "none"
+      
+      console.log(cateL.value)
+      switch(parseInt(cateL.value)){
+        case 1:
+          prdOriginWraper.style.display = "flex"
+          prdBrandWraper.style.display = "flex"
+          prdAbvWraper.style.display = "flex"
+          prdCapacityWraper.style.display = "flex"
+          prdCateMWraper.style.display = "flex"
+          prdCateSWraper.style.display = "flex"
+          break;
+        case 2:
+          prdOriginWraper.style.display = "flex"
+          prdBrandWraper.style.display = "flex"
+          prdCapacityWraper.style.display = "flex"
+          prdCateMWraper.style.display = "flex"
+          break;
+        case 3:
+        case 4:
+          prdOriginWraper.style.display = "flex"
+          prdCapacityWraper.style.display = "flex"
+          prdMaterWraper.style.display = "flex"
+          prdCateMWraper.style.display = "flex"
+          break;
+      }
+
+      $.ajax({
+        method: "POST",
+        url: "../../../api/product/get-prd_cate_M.php",
+        dataType: "json",
+        data: {
+          parentId: cateL.value
+        }
+      })
+      .done(function(response) {
+        let cateM = document.querySelector("#prd_cate_m");
+        let optionList = "<option selected>中分類</option>"; 
+        for(let i =0; i<response.length; i++){
+          let item= response[i]
+          optionList += `<option value="${item.id}">${item.name}</option>`
+        }
+        cateM.innerHTML = optionList
+      }).fail(function(jqXHR, textStatus) {
+        console.log("Request failed: " + textStatus);
+      });
+
+      
+    })
+
+    // 呼叫小分類
+    let cateM = document.querySelector("#prd_cate_m")
+    cateM.addEventListener("change",function(){
+      console.log()
+      $.ajax({
+        method: "POST",
+        url: "../../../api/product/get-prd_cate_s.php",
+        dataType: "json",
+        data: {
+          parentId: cateM.value
+        }
+      })
+      .done(function(response) {
+        let cateS = document.querySelector("#prd_cate_s");
+        let optionList = "<option selected>小分類</option>"; 
+        for(let i =0; i<response.length; i++){
+          let item= response[i]
+          optionList += `<option value="${item.id}">${item.name}</option>`
+        }
+        cateS.innerHTML = optionList
+      }).fail(function(jqXHR, textStatus) {
+        console.log("Request failed: " + textStatus);
+      });
+
+    })
 
     //呼叫產地
     $.ajax({
@@ -239,56 +335,9 @@ require("../../../db-connect.php");
       console.log("Request failed: " + textStatus);
     });
 
-    // 呼叫中分類
-    let cateL = document.querySelector("#prd_cate_l")
-    cateL.addEventListener("change",function(){
-      $.ajax({
-        method: "POST",
-        url: "../../../api/product/get-prd_cate_M.php",
-        dataType: "json",
-        data: {
-          parentId: cateL.value
-        }
-      })
-      .done(function(response) {
-        let cateM = document.querySelector("#prd_cate_m");
-        let optionList = "<option selected>中分類</option>"; 
-        for(let i =0; i<response.length; i++){
-          let item= response[i]
-          optionList += `<option value="${item.id}">${item.name}</option>`
-        }
-        cateM.innerHTML = optionList
-      }).fail(function(jqXHR, textStatus) {
-        console.log("Request failed: " + textStatus);
-      });
+    
 
-    })
-
-    // 呼叫小分類
-    let cateM = document.querySelector("#prd_cate_m")
-    cateM.addEventListener("change",function(){
-      console.log()
-      $.ajax({
-        method: "POST",
-        url: "../../../api/product/get-prd_cate_s.php",
-        dataType: "json",
-        data: {
-          parentId: cateM.value
-        }
-      })
-      .done(function(response) {
-        let cateS = document.querySelector("#prd_cate_s");
-        let optionList = "<option selected>小分類</option>"; 
-        for(let i =0; i<response.length; i++){
-          let item= response[i]
-          optionList += `<option value="${item.id}">${item.name}</option>`
-        }
-        cateS.innerHTML = optionList
-      }).fail(function(jqXHR, textStatus) {
-        console.log("Request failed: " + textStatus);
-      });
-
-    })
+    
     
     
     
