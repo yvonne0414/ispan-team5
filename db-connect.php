@@ -6,14 +6,11 @@ $username = "admin";
 $password = "12345"; // 寫自己的密碼
 $dbname = "9hunters_db";
 
-$conn = new mysqli($serername, $username, $password, $dbname);
-
 // 檢查連線
-if ($conn->$conn_error) {
-  die("連線失敗：".$conn->$conn_error);
-}else {
-  // echo "連線成功";
+$conn = new mysqli($serername, $username, $password, $dbname);
+if ($conn->connect_error) {
+  	die("連線失敗: " . $conn->connect_error);
 }
-
+// echo "連結DB成功<br>";
 
 ?>
