@@ -410,7 +410,7 @@ require("../../../db-connect.php");
       }else if(parseInt(prdCateLVal) == 1){
 
         if(!parseInt(prdOriginVal) || prdBrandVal=="" || prdCapacityVal=="" || prdAbvVal=="" || !parseInt(prdCateMVal) || !parseInt(prdCateSVal)){
-          alert("1有欄位未填");
+          alert("有欄位未填");
           return false; 
         } else{
           return true; 
@@ -420,7 +420,7 @@ require("../../../db-connect.php");
       }else if(parseInt(prdCateLVal) == 2){
 
         if(!parseInt(prdOriginVal) || prdBrandVal=="" || prdCapacityVal=="" ||  !parseInt(prdCateMVal)){
-          alert("2有欄位未填");
+          alert("有欄位未填");
           return false; 
         } else{
           return true; 
@@ -430,7 +430,7 @@ require("../../../db-connect.php");
       }else if(parseInt(prdCateLVal) == 3 || parseInt(prdCateLVal) == 4){
 
         if(!parseInt(prdOriginVal) || !parseInt(prdMaterVal) || prdCapacityVal=="" ||  !parseInt(prdCateMVal) ){
-          alert("3.4有欄位未填");
+          alert("有欄位未填");
           return false; 
         } else{
           return true; 
