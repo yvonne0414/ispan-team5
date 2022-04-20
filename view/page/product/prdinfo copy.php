@@ -119,14 +119,14 @@ require("../../../db-connect.php");
       </div>
       <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
         <div>
-          <label for="prd_img" class="form-label mb-0">商品圖片</label>
+          <label for="prdImg" class="form-label mb-0">商品圖片</label>
         </div>
         <div class="flex-grow-1">
-          <input type="file"  class="form-control"  name="prd_img" id="prd_img" accept=".jpg, .jpeg, .png, .webp, .svg">
+          <input type="file"  class="form-control"  name="prdImg" id="prdImg" accept=".jpg, .jpeg, .png, .webp, .svg">
         </div>
       </div>
       <div class="justify-content-center align-items-center img_container my-2">
-        <img id="prd_img_show" src="#"/>
+        <img id="prdImg_show" src="#"/>
       </div>
       <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
         <div>
@@ -225,7 +225,7 @@ require("../../../db-connect.php");
     let prdLength = document.querySelector("#prd_length");
     let prdWidth = document.querySelector("#prd_width");
     let prdHeight = document.querySelector("#prd_height");
-    let prdImg = document.querySelector("#prd_img");
+    let prdImg = document.querySelector("#prdImg");
     let prdCateL = document.querySelector("#prd_cate_l");
     let prdOrigin = document.querySelector("#prd_origin");
     let prdBrand = document.querySelector("#prd_brand");
@@ -381,179 +381,12 @@ require("../../../db-connect.php");
     }).fail(function(jqXHR, textStatus) {
       console.log("Request failed: " + textStatus);
     });
-
-    // 送出表單
-    let send=document.querySelector("#prd_submit");
-    send.addEventListener("click", function(){
-      
-      
-      // 抓值
-      let prdNumVal = prdNum.value;
-      let prdNameVal = prdName.value;
-      let prdPriceVal = prdPrice.value;
-      let prdStatusVal = prdStatus.value;
-      let prdDiscVal = prdDisc.value;
-      let prdLengthVal = prdLength.value;
-      let prdWidthVal = prdWidth.value;
-      let prdHeightVal = prdHeight.value;
-      let prdImgVal = prdImg.value;
-      let prdCateLVal = prdCateL.value;
-      let prdOriginVal = prdOrigin.value;
-      let prdBrandVal = prdBrand.value;
-      let prdCapacityVal = prdCapacity.value;
-      let prdAbvVal = prdAbv.value;
-      let prdMaterVal = prdMater.value;
-      let prdCateMVal = prdCateM.value;
-      let prdCateSVal = prdCateS.value;
-
-
-      // if(prdNumVal=="" || prdNameVal=="" || prdPriceVal=="" || prdStatusVal=="" || prdDiscVal=="" || prdLengthVal=="" || prdWidthVal=="" || prdHeightVal=="" || !parseInt(prdCateLVal)){
-      //     alert("有欄位未填");
-      //     return;
-      // }
-
-      console.log(
-        `prdNum: ${prdNumVal}`,
-        `prdName: ${prdNameVal}`,
-        `prdPrice: ${prdPriceVal}`,
-        `prdStatus: ${prdStatusVal}`,
-        `prdDisc: ${prdDiscVal}`,
-        `prdLength: ${prdLengthVal}`,
-        `prdWidth: ${prdWidthVal}`,
-        `prdHeight: ${prdHeightVal}`,
-        `prdImg: ${prdImgVal}`,
-        `prdCateL: ${prdCateLVal}`,
-        `prdOrigin: ${prdOriginVal}`,
-        `prdBrand: ${prdBrandVal}`,
-        `prdCapacity: ${prdCapacityVal}`,
-        `prdAbv: ${prdAbvVal}`,
-        `prdMater: ${prdMaterVal}`,
-        `prdCateM: ${prdCateMVal}`,
-        `prdCateS: ${prdCateSVal}`
-      )
-      switch(parseInt(prdStatusVal)){
-        case 1:
-          alert("確認上架商品？");
-          break;
-        case 2:
-          alert("確認下架商品？");
-      }
-      
-      alert("out");
-
-
-      // 嘗試api，有空再試 ==================================
-      // switch(parseInt(prdCateL)){
-      //   case 1:
-      //     $.ajax({
-      //         method: "POST",
-      //         url: "add-prd.php",
-      //         dataType: "json",
-      //         data: {
-      //             prdNum: prdNumVal,
-      //             prdName: prdNameVal,
-      //             prdPrice: prdPriceVal,
-      //             prdStatus: prdStatusVal,
-      //             prdDisc: prdDiscVal,
-      //             prdLength: prdLengthVal,
-      //             prdWidth: prdWidthVal,
-      //             prdHeight: prdHeightVal,
-      //             // prdImg: prdImgVal,
-      //             prdCateL: prdCateLVal
-      //             // prdDetail:[{
-      //             //   prdOrigin: prdOrigin,
-      //             //   prdBrand: prdBrand,
-      //             //   prdCapacity: prdCapacity,
-      //             //   prdAbv: prdAbv,
-      //             //   prdCateM: prdCateM,
-      //             //   prdCateS: prdCateS
-      //             // }]
-      //         }
-      //     })
-      //     .done(function(response) {
-      //         console.log(response)    
-      //         alert("in!")      
-
-      //     }).fail(function( jqXHR, textStatus ) {
-      //         console.log( "Request failed: " + textStatus );
-      //     });
-      //     break;
-
-      //   case 2:
-      //     $.ajax({
-      //         method: "POST",
-      //         url: "add-prd.php",
-      //         dataType: "json",
-      //         data: {
-      //             prdNum: prdNumVal,
-      //             prdName: prdNameVal,
-      //             prdPrice: prdPriceVal,
-      //             prdStatus: prdStatusVal,
-      //             prdDisc: prdDiscVal,
-      //             prdLength: prdLengthVal,
-      //             prdWidth: prdWidthVal,
-      //             prdHeight: prdHeightVal,
-      //             // prdImg: prdImgVal,
-      //             prdCateL: prdCateLVal,
-      //             prdDetail:[{
-      //               prdOrigin: prdOrigin,
-      //               prdBrand: prdBrand,
-      //               prdCapacity: prdCapacity,
-      //               prdCateM: prdCateM
-      //             }]
-      //         }
-      //     })
-      //     .done(function(response) {
-      //         console.log(response)    
-      //         alert("in!")      
-
-      //     }).fail(function( jqXHR, textStatus ) {
-      //         console.log( "Request failed: " + textStatus );
-      //     });
-      //     break;
-      //   case 3:
-      //   case 4:
-      //     $.ajax({
-      //         method: "POST",
-      //         url: "add-prd.php",
-      //         dataType: "json",
-      //         data: {
-      //             prdNum: prdNumVal,
-      //             prdName: prdNameVal,
-      //             prdPrice: prdPriceVal,
-      //             prdStatus: prdStatusVal,
-      //             prdDisc: prdDiscVal,
-      //             prdLength: prdLengthVal,
-      //             prdWidth: prdWidthVal,
-      //             prdHeight: prdHeightVal,
-      //             // prdImg: prdImgVal,
-      //             prdCateL: prdCateLVal,
-      //             prdDetail:[{
-      //               prdOrigin: prdOrigin,
-      //               prdMater: prdMater,
-      //               prdCapacity: prdCapacity,
-      //               prdCateM: prdCateM
-      //             }]
-      //         }
-      //     })
-      //     .done(function(response) {
-      //         console.log(response)    
-      //         alert("in!")      
-
-      //     }).fail(function( jqXHR, textStatus ) {
-      //         console.log( "Request failed: " + textStatus );
-      //     });
-      //     break;
-      // }
-      
-
-    })
     
   </script>
 
   <script>
   // 圖片預覽
-  $("#prd_img").change(function(){
+  $("#prdImg").change(function(){
 
     readURL(this);
 
@@ -569,7 +402,7 @@ require("../../../db-connect.php");
       reader.onload = function (e) {
         $(".img_container").css('display', "flex");
         
-        $("#prd_img_show").attr('src', e.target.result);
+        $("#prdImg_show").attr('src', e.target.result);
 
       }
 

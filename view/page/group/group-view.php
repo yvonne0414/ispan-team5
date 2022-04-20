@@ -1,6 +1,6 @@
 <?php
 require("../../../db-connect.php");
-
+$sql="SELECT * FROM group_list ";
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +12,7 @@ require("../../../db-connect.php");
   <link rel="stylesheet" href="../component/headerLayout.php">
   <title>揪團趣</title>
   <?php require("../../component/headerLayout.php")?>
+ 
 </head>
 <body>
   <?php require("../../component/header.php")?>
@@ -19,11 +20,11 @@ require("../../../db-connect.php");
   <div class="container">
     <h2 class="mt-3 mb-3" >官方活動</h2>
 
-    <!-- <div class="d-flex justify-content-end align-items-center">
+    <div class="d-flex justify-content-end align-items-center">
       <div>
-        <a class="btn btn-primary mb-3" href="">新增活動</a>
+        <a class="btn btn-primary mb-3" href="group-add.php">新增活動</a>
       </div>
-    </div> -->
+    </div>
 
     <table class="table table-striped">
       <thead>
@@ -34,14 +35,14 @@ require("../../../db-connect.php");
           <td>狀態</td>
           <td>開團時間</td>
           <td>結團時間</td>
-          <td class="text-end">報名</td>
+          <td class="text-end">功能列</td>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>0000</td>
           <td>
-            酒品會
+            品酒會
           </td>
           <td>官方</td>
           <td class="text-success">開團中</td>
@@ -53,6 +54,7 @@ require("../../../db-connect.php");
           </td>
           <td class="text-end">
             <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
+            <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
           </td>
         </tr>
     
@@ -63,22 +65,18 @@ require("../../../db-connect.php");
   <div class="container">
     <h2 class="mt-5 mb-3">私人活動</h2>
 
-    <div class="d-flex justify-content-end align-items-center">
-      <div>
-        <a class="btn btn-primary mb-3" href="">新增活動</a>
-      </div>
-    </div>
+    
 
     <table class="table table-striped">
       <thead>
         <tr class="table-dark">
           <td>活動序號</td>
           <td>活動名稱</td>
-          <td>主揪人</td>
+          <td>主辦人</td>
           <td>狀態</td>
           <td>開團時間</td>
           <td>結團時間</td>
-          <td class="text-end">功能列</td>
+          <!-- <td class="text-end">功能列</td> -->
         </tr>
       </thead>
       <tbody>
@@ -95,10 +93,10 @@ require("../../../db-connect.php");
           <td>
             2022/04/22
           </td>
-          <td class="text-end">
+          <!-- <td class="text-end">
             <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
             <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
-          </td>
+          </td> -->
         </tr>
         <tr>
         <td>002</td>
@@ -113,10 +111,10 @@ require("../../../db-connect.php");
           <td>
             2022/04/30
           </td>
-          <td class="text-end">
+          <!-- <td class="text-end">
             <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
             <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>
