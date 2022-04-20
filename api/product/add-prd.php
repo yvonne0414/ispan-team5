@@ -1,11 +1,11 @@
 <?php
 require("../../db-connect.php");
-define ('SITE_ROOT', realpath(dirname(__FILE__)));
-$path = "/ispan-team5/assets/img/test/AB11.jpeg";
+// define ('SITE_ROOT', realpath(dirname(__FILE__)));
+// $path = "/ispan-team5/assets/img/test/AB11.jpeg";
 
-echo "Path : $path";
+// echo "Path : $path";
 
-require "$path";
+// require "$path";
 
 // $prdNum=$_POST["prd_num"];
 // $prdName=$_POST["prd_name"];
@@ -67,7 +67,7 @@ if ($_FILES["prdImg"]["error"]==0){
     echo "<hr>";
 
     $file_tmpname = $_FILES["prdImg"]["tmp_name"];
-    $file_storepath = "/ispan-team5/assets/img/test/".$_FILES["prdImg"]["name"];
+    $file_storepath = "./prdimg/".$_FILES["prdImg"]["name"];
 
     echo $file_tmpname;
     echo "<hr>";
@@ -76,7 +76,7 @@ if ($_FILES["prdImg"]["error"]==0){
 
     
 
-    if(move_uploaded_file($file_tmpname, SITE_ROOT.$file_storepath)){
+    if(move_uploaded_file($file_tmpname, $file_storepath)){
         echo "upload success!";
         //echo $_FILES["prdImg"]["name"]
 

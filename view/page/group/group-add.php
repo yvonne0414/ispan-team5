@@ -19,16 +19,7 @@ require("../../../db-connect.php");
   </style>
 
 </head>
-<?php
-    $date = '';
-    $date1 = '';
-    $date2 = '';
-    if (isset($_GET['start_time']) && isset($_GET['end_time']) && isset($_GET['activity_start_time'])) {
-        $date = $_GET['start_time'];
-        $date1 = $_GET['end_time'];
-        $date2 = $_GET['activity_start_time'];
-    }
-?>
+
     <body>
         <?php require("../../component/header.php")?>
         <?php require("../../component/sidemenu.php")?>
@@ -36,7 +27,7 @@ require("../../../db-connect.php");
 
         <h2>新增活動</h2>
 
-        <form action="do-droup.php" class="d-flex flex-wrap mt-4">
+        <form action="do-group.php" class="d-flex flex-wrap mt-4">
         <div class="d-flex align-items-center w-50 pe-4 mb-3">
             <div>
             <label for="name" class="form-label mb-0">活動名稱</label>
@@ -150,7 +141,7 @@ require("../../../db-connect.php");
         </div>
         <div class="w-100 text-center">
             <button class="btn btn-outline-primary">取消</button>
-            <button class="btn btn-primary" type="" id="group-submit">送出表單</button>
+            <button class="btn btn-primary" type="" id="group-submit" href="do-group.php">送出表單</button>
         </div>
         </div>
 
