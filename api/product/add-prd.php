@@ -6,20 +6,6 @@ require("../../db-connect.php");
     
 // }
 
-$prdNum=$_POST["prd_num"];
-$prdName=$_POST["prd_name"];
-$prdPrice=$_POST["prd_price"];
-$prdStatus=$_POST["prd_status"];
-$prdDisc=$_POST["prd_disc"];
-$prdLength=$_POST["prd_length"];
-$prdWidth=$_POST["prd_width"];
-$prdHeight=$_POST["prd_height"];
-$inventoryQuantity=$_POST["inventory_quantity"];
-$prdImg=$_FILES["prdImg"]["name"];
-$prdCateL=$_POST["prd_cate_l"];
-//設定時區
-date_default_timezone_set("Asia/Taipei");
-$now=date('Y-m-d H:i:s');
 
 
 
@@ -58,45 +44,70 @@ if($_FILES["prdImg"]["error"]==0){
     if(move_uploaded_file($file_tmpname, $file_storepath)){
         echo "upload success!";
 
+        $prdNum=$_POST["prd_num"];
+        $prdName=$_POST["prd_name"];
+        $prdPrice=$_POST["prd_price"];
+        $prdStatus=$_POST["prd_status"];
+        $prdDisc=$_POST["prd_disc"];
+        $prdLength=$_POST["prd_length"];
+        $prdWidth=$_POST["prd_width"];
+        $prdHeight=$_POST["prd_height"];
+        $inventoryQuantity=$_POST["inventory_quantity"];
+        $prdImg=$_FILES["prdImg"]["name"];
+        $prdCateL=$_POST["prd_cate_l"];
+        //設定時區
+        date_default_timezone_set("Asia/Taipei");
+        $now=date('Y-m-d H:i:s');
 
-        $sql="INSERT INTO prd_list (num, name, main_img, price, disc, length, width, height, inventory_quantity, category, status, create_time) VALUES ('$prdNum', '$prdName', '$fileName', $prdPrice, '$prdDisc', $prdLength, $prdWidth, $prdHeight, $inventoryQuantity, $prdCateL, $prdStatus, '$now')";
+
+
+        $sql="INSERT INTO prd_list (prd_num, name, main_img, price, disc, length, width, height, inventory_quantity, category, status, create_time) VALUES ('$prdNum', '$prdName', '$fileName', $prdPrice, '$prdDisc', $prdLength, $prdWidth, $prdHeight, $inventoryQuantity, $prdCateL, $prdStatus, '$now')";
 
 
 
         echo $sql;
         if ($conn->query($sql) === TRUE) {
             echo "新增成功";
-            // $last_id=$conn->insert_id;
-
-            // switch(parseInt($prdCateL)){
-            //     case 1:
-            //         $prdOrigin=$_POST["prd_origin"];
-            //         $prdBrand=$_POST["prd_brand"];
-            //         $prdCapacity=$_POST["prd_capacity"];
-            //         $prdAbv=$_POST["prd_abv"];
-            //         $prdCateM=$_POST["prd_cate_m"];
-            //         $prdCateS=$_POST["prd_cate_s"];
-            //         $sqldetail="INSERT INTO prd_type1_detail (prd_id, abv, origin, brand, capacity,cate_m, cate_s) VALUES ($last_id, $prdAbv, $prdOrigin, '$prdBrand', $prdCapacity, $prdCateM, $prdCateS)";
-            //         break;
-            //     case 2:
-            //         $prdOrigin=$_POST["prd_origin"];
-            //         $prdBrand=$_POST["prd_brand"];
-            //         $prdCapacity=$_POST["prd_capacity"];
-            //         $prdCateM=$_POST["prd_cate_m"];
-
-            //         $sqldetail="INSERT INTO prd_type2_detail (prd_id, origin, brand, capacity,cate) VALUES ($last_id, $prdOrigin, '$prdBrand', $prdCapacity, $prdCateM)";
-            //         break;
-            //     case 3:
-            //     case 4:
-            //         $prdOrigin=$_POST["prd_origin"];
-            //         $prdMater=$_POST["prd_mater"];
-            //         $prdCapacity=$_POST["prd_capacity"];
-            //         $prdCateM=$_POST["prd_cate_m"];
-
-            //         $sqldetail="INSERT INTO prd_type3_detail (prd_id, origin, capacity, cate) VALUES ($last_id, $prdOrigin, $prdCapacity, $prdCateM)";
-            //         break;
-            // }
             
+
+            $last_id=$conn->insert_id;
+
+            $type = (int)$prdCateL;
+            echo $type;
+            switch($type){
+                case 1:
+                    $prdOrigin=$_POST["prd_origin"];
+                    $prdBrand=$_POST["prd_brand"];
+                    $prdCapacity=$_POST["prd_capacity"];
+                    $prdAbv=$_POST["prd_abv"];
+                    $prdCateM=$_POST["prd_cate_m"];
+                    $prdCateS=$_POST["prd_cate_s"];
+                    $sqldetail="INSERT INTO prd_type1_detail (prd_id, abv, origin, brand, capacity,cate_m, cate_s) VALUES ($last_id, $prdAbv, $prdOrigin, '$prdBrand', $prdCapacity, $prdCateM, $prdCateS)";
+                    break;
+                case 2:
+                    $prdOrigin=$_POST["prd_origin"];
+                    $prdBrand=$_POST["prd_brand"];
+                    $prdCapacity=$_POST["prd_capacity"];
+                    $prdCateM=$_POST["prd_cate_m"];
+
+                    $sqldetail="INSERT INTO prd_type2_detail (prd_id, origin, brand, capacity,cate) VALUES ($last_id, $prdOrigin, '$prdBrand', $prdCapacity, $prdCateM)";
+                    break;
+                case 3:
+                case 4:
+                    $prdOrigin=$_POST["prd_origin"];
+                    $prdMater=$_POST["prd_mater"];
+                    $prdCapacity=$_POST["prd_capacity"];
+                    $prdCateM=$_POST["prd_cate_m"];
+
+                    $sqldetail="INSERT INTO prd_type3_detail (prd_id, origin, capacity, cate) VALUES ($last_id, $prdOrigin, $prdCapacity, $prdCateM)";
+                    break;
+            }
+            if ($conn->query($sqldetail) === TRUE) {
+                echo "新增資料完成<br>";
+            } else {
+                echo "新增資料錯誤: "  . $conn->error;
+                exit;
+            }
 
             echo "新增資料完成<br>";
         } else {
