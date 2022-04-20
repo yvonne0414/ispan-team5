@@ -55,7 +55,7 @@ require("../../../db-connect.php");
                 <tr>
                     <td>001</td>
                     <td>首次消費滿2000元,即折抵200元</td>
-                    <td>折抵200元<td>
+                    <td>折抵200元</td>
                     <td>滿2000元</td>
                     <td>td123</td>
                     <td class="text-end">
