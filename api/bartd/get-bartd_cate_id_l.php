@@ -1,7 +1,8 @@
 <?php
 require_once("../../db-connect.php");
 
-$sql = "SELECT * FROM bartd_cate_type WHERE level = 1";
+$sql = "SELECT * FROM bartd_cate_type 
+WHERE level = 1 ";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
