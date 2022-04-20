@@ -79,165 +79,6 @@ require("../../../db-connect.php");
           </select>
         </div>
       </div>
-      <!-- 2 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
-        <div>
-          <label for="bartd-name2" class="form-label mb-0">
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </label>
-        </div>
-        <!-- 名稱 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-name2" id="bartd-name2">
-        </div>
-        <!-- 比例 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-ratio2" id="bartd-ratio2">
-        </div>
-        <!-- master_cate_l -->
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_l2" id="prd_cate_l2">
-            <option selected>材料類別</option>
-          </select>
-        </div>
-        <!-- master_cate_m -->
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_m2" id="prd_cate_m2">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-
-      </div>
-      <!-- 2 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
-        <div>
-          <label for="bartd-name2" class="form-label mb-0">
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </label>
-        </div>
-        <!-- 名稱 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-name2" id="bartd-name2">
-        </div>
-        <!-- 比例 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-ratio2" id="bartd-ratio2">
-        </div>
-        <!-- master_cate_l -->
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_l2" id="prd_cate_l2">
-            <option selected>材料類別</option>
-          </select>
-        </div>
-        <!-- master_cate_m -->
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_m2" id="prd_cate_m2">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-
-      </div>
-      <!-- 3 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
-        <div>
-          <label for="bartd-name2" class="form-label mb-0">
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </label>
-        </div>
-        <!-- 名稱 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-name2" id="bartd-name2">
-        </div>
-        <!-- 比例 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-ratio2" id="bartd-ratio2">
-        </div>
-        <!-- master_cate_l -->
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_l2" id="prd_cate_l2">
-            <option selected>材料類別</option>
-          </select>
-        </div>
-        <!-- master_cate_m -->
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_m2" id="prd_cate_m2">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-
-      </div>
-      <!-- 4 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
-        <div>
-          <label for="bartd-name2" class="form-label mb-0">
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </label>
-        </div>
-        <!-- 名稱 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-name2" id="bartd-name2">
-        </div>
-        <!-- 比例 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-ratio2" id="bartd-ratio2">
-        </div>
-        <!-- master_cate_l -->
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_l2" id="prd_cate_l2">
-            <option selected>材料類別</option>
-          </select>
-        </div>
-        <!-- master_cate_m -->
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_m2" id="prd_cate_m2">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-
-      </div>
-      <!-- 5 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
-        <div>
-          <label for="bartd-name2" class="form-label mb-0">
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </label>
-        </div>
-        <!-- 名稱 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-name2" id="bartd-name2">
-        </div>
-        <!-- 比例 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-ratio2" id="bartd-ratio2">
-        </div>
-        <!-- master_cate_l -->
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_l2" id="prd_cate_l2">
-            <option selected>材料類別</option>
-          </select>
-        </div>
-        <!-- master_cate_m -->
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_m2" id="prd_cate_m2">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-
-      </div>
-      <!-- 新增材料 -->
-      <div class="w-100 text-center mb-3">
-        <button class="btn btn-primary">+</button>
-      </div>
 
       <!-- 酒譜類別 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
@@ -255,111 +96,24 @@ require("../../../db-connect.php");
           </select>
         </div>
       </div>
-      <!-- 2 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3">
-        <div>
-          <label for="bartd_cate_id_m" class="form-label mb-0">
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </label>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
-            <option selected>酒譜類別</option>
-          </select>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
-            <option selected>請選擇</option>
-          </select>
-        </div>
 
-      </div>
-      <!-- 3 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3">
-        <div>
-          <label for="bartd_cate_id_m" class="form-label mb-0">
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </label>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
-            <option selected>酒譜類別</option>
-          </select>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
-            <option selected>請選擇</option>
-          </select>
-        </div>
+      <!-- image -->
 
-      </div>
-      <!-- 4 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3">
-        <div>
-          <label for="bartd_cate_id_m" class="form-label mb-0">
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </label>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
-            <option selected>酒譜類別</option>
-          </select>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-
-      </div>
-      <!-- 5 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3">
-        <div>
-          <label for="bartd_cate_id_m" class="form-label mb-0">
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </label>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
-            <option selected>酒譜類別</option>
-          </select>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-
-      </div>
-      <!-- 新增類別 -->
-      <div class="w-100 text-center mb-3">
-        <button class="btn btn-primary">+</button>
-      </div>
-<!-- image -->
-
-<div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
+      <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
         <div>
           <label for="prd_img" class="form-label mb-0">商品圖片</label>
         </div>
         <div class="flex-grow-1">
-          <input type="file"  class="form-control"  name="prd_img[]" id="prd_img" multiple>
+          <input type="file" class="form-control" name="prd_img[]" id="prd_img" multiple>
         </div>
       </div>
 
-<!-- textarea -->
+      <!-- textarea -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
           <label for="prd_disc" class="form-label mb-0">商品描述</label>
         </div>
-        <div  class="flex-grow-1">
+        <div class="flex-grow-1">
           <textarea class="form-control" id="prd_disc" rows="3"></textarea>
           <!-- <div id="prd_disc"></div> -->
         </div>

@@ -34,25 +34,30 @@ require("../../../db-connect.php");
             <thead>
                 <tr class="table-dark">
                     <td>序號</td>
+                    <td class="text-center">圖片</td>
                     <td>名稱</td>
                     <td class="text-end">功能列</td>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $sql="SELECT * FROM bartd_list";
+                $sql = "SELECT * FROM bartd_list";
                 $result = $conn->query($sql);
-                $rows= $result->fetch_all(MYSQLI_ASSOC);
-                foreach ($rows as $row):
+                $rows = $result->fetch_all(MYSQLI_ASSOC);
+                foreach ($rows as $row) :
                 ?>
-                <tr>
-                    <td><?=$row['id']?></td>
-                    <td><?=$row['name']?></td>
-                    <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-                        <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?= $row['id'] ?></td>
+
+                        <td class="prd-list_img">
+                            <img class="img-fluid " src="../../../assets/img/test/<?=$row['img']?>" alt="">
+                        </td>
+                        <td><?= $row['name'] ?></td>
+                        <td class="text-end">
+                            <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
+                            <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
+                    </tr>
                 <?php endforeach ?>
             </tbody>
         </table>
