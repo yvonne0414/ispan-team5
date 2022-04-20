@@ -59,7 +59,7 @@ if($_FILES["prdImg"]["error"]==0){
         echo "upload success!";
 
 
-        $sql="INSERT INTO prd_list (num, name, main_img, price, disc, length, width, height, inventory_quantity, category, status, create_time) VALUES ('$prdNum', '$prdName', '$fileName', $prdPrice, '$prdDisc', $prdLength, $prdWidth, $prdHeight, $inventoryQuantity, $prdCateL, $prdStatus, '$now')";
+        $sql="INSERT INTO prd_list (prd_num, name, main_img, price, disc, length, width, height, inventory_quantity, category, status, create_time) VALUES ('$prdNum', '$prdName', '$fileName', $prdPrice, '$prdDisc', $prdLength, $prdWidth, $prdHeight, $inventoryQuantity, $prdCateL, $prdStatus, '$now')";
 
 
 
