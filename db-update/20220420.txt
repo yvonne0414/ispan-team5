@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 04 月 20 日 04:52
+-- 產生時間： 2022 年 04 月 20 日 13:45
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 8.1.4
 
@@ -466,18 +466,19 @@ CREATE TABLE `prd_img` (
 DROP TABLE IF EXISTS `prd_list`;
 CREATE TABLE `prd_list` (
   `id` int(3) UNSIGNED NOT NULL,
+  `prd_num` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `main_img` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `main_img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` int(5) NOT NULL,
   `disc` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `disc_img` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `disc_img` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `length` int(3) NOT NULL,
   `width` int(3) NOT NULL,
   `height` int(3) NOT NULL,
   `inventory_quantity` int(4) NOT NULL,
   `sale_quantity` int(6) NOT NULL,
   `category` int(3) NOT NULL,
-  `is_delete` int(1) NOT NULL,
+  `status` int(1) NOT NULL,
   `create_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
