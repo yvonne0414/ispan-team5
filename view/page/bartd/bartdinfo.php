@@ -343,6 +343,17 @@ require("../../../db-connect.php");
       <div class="w-100 text-center mb-3">
         <button class="btn btn-primary">+</button>
       </div>
+<!-- image -->
+
+<div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
+        <div>
+          <label for="prd_img" class="form-label mb-0">商品圖片</label>
+        </div>
+        <div class="flex-grow-1">
+          <input type="file"  class="form-control"  name="prd_img[]" id="prd_img" multiple>
+        </div>
+      </div>
+
 <!-- textarea -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>

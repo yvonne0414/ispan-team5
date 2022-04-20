@@ -39,22 +39,21 @@ require("../../../db-connect.php");
                 </tr>
             </thead>
             <tbody>
+                <?php
+                $sql="SELECT * FROM bartd_list";
+                $result = $conn->query($sql);
+                $rows= $result->fetch_all(MYSQLI_ASSOC);
+                foreach ($rows as $row):
+                ?>
                 <tr>
-                    <td>001</td>
-                    <td>人頭馬VSOP</td>
+                    <td><?=$row['id']?></td>
+                    <td><?=$row['name']?></td>
                     <td class="text-end">
                         <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
                         <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
-                <tr>
-                <td>001</td>
-                    <td>人頭馬VSOP</td>
-                    <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-                        <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
-                    </td>
-                </tr>
+                <?php endforeach ?>
             </tbody>
         </table>
 
