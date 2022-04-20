@@ -1,52 +1,54 @@
 <?php
 require("../../../db-connect.php");
+if(!isset($_POST["name"])){
+    echo "您不是透過正常管道到此頁";
+    exit;
+}
 $sql="INSERT INTO group_list(name,disc,user_id) VALUE($,) ";
 
 ?>
 <?php
-    $date = '';
-    $date1 = '';
-    $date2 = '';
-    if (isset($_GET['start_time']) && isset($_GET['end_time']) && isset($_GET['activity_start_time'])) {
-        $date = $_GET['start_time'];
-        $date1 = $_GET['end_time'];
-        $date2 = $_GET['activity_start_time'];
-    }
-?>
-    <form action="" method="get" class="NoPrint mt-5">
-    <div>
-    <label for="start_time" class="form-label mb-0">開團日期</label>
-    
-    <input class="mt-3" type="date" name="start_time"
-        value="<?= $date ?>">
-    </div>
-    <?php
-    if (isset($_GET['start_time'])) {
-        echo '?start_time=' . $date . '&start_time=' . $date;
-    }
-    ?>
-    <br>
-    <div>
-    <label for="end_time" class="form-label mb-0">結束日期</label>
 
-    <input class="mt-3" type="date" name="end_time"
-        value="<?= $date1 ?>">
-    </div>    
-    <?php
-    if (isset($_GET['end_time'])) {
-        echo '?end_time=' . $date1 . '&end_time=' . $date1;
-    }
-    ?>
-    <br>
-    <div>
-    <label for="activity_start_time" class="form-label mb-0">活動日期</label>
-    
-    <input class="mt-3 mb-5" type="date" name="activity_start_time"
-        value="<?= $date2 ?>">
-    </div>    
-    <?php
-    if (isset($_GET['activity_start_time'])) {
-        echo '?activity_start_time=' . $date2 . '&activity_start_time=' . $date2;
-    }
-    ?>
-    </form>
+$date = '';
+$date1 = '';
+$date2 = '';
+if (isset($_GET['start_time']) && isset($_GET['end_time']) && isset($_GET['activity_start_time'])) {
+    $date = $_GET['start_time'];
+    $date1 = $_GET['end_time'];
+    $date2 = $_GET['activity_start_time'];
+}
+
+$name=$_POST["name"];
+$disc=$_POST["disc"];
+$phone=$_POST["phone"]; //陣列
+// $phones=join(",", $phone);
+
+if(empty($name) || empty($email) || empty($phone)){
+    echo "您有欄位沒有填寫";
+    return;
+}
+// date_default_timezone_set("Asia/Taipei");
+$now=date('Y-m-d H:i:s');
+
+// echo "$name, $email, $phones";
+$sql="INSERT INTO  group_list(name, email, phone, create_time, valid)VALUES ('$name', '$email', '$phone', '$now', 1)";
+
+// echo $sql;
+// exit;
+
+if ($conn->query($sql) === TRUE) {
+    echo "新增資料完成<br>";
+    $last_id=$conn->insert_id;
+    // echo "last id is $last_id";
+    // exit;
+
+} else {
+    echo "新增資料錯誤: " . $conn->error;
+    exit;
+}
+
+$conn->close();
+
+header("location: user-list.php");
+
+?>   
