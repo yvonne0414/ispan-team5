@@ -1,10 +1,6 @@
 <?php
 require("../../../db-connect.php");
 
-// $sql = "SELECT * FROM prd_material_cate";
-// $result = $conn->query($sql);
-// $rows = $result->fetch_all(MYSQLI_ASSOC);
-
 
 ?>
 
@@ -23,15 +19,6 @@ require("../../../db-connect.php");
       width: 100px;
     }
 
-    .prd_origin-wraper,
-    .prd_brand-wraper,
-    .prd_capacity-wraper,
-    .prd_abv-wraper,
-    .prd_mater-wraper,
-    .prd_cate_m-wraper,
-    .prd_cate_s-wraper {
-      display: none;
-    }
   </style>
 </head>
 
@@ -42,14 +29,14 @@ require("../../../db-connect.php");
 
     <h2>新增酒譜</h2>
 
-    <form action="" class="d-flex flex-wrap mt-4" method="POST">
+    <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST">
       <!-- 名稱 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
           <label for="prd_num" class="form-label mb-0">酒譜名稱</label>
         </div>
         <div class="flex-grow-1">
-          <input type="text" class="form-control" name="prd_num" id="prd_num">
+          <input type="text" class="form-control" name="bartd_num" id="prd_num">
         </div>
       </div>
 
@@ -60,11 +47,11 @@ require("../../../db-connect.php");
         </div>
         <!-- 名稱 -->
         <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-name" id="bartd-name">
+          <input type="text" class="form-control" name="bartd_name" id="bartd-name">
         </div>
         <!-- 比例 -->
         <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd-ratio" id="bartd-ratio">
+          <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio">
         </div>
         <!-- master_cate_l -->
         <div class="flex-grow-1">
@@ -104,7 +91,7 @@ require("../../../db-connect.php");
           <label for="prd_img" class="form-label mb-0">商品圖片</label>
         </div>
         <div class="flex-grow-1">
-          <input type="file" class="form-control" name="prd_img[]" id="prd_img" multiple>
+          <input type="file" class="form-control" name="bartd_img" id="prd_img" multiple>
         </div>
       </div>
 
@@ -114,7 +101,7 @@ require("../../../db-connect.php");
           <label for="prd_disc" class="form-label mb-0">商品描述</label>
         </div>
         <div class="flex-grow-1">
-          <textarea class="form-control" id="prd_disc" rows="3"></textarea>
+          <textarea class="form-control" id="prd_disc" rows="3" name="bartd_content"></textarea>
           <!-- <div id="prd_disc"></div> -->
         </div>
       </div>
