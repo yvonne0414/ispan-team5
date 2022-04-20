@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../component/headerLayout.php">
   <title>酒譜詳情</title>
-  <?php require("../component/headerLayout.php") ?>
+  <?php require("../../component/headerLayout.php") ?>
 </head>
 
 <body>
-  <?php require("../component/header.php") ?>
-  <?php require("../component/sidemenu.php") ?>
+  <?php require("../../component/header.php") ?>
+  <?php require("../../component/sidemenu.php") ?>
   <div class="container">
     <div class="row py-3">
       <div class="col-12">
@@ -126,7 +126,7 @@
     </div>
   </div>
 
-  <?php require("../component/footerLayout.php") ?>
+  <?php require("../../component/footerLayout.php") ?>
 </body>
 
 </html>
