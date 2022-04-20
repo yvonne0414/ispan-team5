@@ -25,8 +25,8 @@ require("../../../db-connect.php");
                 <input type="text" class="form-control round-0 border-0 border-bottom" id="searchInput">
                 <label for="searchInput">search</label>
             </div>
-            
-    </div>
+
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr class="table-dark">
@@ -49,7 +49,7 @@ require("../../../db-connect.php");
                     </td>
                 </tr>
                 <tr>
-                <td>001</td>
+                    <td>001</td>
                     <td>joe</td>
                     <td>已出貨</td>
                     <td>2022/05/20 10:40:15</td>
@@ -59,7 +59,7 @@ require("../../../db-connect.php");
                     </td>
                 </tr>
                 <tr>
-                <td>001</td>
+                    <td>001</td>
                     <td>joe</td>
                     <td>已送達</td>
                     <td>2022/05/20 10:40:15</td>
@@ -69,7 +69,7 @@ require("../../../db-connect.php");
                     </td>
                 </tr>
                 <tr>
-                <td>001</td>
+                    <td>001</td>
                     <td>joe</td>
                     <td>已取消</td>
                     <td>2022/05/20 10:40:15</td>
