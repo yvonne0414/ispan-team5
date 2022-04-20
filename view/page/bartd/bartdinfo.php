@@ -51,97 +51,52 @@ require("../../../db-connect.php");
           <input type="text" class="form-control" name="prd_num" id="prd_num">
         </div>
       </div>
-      <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
+      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
         <div>
-          <label for="prd_cate_l" class="form-label mb-0">商品大分類</label>
+          <label for="prd_cate_l" class="form-label mb-0">材料</label>
         </div>
+        <!-- 名稱 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd-name" id="bartd-name">
+        </div>
+        <!-- 比例 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd-ratio" id="bartd-ratio">
+        </div>
+        <!-- master_cate_l -->
         <div class="flex-grow-1">
           <select class="form-select" name="prd_cate_l" id="prd_cate_l">
             <option selected>請選擇</option>
           </select>
         </div>
-      </div>
-
-
-
-
-
-      <div class="align-items-center w-50 pe-4 mb-3 prd_origin-wraper">
-        <div>
-          <label for="prd_cate_l" class="form-label mb-0">產地</label>
-        </div>
+        <!-- master_cate_m -->
         <div class="flex-grow-1">
-          <select class="form-select" name="prd_origin" id="prd_origin">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-      </div>
-      <div class="align-items-center w-50 pe-4 mb-3 prd_brand-wraper">
-        <div>
-          <label for="prd_brand" class="form-label mb-0">品牌</label>
-        </div>
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="prd_brand" id="prd_brand">
-        </div>
-      </div>
-      <div class="align-items-center w-50 pe-4 mb-3 prd_mater-wraper">
-        <div>
-          <label for="prd_mater" class="form-label mb-0">材質</label>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select" name="prd_mater" id="prd_mater">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-      </div>
-      <div class=" align-items-center w-50 pe-4 mb-3 prd_capacity-wraper">
-        <div>
-          <label for="prd_capacity" class="form-label mb-0">容量</label>
-        </div>
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="prd_capacity" id="prd_capacity" placeholder="ml">
-        </div>
-      </div>
-      <div class=" align-items-center w-50 pe-4 mb-3 prd_abv-wraper">
-        <div>
-          <label for="prd_abv" class="form-label mb-0">酒精濃度</label>
-        </div>
-        <div class="flex-grow-1">
-          <input type="number" min="0" class="form-control" name="prd_abv" id="prd_abv" placeholder="%">
-        </div>
-      </div>
-      <div class="align-items-center w-50 pe-4 mb-3 prd_cate_m-wraper">
-        <div>
-          <label class="form-label mb-0">分類</label>
-        </div>
-        <div class="flex-grow-1 d-flex">
           <select class="form-select" name="prd_cate_m" id="prd_cate_m">
-            <option selected>中分類</option>
-          </select>
-          <select class="form-select ms-3 prd_cate_s-wraper" name="prd_cate_s" id="prd_cate_s">
-            <option selected>小分類</option>
+            <option selected>請選擇</option>
           </select>
         </div>
       </div>
-      <!-- 圖片 -->
-      <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
-        <div>
-          <label for="prd_img" class="form-label mb-0">商品圖片</label>
-        </div>
-        <div class="flex-grow-1">
-          <input type="file" class="form-control" name="prd_img[]" id="prd_img" multiple>
-        </div>
-      </div>
-      <!-- 內容 -->
+
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
-          <label for="prd_disc" class="form-label mb-0">商品描述</label>
+          <label for="prd_num" class="form-label mb-0">酒譜類別</label>
         </div>
         <div class="flex-grow-1">
-          <textarea class="form-control" id="prd_disc" rows="3"></textarea>
-          <!-- <div id="prd_disc"></div> -->
+          <select class="form-select" name="prd_cate_m" id="prd_cate_m">
+            <option selected>請選擇</option>
+          </select>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_m" id="prd_cate_m">
+            <option selected>請選擇</option>
+          </select>
         </div>
       </div>
+
+
+
+
+
       <div class="w-100 text-center">
         <button class="btn btn-outline-primary">取消</button>
         <button class="btn btn-primary" type="" id="prd_submit">確定</button>
@@ -153,6 +108,8 @@ require("../../../db-connect.php");
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script>
     let prdCateL = document.querySelector("#prd_cate_l");
+    let prdCateM = document.querySelector("#prd_cate_m");
+
     //呼叫產品大分類
     $.ajax({
         method: "POST",
@@ -169,6 +126,41 @@ require("../../../db-connect.php");
       }).fail(function(jqXHR, textStatus) {
         console.log("Request failed: " + textStatus);
       });
+
+    prdCateL.addEventListener('change', function() {
+      let parentId = this.value;
+      $.ajax({
+          method: "POST",
+          url: "../../../api/bartd/get-bartd_master_cate_m.php",
+          dataType: "json",
+          data: {
+            parentId: parentId
+          }
+        })
+        .done(function(response) {
+
+          while (prdCateM.options.length > 0) {
+            prdCateM.options.remove(0);
+          }
+
+          cateM = document.querySelector("#prd_cate_m");
+          let optionList = "<option selected>中分類</option>";
+
+          let count = `${response.length}`;
+          for (let i = 0; i < count; i++) {
+            let master_cate_id = `${response[i].id}`;
+            let master_cate_m_name = `${response[i].name}`;
+            optionList += `<option value="${master_cate_id}">${master_cate_m_name}</option>`
+          }
+
+          cateM.innerHTML = optionList
+
+        }).fail(function(jqXHR, textStatus) {
+          while (prdCateM.options.length > 0) {
+            prdCateM.options.remove(0);
+          }
+        });
+    })
   </script>
 </body>
 
