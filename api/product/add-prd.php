@@ -66,7 +66,7 @@ if($_FILES["prdImg"]["error"]==0){
 
 
         echo $sql;
-        
+
         if ($conn->query($sql) === TRUE) {
             echo "新增成功";
             
@@ -94,20 +94,13 @@ if($_FILES["prdImg"]["error"]==0){
                     $sqldetail="INSERT INTO prd_type2_detail (prd_id, origin, brand, capacity,cate) VALUES ($last_id, $prdOrigin, '$prdBrand', $prdCapacity, $prdCateM)";
                     break;
                 case 3:
-                    $prdOrigin=$_POST["prd_origin"];
-                    $prdMater=$_POST["prd_mater"];
-                    $prdCapacity=$_POST["prd_capacity"];
-                    $prdCateM=$_POST["prd_cate_m"];
-
-                    $sqldetail="INSERT INTO prd_type3_detail (prd_id, origin, capacity, cate) VALUES ($last_id, $prdOrigin, $prdCapacity, $prdCateM)";
-                    break;
                 case 4:
                     $prdOrigin=$_POST["prd_origin"];
                     $prdMater=$_POST["prd_mater"];
                     $prdCapacity=$_POST["prd_capacity"];
                     $prdCateM=$_POST["prd_cate_m"];
 
-                    $sqldetail="INSERT INTO prd_type4_detail (prd_id, origin, capacity, cate) VALUES ($last_id, $prdOrigin, $prdCapacity, $prdCateM)";
+                    $sqldetail="INSERT INTO prd_type3_detail (prd_id, origin, capacity, cate) VALUES ($last_id, $prdOrigin, $prdCapacity, $prdCateM)";
                     break;
             }
             if ($conn->query($sqldetail) === TRUE) {
