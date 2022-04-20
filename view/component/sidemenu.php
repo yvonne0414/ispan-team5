@@ -14,7 +14,7 @@
             <a href="#" class="list-group-item my-2">商品列表</a>
             <a href="#" class="list-group-item my-2">揪團活動</a>
             <a href="#" class="list-group-item my-2">優惠卷</a>
-            <a href="#" class="list-group-item my-2">酒譜清單</a>
+            <a href="http://localhost/ispan-team5/view/page/bartd/bartd-list.php" class="list-group-item my-2">酒譜清單</a>
             <a href="#" class="list-group-item my-2">訂單列表</a>
         </div>
     </div>

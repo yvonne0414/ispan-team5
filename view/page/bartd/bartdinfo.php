@@ -42,7 +42,8 @@ require("../../../db-connect.php");
 
     <h2>新增酒譜</h2>
 
-    <form action="" class="d-flex flex-wrap mt-4">
+    <form action="" class="d-flex flex-wrap mt-4" method="POST">
+      <!-- 名稱 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
           <label for="prd_num" class="form-label mb-0">酒譜名稱</label>
@@ -51,9 +52,11 @@ require("../../../db-connect.php");
           <input type="text" class="form-control" name="prd_num" id="prd_num">
         </div>
       </div>
+
+      <!-- 材料 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
         <div>
-          <label for="prd_cate_l" class="form-label mb-0">材料</label>
+          <label for="bartd-name" class="form-label mb-0">材料</label>
         </div>
         <!-- 名稱 -->
         <div class="flex-grow-1">
@@ -66,7 +69,7 @@ require("../../../db-connect.php");
         <!-- master_cate_l -->
         <div class="flex-grow-1">
           <select class="form-select" name="prd_cate_l" id="prd_cate_l">
-            <option selected>請選擇</option>
+            <option selected>材料類別</option>
           </select>
         </div>
         <!-- master_cate_m -->
@@ -76,29 +79,284 @@ require("../../../db-connect.php");
           </select>
         </div>
       </div>
-
-      <div class="d-flex align-items-center w-100 pe-4 mb-3">
+      <!-- 2 -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
         <div>
-          <label for="prd_num" class="form-label mb-0">酒譜類別</label>
+          <label for="bartd-name2" class="form-label mb-0">
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </label>
         </div>
+        <!-- 名稱 -->
         <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_m" id="prd_cate_m">
+          <input type="text" class="form-control" name="bartd-name2" id="bartd-name2">
+        </div>
+        <!-- 比例 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd-ratio2" id="bartd-ratio2">
+        </div>
+        <!-- master_cate_l -->
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_l2" id="prd_cate_l2">
+            <option selected>材料類別</option>
+          </select>
+        </div>
+        <!-- master_cate_m -->
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_m2" id="prd_cate_m2">
             <option selected>請選擇</option>
           </select>
         </div>
+
+      </div>
+      <!-- 2 -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
+        <div>
+          <label for="bartd-name2" class="form-label mb-0">
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </label>
+        </div>
+        <!-- 名稱 -->
         <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_m" id="prd_cate_m">
+          <input type="text" class="form-control" name="bartd-name2" id="bartd-name2">
+        </div>
+        <!-- 比例 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd-ratio2" id="bartd-ratio2">
+        </div>
+        <!-- master_cate_l -->
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_l2" id="prd_cate_l2">
+            <option selected>材料類別</option>
+          </select>
+        </div>
+        <!-- master_cate_m -->
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_m2" id="prd_cate_m2">
+            <option selected>請選擇</option>
+          </select>
+        </div>
+
+      </div>
+      <!-- 3 -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
+        <div>
+          <label for="bartd-name2" class="form-label mb-0">
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </label>
+        </div>
+        <!-- 名稱 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd-name2" id="bartd-name2">
+        </div>
+        <!-- 比例 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd-ratio2" id="bartd-ratio2">
+        </div>
+        <!-- master_cate_l -->
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_l2" id="prd_cate_l2">
+            <option selected>材料類別</option>
+          </select>
+        </div>
+        <!-- master_cate_m -->
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_m2" id="prd_cate_m2">
+            <option selected>請選擇</option>
+          </select>
+        </div>
+
+      </div>
+      <!-- 4 -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
+        <div>
+          <label for="bartd-name2" class="form-label mb-0">
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </label>
+        </div>
+        <!-- 名稱 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd-name2" id="bartd-name2">
+        </div>
+        <!-- 比例 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd-ratio2" id="bartd-ratio2">
+        </div>
+        <!-- master_cate_l -->
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_l2" id="prd_cate_l2">
+            <option selected>材料類別</option>
+          </select>
+        </div>
+        <!-- master_cate_m -->
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_m2" id="prd_cate_m2">
+            <option selected>請選擇</option>
+          </select>
+        </div>
+
+      </div>
+      <!-- 5 -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
+        <div>
+          <label for="bartd-name2" class="form-label mb-0">
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </label>
+        </div>
+        <!-- 名稱 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd-name2" id="bartd-name2">
+        </div>
+        <!-- 比例 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd-ratio2" id="bartd-ratio2">
+        </div>
+        <!-- master_cate_l -->
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_l2" id="prd_cate_l2">
+            <option selected>材料類別</option>
+          </select>
+        </div>
+        <!-- master_cate_m -->
+        <div class="flex-grow-1">
+          <select class="form-select" name="prd_cate_m2" id="prd_cate_m2">
+            <option selected>請選擇</option>
+          </select>
+        </div>
+
+      </div>
+      <!-- 新增材料 -->
+      <div class="w-100 text-center mb-3">
+        <button class="btn btn-primary">+</button>
+      </div>
+
+      <!-- 酒譜類別 -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3">
+        <div>
+          <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
+            <option selected>酒譜類別</option>
+          </select>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
             <option selected>請選擇</option>
           </select>
         </div>
       </div>
+      <!-- 2 -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3">
+        <div>
+          <label for="bartd_cate_id_m" class="form-label mb-0">
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </label>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
+            <option selected>酒譜類別</option>
+          </select>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
+            <option selected>請選擇</option>
+          </select>
+        </div>
 
+      </div>
+      <!-- 3 -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3">
+        <div>
+          <label for="bartd_cate_id_m" class="form-label mb-0">
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </label>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
+            <option selected>酒譜類別</option>
+          </select>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
+            <option selected>請選擇</option>
+          </select>
+        </div>
 
+      </div>
+      <!-- 4 -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3">
+        <div>
+          <label for="bartd_cate_id_m" class="form-label mb-0">
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </label>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
+            <option selected>酒譜類別</option>
+          </select>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
+            <option selected>請選擇</option>
+          </select>
+        </div>
 
+      </div>
+      <!-- 5 -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3">
+        <div>
+          <label for="bartd_cate_id_m" class="form-label mb-0">
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </label>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
+            <option selected>酒譜類別</option>
+          </select>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
+            <option selected>請選擇</option>
+          </select>
+        </div>
 
+      </div>
+      <!-- 新增類別 -->
+      <div class="w-100 text-center mb-3">
+        <button class="btn btn-primary">+</button>
+      </div>
+<!-- textarea -->
+      <div class="d-flex align-items-center w-100 pe-4 mb-3">
+        <div>
+          <label for="prd_disc" class="form-label mb-0">商品描述</label>
+        </div>
+        <div  class="flex-grow-1">
+          <textarea class="form-control" id="prd_disc" rows="3"></textarea>
+          <!-- <div id="prd_disc"></div> -->
+        </div>
+      </div>
 
+      <!-- submit -->
       <div class="w-100 text-center">
-        <button class="btn btn-outline-primary">取消</button>
+        <a class="btn btn-outline-primary" href="bartd-list.php">取消</a>
         <button class="btn btn-primary" type="" id="prd_submit">確定</button>
       </div>
     </form>
@@ -109,6 +367,9 @@ require("../../../db-connect.php");
   <script>
     let prdCateL = document.querySelector("#prd_cate_l");
     let prdCateM = document.querySelector("#prd_cate_m");
+    let bartdCateM = document.querySelector("#bartd_cate_id_m");
+    let bartdCateS = document.querySelector("#bartd_cate_id_s");
+
 
     //呼叫產品大分類
     $.ajax({
@@ -126,7 +387,7 @@ require("../../../db-connect.php");
       }).fail(function(jqXHR, textStatus) {
         console.log("Request failed: " + textStatus);
       });
-
+    // 呼叫完大分類
     prdCateL.addEventListener('change', function() {
       let parentId = this.value;
       $.ajax({
@@ -158,6 +419,58 @@ require("../../../db-connect.php");
         }).fail(function(jqXHR, textStatus) {
           while (prdCateM.options.length > 0) {
             prdCateM.options.remove(0);
+          }
+        });
+    });
+
+    // 呼叫酒譜大分類
+    $.ajax({
+        method: "POST",
+        url: "../../../api/bartd/get-bartd_cate_id_l.php",
+        dataType: "json"
+      })
+      .done(function(response) {
+        let optionList = "";
+        for (let i = 0; i < response.length; i++) {
+          let item = response[i]
+          optionList += `<option value="${item.id}">${item.name}</option>`
+        }
+        bartdCateM.innerHTML += optionList
+      }).fail(function(jqXHR, textStatus) {
+        console.log("Request failed: " + textStatus);
+      });
+    // 呼叫完酒譜大分類
+    bartdCateM.addEventListener('change', function() {
+      let cateParentId = this.value;
+      $.ajax({
+          method: "POST",
+          url: "../../../api/bartd/get-bartd_cate_id_m.php",
+          dataType: "json",
+          data: {
+            cateParentId: cateParentId
+          }
+        })
+        .done(function(response) {
+
+          while (bartdCateS.options.length > 0) {
+            bartdCateS.options.remove(0);
+          }
+
+          bartdCateM = document.querySelector("#bartd_cate_id_s");
+          let optionList = "<option selected>中分類</option>";
+
+          let count = `${response.length}`;
+          for (let i = 0; i < count; i++) {
+            let master_cate_id = `${response[i].id}`;
+            let master_cate_m_name = `${response[i].name}`;
+            optionList += `<option value="${master_cate_id}">${master_cate_m_name}</option>`
+          }
+
+          bartdCateM.innerHTML = optionList
+
+        }).fail(function(jqXHR, textStatus) {
+          while (bartdCateS.options.length > 0) {
+            bartdCateS.options.remove(0);
           }
         });
     })

@@ -26,7 +26,7 @@ require("../../../db-connect.php");
                 <label for="searchInput">search</label>
             </div>
             <div>
-                <a class="btn btn-primary" href="">新增商品</a>
+                <a class="btn btn-primary" href="bartdinfo.php">新增商品</a>
             </div>
         </div>
 
