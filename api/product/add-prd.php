@@ -1,27 +1,33 @@
 <?php
 require("../../db-connect.php");
+define ('SITE_ROOT', realpath(dirname(__FILE__)));
+$path = "/ispan-team5/assets/img/test/AB11.jpeg";
 
-$prdNum=$_POST["prd_num"];
-$prdName=$_POST["prd_name"];
-$prdPrice=$_POST["prd_price"];
-$prdStatus=$_POST["prd_status"];
-$prdDisc=$_POST["prd_disc"];
-$prdLength=$_POST["prd_length"];
-$prdWidth=$_POST["prd_width"];
-$prdHeight=$_POST["prd_height"];
-$inventoryQuantity=$_POST["inventory_quantity"];
-$prdImg=$_FILES["prdImg"]["name"];
-$prdCateL=$_POST["prd_cate_l"];
-$prdOrigin=$_POST["prd_origin"];
-$prdBrand=$_POST["prd_brand"];
-$prdMater=$_POST["prd_mater"];
-$prdCapacity=$_POST["prd_capacity"];
-$prdAbv=$_POST["prd_abv"];
-$prdCateM=$_POST["prd_cate_m"];
-$prdCateS=$_POST["prd_cate_s"];
-//設定時區
-date_default_timezone_set("Asia/Taipei");
-$now=date('Y-m-d H:i:s');
+echo "Path : $path";
+
+require "$path";
+
+// $prdNum=$_POST["prd_num"];
+// $prdName=$_POST["prd_name"];
+// $prdPrice=$_POST["prd_price"];
+// $prdStatus=$_POST["prd_status"];
+// $prdDisc=$_POST["prd_disc"];
+// $prdLength=$_POST["prd_length"];
+// $prdWidth=$_POST["prd_width"];
+// $prdHeight=$_POST["prd_height"];
+// $inventoryQuantity=$_POST["inventory_quantity"];
+// $prdImg=$_FILES["prdImg"]["name"];
+// $prdCateL=$_POST["prd_cate_l"];
+// $prdOrigin=$_POST["prd_origin"];
+// $prdBrand=$_POST["prd_brand"];
+// $prdMater=$_POST["prd_mater"];
+// $prdCapacity=$_POST["prd_capacity"];
+// $prdAbv=$_POST["prd_abv"];
+// $prdCateM=$_POST["prd_cate_m"];
+// $prdCateS=$_POST["prd_cate_s"];
+// //設定時區
+// date_default_timezone_set("Asia/Taipei");
+// $now=date('Y-m-d H:i:s');
 
 
 // $data=[
@@ -46,11 +52,11 @@ $now=date('Y-m-d H:i:s');
 // echo json_encode($data, JSON_UNESCAPED_UNICODE);
 
 
-$sql="INSERT INTO prd_list (num, name, main_img, price, disc, length, width, height, inventory_quantity, category, status, create_time) VALUES ($prdNum, $prdName, $fileName, $prdPrice, $prdDisc, $prdLength, $prdWidth, $prdHeight, $inventoryQuantity, $prdCateL, $prdStatus, $now)";
+// $sql="INSERT INTO prd_list (num, name, main_img, price, disc, length, width, height, inventory_quantity, category, status, create_time) VALUES ($prdNum, $prdName, $fileName, $prdPrice, $prdDisc, $prdLength, $prdWidth, $prdHeight, $inventoryQuantity, $prdCateL, $prdStatus, $now)";
 
-echo $sql;
+// echo $sql;
 
-echo "<hr>";
+// echo "<hr>";
 
 
 
@@ -68,17 +74,9 @@ if ($_FILES["prdImg"]["error"]==0){
     echo $file_storepath;
     echo "<hr>";
 
-    try {
-        move_uploaded_file($file_tmpname, $file_storepath); 
-        echo "成功";
-
-    } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
-    }
-
     
 
-    if(move_uploaded_file($file_tmpname, $file_storepath)){
+    if(move_uploaded_file($file_tmpname, SITE_ROOT.$file_storepath)){
         echo "upload success!";
         //echo $_FILES["prdImg"]["name"]
 
