@@ -1,5 +1,8 @@
 <?php
 require("../../../db-connect.php");
+
+$sql = "SELECT * FROM user_list";
+$result = $conn->query($sql); 
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +16,7 @@ require("../../../db-connect.php");
     <title>訂單列表</title>
     <?php require("../../component/headerLayout.php") ?>
 </head>
+
 
 <body>
     <?php require("../../component/header.php") ?>
@@ -37,15 +41,14 @@ require("../../../db-connect.php");
                     <td class="text-end">功能列</td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table_body">
                 <tr>
                     <td>001</td>
                     <td>joe</td>
                     <td>待出貨</td>
                     <td>2022/05/30 10:40:15</td>
                     <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-                        <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+                        <a class="px-2" href=""><i class="fa-solid fa-eye"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -54,8 +57,7 @@ require("../../../db-connect.php");
                     <td>已出貨</td>
                     <td>2022/05/20 10:40:15</td>
                     <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-                        <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+                        <a class="px-2" href=""><i class="fa-solid fa-eye"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -64,9 +66,9 @@ require("../../../db-connect.php");
                     <td>已送達</td>
                     <td>2022/05/20 10:40:15</td>
                     <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-                        <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+                        <a class="px-2" href=""><i class="fa-solid fa-eye"></i></a>
                     </td>
+
                 </tr>
                 <tr>
                     <td>001</td>
@@ -74,8 +76,7 @@ require("../../../db-connect.php");
                     <td>已取消</td>
                     <td>2022/05/20 10:40:15</td>
                     <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-                        <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+                        <a class="px-2" href=""><i class="fa-solid fa-eye"></i></a>
                     </td>
                 </tr>
             </tbody>
