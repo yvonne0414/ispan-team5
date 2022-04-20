@@ -44,7 +44,7 @@ require("../../../db-connect.php");
 
     <h2>新增商品</h2>
 
-    <form action="../../../api/product/add-prd.php" method="post" class="d-flex flex-wrap mt-4"  enctype="multipart/form-data">
+    <form action="../../../api/product/add-prd.php" method="post" class="d-flex flex-wrap mt-4"  enctype="multipart/form-data"   onSubmit="return check();" >
       <div class="d-flex align-items-center w-50 pe-4 mb-3">
         <div>
           <label for="prd_num" class="form-label mb-0">商品編號</label>
@@ -119,14 +119,14 @@ require("../../../db-connect.php");
       </div>
       <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
         <div>
-          <label for="prd_img" class="form-label mb-0">商品圖片</label>
+          <label for="prdImg" class="form-label mb-0">商品圖片</label>
         </div>
         <div class="flex-grow-1">
-          <input type="file"  class="form-control"  name="prd_img" id="prd_img" accept=".jpg, .jpeg, .png, .webp, .svg">
+          <input type="file"  class="form-control"  name="prdImg" id="prdImg" accept=".jpg, .jpeg, .png, .webp, .svg">
         </div>
       </div>
       <div class="justify-content-center align-items-center img_container my-2">
-        <img id="prd_img_show" src="#"/>
+        <img id="prdImg_show" src="#"/>
       </div>
       <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
         <div>
@@ -225,7 +225,7 @@ require("../../../db-connect.php");
     let prdLength = document.querySelector("#prd_length");
     let prdWidth = document.querySelector("#prd_width");
     let prdHeight = document.querySelector("#prd_height");
-    let prdImg = document.querySelector("#prd_img");
+    let prdImg = document.querySelector("#prdImg");
     let prdCateL = document.querySelector("#prd_cate_l");
     let prdOrigin = document.querySelector("#prd_origin");
     let prdBrand = document.querySelector("#prd_brand");
@@ -383,10 +383,7 @@ require("../../../db-connect.php");
     });
 
     // 送出表單
-    let send=document.querySelector("#prd_submit");
-    send.addEventListener("click", function(){
-      
-      
+    function check(){
       // 抓值
       let prdNumVal = prdNum.value;
       let prdNameVal = prdName.value;
@@ -405,32 +402,46 @@ require("../../../db-connect.php");
       let prdMaterVal = prdMater.value;
       let prdCateMVal = prdCateM.value;
       let prdCateSVal = prdCateS.value;
+      
+      if(prdNumVal=="" || prdNameVal=="" || prdPriceVal=="" || prdStatusVal=="" || prdDiscVal=="" || prdLengthVal=="" || prdWidthVal=="" || prdHeightVal=="" || prdImgVal=="" || !parseInt(prdCateLVal)){
+        alert("有欄位未填");
+        return false; 
 
+      }else if(parseInt(prdCateLVal) == 1){
 
-      // if(prdNumVal=="" || prdNameVal=="" || prdPriceVal=="" || prdStatusVal=="" || prdDiscVal=="" || prdLengthVal=="" || prdWidthVal=="" || prdHeightVal=="" || !parseInt(prdCateLVal)){
-      //     alert("有欄位未填");
-      //     return;
-      // }
+        if(!parseInt(prdOriginVal) || prdBrandVal=="" || prdCapacityVal=="" || prdAbvVal=="" || !parseInt(prdCateMVal) || !parseInt(prdCateSVal)){
+          alert("1有欄位未填");
+          return false; 
+        } else{
+          return true; 
+        }
+        
 
-      console.log(
-        `prdNum: ${prdNumVal}`,
-        `prdName: ${prdNameVal}`,
-        `prdPrice: ${prdPriceVal}`,
-        `prdStatus: ${prdStatusVal}`,
-        `prdDisc: ${prdDiscVal}`,
-        `prdLength: ${prdLengthVal}`,
-        `prdWidth: ${prdWidthVal}`,
-        `prdHeight: ${prdHeightVal}`,
-        `prdImg: ${prdImgVal}`,
-        `prdCateL: ${prdCateLVal}`,
-        `prdOrigin: ${prdOriginVal}`,
-        `prdBrand: ${prdBrandVal}`,
-        `prdCapacity: ${prdCapacityVal}`,
-        `prdAbv: ${prdAbvVal}`,
-        `prdMater: ${prdMaterVal}`,
-        `prdCateM: ${prdCateMVal}`,
-        `prdCateS: ${prdCateSVal}`
-      )
+      }else if(parseInt(prdCateLVal) == 2){
+
+        if(!parseInt(prdOriginVal) || prdBrandVal=="" || prdCapacityVal=="" ||  !parseInt(prdCateMVal)){
+          alert("2有欄位未填");
+          return false; 
+        } else{
+          return true; 
+        }
+        
+
+      }else if(parseInt(prdCateLVal) == 3 || parseInt(prdCateLVal) == 4){
+
+        if(!parseInt(prdOriginVal) || !parseInt(prdMaterVal) || prdCapacityVal=="" ||  !parseInt(prdCateMVal) ){
+          alert("3.4有欄位未填");
+          return false; 
+        } else{
+          return true; 
+        }
+        
+
+      }else{
+        return true;
+      }
+    
+
       switch(parseInt(prdStatusVal)){
         case 1:
           alert("確認上架商品？");
@@ -438,146 +449,38 @@ require("../../../db-connect.php");
         case 2:
           alert("確認下架商品？");
       }
-      
-      alert("out");
-
-
-      // 嘗試api，有空再試 ==================================
-      // switch(parseInt(prdCateL)){
-      //   case 1:
-      //     $.ajax({
-      //         method: "POST",
-      //         url: "add-prd.php",
-      //         dataType: "json",
-      //         data: {
-      //             prdNum: prdNumVal,
-      //             prdName: prdNameVal,
-      //             prdPrice: prdPriceVal,
-      //             prdStatus: prdStatusVal,
-      //             prdDisc: prdDiscVal,
-      //             prdLength: prdLengthVal,
-      //             prdWidth: prdWidthVal,
-      //             prdHeight: prdHeightVal,
-      //             // prdImg: prdImgVal,
-      //             prdCateL: prdCateLVal
-      //             // prdDetail:[{
-      //             //   prdOrigin: prdOrigin,
-      //             //   prdBrand: prdBrand,
-      //             //   prdCapacity: prdCapacity,
-      //             //   prdAbv: prdAbv,
-      //             //   prdCateM: prdCateM,
-      //             //   prdCateS: prdCateS
-      //             // }]
-      //         }
-      //     })
-      //     .done(function(response) {
-      //         console.log(response)    
-      //         alert("in!")      
-
-      //     }).fail(function( jqXHR, textStatus ) {
-      //         console.log( "Request failed: " + textStatus );
-      //     });
-      //     break;
-
-      //   case 2:
-      //     $.ajax({
-      //         method: "POST",
-      //         url: "add-prd.php",
-      //         dataType: "json",
-      //         data: {
-      //             prdNum: prdNumVal,
-      //             prdName: prdNameVal,
-      //             prdPrice: prdPriceVal,
-      //             prdStatus: prdStatusVal,
-      //             prdDisc: prdDiscVal,
-      //             prdLength: prdLengthVal,
-      //             prdWidth: prdWidthVal,
-      //             prdHeight: prdHeightVal,
-      //             // prdImg: prdImgVal,
-      //             prdCateL: prdCateLVal,
-      //             prdDetail:[{
-      //               prdOrigin: prdOrigin,
-      //               prdBrand: prdBrand,
-      //               prdCapacity: prdCapacity,
-      //               prdCateM: prdCateM
-      //             }]
-      //         }
-      //     })
-      //     .done(function(response) {
-      //         console.log(response)    
-      //         alert("in!")      
-
-      //     }).fail(function( jqXHR, textStatus ) {
-      //         console.log( "Request failed: " + textStatus );
-      //     });
-      //     break;
-      //   case 3:
-      //   case 4:
-      //     $.ajax({
-      //         method: "POST",
-      //         url: "add-prd.php",
-      //         dataType: "json",
-      //         data: {
-      //             prdNum: prdNumVal,
-      //             prdName: prdNameVal,
-      //             prdPrice: prdPriceVal,
-      //             prdStatus: prdStatusVal,
-      //             prdDisc: prdDiscVal,
-      //             prdLength: prdLengthVal,
-      //             prdWidth: prdWidthVal,
-      //             prdHeight: prdHeightVal,
-      //             // prdImg: prdImgVal,
-      //             prdCateL: prdCateLVal,
-      //             prdDetail:[{
-      //               prdOrigin: prdOrigin,
-      //               prdMater: prdMater,
-      //               prdCapacity: prdCapacity,
-      //               prdCateM: prdCateM
-      //             }]
-      //         }
-      //     })
-      //     .done(function(response) {
-      //         console.log(response)    
-      //         alert("in!")      
-
-      //     }).fail(function( jqXHR, textStatus ) {
-      //         console.log( "Request failed: " + textStatus );
-      //     });
-      //     break;
-      // }
-      
-
-    })
+    }
+    
     
   </script>
 
   <script>
-  // 圖片預覽
-  $("#prd_img").change(function(){
+    // 圖片預覽
+    $("#prdImg").change(function(){
 
-    readURL(this);
+      readURL(this);
 
-    
-
-  });
-
-  function readURL(input){
-    if(input.files && input.files[0]){
       
-      var reader = new FileReader();
-      
-      reader.onload = function (e) {
-        $(".img_container").css('display', "flex");
+
+    });
+
+    function readURL(input){
+      if(input.files && input.files[0]){
         
-        $("#prd_img_show").attr('src', e.target.result);
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+          $(".img_container").css('display', "flex");
+          
+          $("#prdImg_show").attr('src', e.target.result);
+
+        }
+
+        reader.readAsDataURL(input.files[0]);
 
       }
 
-      reader.readAsDataURL(input.files[0]);
-
     }
-
-  }
 
   </script>
 </body>
