@@ -48,7 +48,7 @@ if($_FILES["prdImg"]["error"]==0){
         $prdName=$_POST["prd_name"];
         $prdPrice=$_POST["prd_price"];
         $prdStatus=$_POST["prd_status"];
-        $prdDisc=$_POST["prd_disc"];
+        $prdDisc=trim($_POST["prd_disc"]);
         $prdLength=$_POST["prd_length"];
         $prdWidth=$_POST["prd_width"];
         $prdHeight=$_POST["prd_height"];
@@ -91,7 +91,7 @@ if($_FILES["prdImg"]["error"]==0){
                     $prdCapacity=$_POST["prd_capacity"];
                     $prdCateM=$_POST["prd_cate_m"];
 
-                    $sqldetail="INSERT INTO prd_type2_detail (prd_id, origin, brand, capacity,cate) VALUES ($last_id, $prdOrigin, '$prdBrand', $prdCapacity, $prdCateM)";
+                    $sqldetail="INSERT INTO prd_type2_detail (prd_id, origin, brand, capacity,cate_m) VALUES ($last_id, $prdOrigin, '$prdBrand', $prdCapacity, $prdCateM)";
                     break;
                 case 3:
                 case 4:
@@ -100,7 +100,7 @@ if($_FILES["prdImg"]["error"]==0){
                     $prdCapacity=$_POST["prd_capacity"];
                     $prdCateM=$_POST["prd_cate_m"];
 
-                    $sqldetail="INSERT INTO prd_type3_detail (prd_id, origin, capacity, cate) VALUES ($last_id, $prdOrigin, $prdCapacity, $prdCateM)";
+                    $sqldetail="INSERT INTO prd_type3_detail (prd_id, origin, capacity, mater, cate_m) VALUES ($last_id, $prdOrigin, $prdCapacity, $prdMater, $prdCateM)";
                     break;
             }
             if ($conn->query($sqldetail) === TRUE) {
@@ -111,6 +111,7 @@ if($_FILES["prdImg"]["error"]==0){
             }
 
             echo "新增資料完成<br>";
+            header('location: ../../view/page/product/prdList.php');
         } else {
             echo "新增資料錯誤: "  . $conn->error;
             exit;

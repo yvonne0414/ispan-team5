@@ -1,32 +1,11 @@
 <?php
 require("../../../db-connect.php");
 
-// $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list"
-// $result = $conn->query($sql);
-// $rows = $result->fetch_all(MYSQLI_ASSOC);
-
-// $data=[
-//   {
-//   "order":1,
-//   "id":1,
-//   "img":"AB11.jpeg",
-//   "num":"AB11",
-//   "name":"人頭馬VSOP",
-//   "price":123,
-//   "status":1
-//   },
-//   {
-//   "order":2,
-//   "id":2,
-//   "img":"AB11.jpeg",
-//   "num":"AB11",
-//   "name":"人頭馬VSOP",
-//   "price":123,
-//   "status":2
-//   }
-// ]
 
 
+$sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list";
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
@@ -52,7 +31,7 @@ require("../../../db-connect.php");
         <label for="searchInput">search</label>
       </div>
       <div>
-        <a class="btn btn-primary" href="">新增商品</a>
+        <a class="btn btn-primary" href="./prdinfo-add.php">新增商品</a>
       </div>
     </div>
 
@@ -69,51 +48,40 @@ require("../../../db-connect.php");
         </tr>
       </thead>
       <tbody>
+        <?php for($i=0; $i<count($rows); $i++):?>
         <tr>
-          <td>001</td>
+          <td><?=$i+1?></td>
           <td class="prd-list_img">
-            <img class="img-fluid " src="../../../assets/img/test/AB11.jpeg" alt="">
+            <img class="img-fluid " src="../../../assets/img/test/<?=$rows[$i]["main_img"]?>" alt="">
           </td>
-          <td>AB11</td>
-          <td>人頭馬VSOP</td>
+          <td><?=$rows[$i]["prd_num"]?></td>
+          <td><?=$rows[$i]["name"]?></td>
           <td>
-            NT.123
+            NT.<?=$rows[$i]["price"]?>
           </td>
           <td>
-            <span class="bg-primary text-white p-1 rounded-2">
-              上架
+            <span class="<?php echo $rows[$i]["status"]==1 ? "bg-primary":"bg-warning" ?> text-white p-1 rounded-2">
+              <?php echo $rows[$i]["status"]==1 ? "上架":"下架" ?>
             </span>
           </td>
           <td class="text-end">
-            <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-            <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+            <a class="px-2" href="./prdinfo.php?mode=view&id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-eye"></i></a>
+            <a class="px-2" href="./prdinfo.php?mode=edit&id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-pen"></i></a>
+            <a class="px-2" href="" onclick="deletePrd(e)"><i class="fa-solid fa-trash-can"></i></a>
           </td>
         </tr>
-        <tr>
-          <td>001</td>
-          <td class="prd-list_img">
-            <img class="img-fluid " src="../../../assets/img/test/AB11.jpeg" alt="">
-          </td>
-          <td>AB11</td>
-          <td>人頭馬VSOP</td>
-          <td>
-            NT.123
-          </td>
-          <td>
-            <span class="bg-warning text-white p-1 rounded-2">
-              下架
-            </span>
-          </td>
-          <td class="text-end">
-            <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-            <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
-          </td>
-        </tr>
+        <?php endfor;?>
       </tbody>
     </table>
 
   </div>
 
   <?php require("../../component/footerLayout.php")?>
+
+  <script>
+    function deletePrd(e){
+
+    }
+  </script>
 </body>
 </html>
