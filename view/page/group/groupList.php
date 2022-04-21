@@ -1,6 +1,6 @@
 <?php
 require("../../../db-connect.php");
-$sql="SELECT * FROM group_list ";
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ $sql="SELECT * FROM group_list ";
 
     <div class="d-flex justify-content-end align-items-center">
       <div>
-        <a class="btn btn-primary mb-3" href="group-add.php">新增活動</a>
+        <a class="btn btn-primary mb-3" href="group-info.php">新增活動</a>
       </div>
     </div>
 
@@ -39,25 +39,32 @@ $sql="SELECT * FROM group_list ";
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>0000</td>
-          <td>
-            品酒會
-          </td>
-          <td>官方</td>
-          <td class="text-success">開團中</td>
-          <td>
-            2022/04/15
-          </td>
-          <td>
-            2022/04/30
-          </td>
-          <td class="text-end">
-            <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-            <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
-          </td>
-        </tr>
-    
+        <?php
+          $sql="SELECT * FROM group_list";
+          $result = $conn->query($sql);
+          $rows = $result->fetch_all(MYSQLI_ASSOC);
+          
+          foreach ($rows as $row) :
+        ?>
+          <tr>
+            <!-- 活動序號 -->
+            <td><?= $row['id'] ?></td> 
+            <!-- 活動名稱 -->
+            <td><?= $row['name'] ?></td>
+            <!-- 主辦人 -->
+            <td><?= $row['user_id'] ?></td>
+            <!-- 狀態 -->
+            <td><?= $row['status'] ?></td>
+            <!-- 開團時間 -->
+            <td><?= $row['start_time'] ?></td>
+            <!-- 結團時間 -->
+            <td><?= $row['end_time'] ?></td>
+            <td class="text-end">
+              <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
+              <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+            </td>
+          </tr>
+        <?php endforeach ?>
       </tbody>
     </table>
 

@@ -5,10 +5,10 @@
             <i class="fa-solid fa-bars"></i>
         </button>
         <div class="logo d-flex text-nowrap">
-            <figure>
+            <!-- <figure>
                 <img class="object-cover" src="" alt="Logo.jpg">
-            </figure>
-            <h1>logo name</h1>
+            </figure> -->
+            <h1 class="logo-text">INJOIN</h1>
         </div>
         <a href=""><i class="fa-solid fa-right-to-bracket text-dark display-5 me-5"></i></a>
 

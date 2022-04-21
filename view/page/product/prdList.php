@@ -1,32 +1,27 @@
 <?php
 require("../../../db-connect.php");
 
-// $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list"
+if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
+  $searchType = $_GET["searchType"];
+  $searchInput = $_GET["searchInput"];
+
+
+  $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list WHERE $searchType LIKE '%$searchInput%'";
+  $result = $conn->query($sql);
+  $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
+} else{
+
+  $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list WHERE status!=3";
+  $result = $conn->query($sql);
+  $rows = $result->fetch_all(MYSQLI_ASSOC);
+}
+
+// $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list";
 // $result = $conn->query($sql);
 // $rows = $result->fetch_all(MYSQLI_ASSOC);
-
-// $data=[
-//   {
-//   "order":1,
-//   "id":1,
-//   "img":"AB11.jpeg",
-//   "num":"AB11",
-//   "name":"人頭馬VSOP",
-//   "price":123,
-//   "status":1
-//   },
-//   {
-//   "order":2,
-//   "id":2,
-//   "img":"AB11.jpeg",
-//   "num":"AB11",
-//   "name":"人頭馬VSOP",
-//   "price":123,
-//   "status":2
-//   }
-// ]
-
-
 
 ?>
 
@@ -47,12 +42,24 @@ require("../../../db-connect.php");
     <h2>商品列表</h2>
 
     <div class="d-flex justify-content-between align-items-center mt-4">
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control round-0 border-0 border-bottom" id="searchInput">
-        <label for="searchInput">search</label>
-      </div>
+      <form action="./prdList.php" method="get">
+        <div class="d-flex">
+          <div class="mb-3 me-2">
+            <select class="form-control round-0 border-0 border-bottom w-auto"  name="searchType" id="searchType">
+              <option disabled <?php if(!isset($_GET["searchType"]) || !isset($_GET["searchInput"])):?>selected<?php endif;?>>搜索類型</option>
+              <option value="prd_num" <?php if(isset($_GET["searchType"]) && isset($_GET["searchInput"])):?><?= ($searchType=='prd_num'? 'selected':'' ) ?><?php endif;?>>編號</option>
+              <option value="name" <?php if(isset($_GET["searchType"]) && isset($_GET["searchInput"])):?><?= ($searchType=='name'? 'selected':'' ) ?><?php endif;?>>名稱</option>
+            </select>
+          </div>
+  
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="searchInput" placeholder="search" name="searchInput" <?php if(isset($_GET["searchType"]) && isset($_GET["searchInput"])):?>value="<?= $searchInput?>"<?php endif;?> >
+            <button class="btn btn-secondary  round-0" type="submit" id="searchBtn">搜尋</button>
+          </div>
+        </div>
+      </form>
       <div>
-        <a class="btn btn-primary" href="">新增商品</a>
+        <a class="btn btn-outline-dark" href="./prdinfo-add.php">新增商品</a>
       </div>
     </div>
 
@@ -69,46 +76,29 @@ require("../../../db-connect.php");
         </tr>
       </thead>
       <tbody>
+        <?php for($i=0; $i<count($rows); $i++):?>
         <tr>
-          <td>001</td>
+          <td><?=$i+1?></td>
           <td class="prd-list_img">
-            <img class="img-fluid " src="../../../assets/img/test/AB11.jpeg" alt="">
+            <img class="img-fluid " src="../../../assets/img/test/<?=$rows[$i]["main_img"]?>" alt="">
           </td>
-          <td>AB11</td>
-          <td>人頭馬VSOP</td>
+          <td><?=$rows[$i]["prd_num"]?></td>
+          <td><?=$rows[$i]["name"]?></td>
           <td>
-            NT.123
+            NT.<?=$rows[$i]["price"]?>
           </td>
           <td>
-            <span class="bg-primary text-white p-1 rounded-2">
-              上架
+            <span class="<?php echo $rows[$i]["status"]==1 ? "bg-primary":"bg-warning" ?> text-white p-1 rounded-2">
+              <?php echo $rows[$i]["status"]==1 ? "上架":"下架" ?>
             </span>
           </td>
           <td class="text-end">
-            <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-            <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+            <a class="px-2" href="./prdinfo.php?mode=view&id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-eye"></i></a>
+            <a class="px-2" href="./prdinfo.php?mode=edit&id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-pen"></i></a>
+            <a class="px-2" oncilck="return confirm('是否刪除此商品')" href="../../../api/product/del-prd.php?id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-trash-can"></i></a>
           </td>
         </tr>
-        <tr>
-          <td>001</td>
-          <td class="prd-list_img">
-            <img class="img-fluid " src="../../../assets/img/test/AB11.jpeg" alt="">
-          </td>
-          <td>AB11</td>
-          <td>人頭馬VSOP</td>
-          <td>
-            NT.123
-          </td>
-          <td>
-            <span class="bg-warning text-white p-1 rounded-2">
-              下架
-            </span>
-          </td>
-          <td class="text-end">
-            <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-            <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
-          </td>
-        </tr>
+        <?php endfor;?>
       </tbody>
     </table>
 

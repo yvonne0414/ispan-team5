@@ -36,5 +36,6 @@ $tdMaterial_sql="INSERT INTO bartd_material(bartd_id, name, mater_amount, mater_
 VALUE ('$last_id', '$bartd_name', '$bartd_ratio', '$prd_cate_l', '$prd_cate_m')";
 $conn->query($tdMaterial_sql);
 
+header("location: bartd-list.php")
 
 ?>

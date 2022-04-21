@@ -3,6 +3,17 @@
     z-index: auto;
 }
 /* ============================= 基礎設定 ============================= */
+body{
+    font-family: 'Noto Sans TC','Roboto',sans-serif;
+    
+}
+.logo-text{
+    font-family: 'Whisper',cursive;
+}
+.sidemenu .list-group a:hover{
+    background-color: #ccc;
+    color: #fff;
+}
 /* 表格 */
 table .fa-solid{
     color: black;
@@ -18,6 +29,8 @@ img{
     object-fit: cover;
     width: 100%;
 }
+
+
 
 
 /* ============================= 商品列表 ============================= */
