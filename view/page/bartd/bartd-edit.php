@@ -68,7 +68,7 @@ require("../../../db-connect.php");
                     <label for="prd_disc" class="form-label mb-0">商品描述</label>
                 </div>
                 <div class="flex-grow-1">
-                    <textarea class="form-control" disabled id="prd_disc" rows="3" name="bartd_content">１．將啤酒以外的材料加入做好粉口的握把式啤酒杯
+                    <textarea class="form-control" id="prd_disc" rows="3" name="bartd_content">１．將啤酒以外的材料加入做好粉口的握把式啤酒杯
 ２．攪拌均勻後，插入啤酒
 ３．最後放上裝飾物即可
 
@@ -83,11 +83,11 @@ require("../../../db-connect.php");
                 </div>
                 <!-- 名稱 -->
                 <div class="flex-grow-1">
-                    <input type="text" disabled class="form-control" name="bartd_name" id="bartd-name" value="蕃茄汁">
+                    <input type="text" class="form-control" name="bartd_name" id="bartd-name" value="蕃茄汁">
                 </div>
                 <!-- 比例 -->
                 <div class="flex-grow-1">
-                    <input type="text" disabled class="form-control" name="bartd_ratio" id="bartd-ratio" value="60 ml">
+                    <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio" value="60 ml">
                 </div>
                 <!-- master_cate_l -->
                 <div class="flex-grow-1">
@@ -108,11 +108,11 @@ require("../../../db-connect.php");
                 </div>
                 <!-- 名稱 -->
                 <div class="flex-grow-1">
-                    <input type="text" disabled class="form-control" name="bartd_name" id="bartd-name" value="現榨檸檬汁">
+                    <input type="text" class="form-control" name="bartd_name" id="bartd-name" value="現榨檸檬汁">
                 </div>
                 <!-- 比例 -->
                 <div class="flex-grow-1">
-                    <input type="text" disabled class="form-control" name="bartd_ratio" id="bartd-ratio" value="15 ml">
+                    <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio" value="15 ml">
                 </div>
                 <!-- master_cate_l -->
                 <div class="flex-grow-1">
@@ -159,6 +159,7 @@ require("../../../db-connect.php");
                     </select>
                 </div>
             </div>
+
 
             <!-- 按鈕 -->
             <div class="w-100 text-center">
