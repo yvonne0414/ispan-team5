@@ -29,7 +29,7 @@ require("../../../db-connect.php");
 
     <h2>新增酒譜</h2>
 
-    <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST">
+    <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST" enctype="multipart/form-data">
       <!-- 名稱 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
@@ -91,7 +91,8 @@ require("../../../db-connect.php");
           <label for="prd_img" class="form-label mb-0">商品圖片</label>
         </div>
         <div class="flex-grow-1">
-          <input type="file" class="form-control" name="bartd_img" id="prd_img" multiple>
+          <input type="file" class="form-control" name="bartd_img" id="prd_img"
+          accept=".jpg, .jpeg, .png, .webp, .svg">
         </div>
       </div>
 
