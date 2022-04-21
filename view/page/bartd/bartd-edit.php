@@ -40,7 +40,7 @@ $id = $_GET["id"];
 
         <h2>編輯酒譜</h2>
 
-        <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST">
+        <form action="doUpdate.php" class="d-flex flex-wrap mt-4" method="POST">
             <!--  enctype="multipart/form-data" -->
             <!-- 名稱 -->
             <?php
@@ -98,11 +98,12 @@ $id = $_GET["id"];
                     </div>
                     <!-- 名稱 -->
                     <div class="flex-grow-1">
-                        <input type="text" class="form-control" name="bartd_name" id="bartd-name" value="<?= $row2['name'] ?>">
+                        <input type="hidden" name ="bartd_id" value="<?= $_GET['id']?>">
+                        <input type="text" disabled class="form-control" name="bartd_name" id="bartd-name" value="<?= $row2['name'] ?>">
                     </div>
                     <!-- 比例 -->
                     <div class="flex-grow-1">
-                        <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio" value="<?= $row2['mater_amount'] ?>">
+                        <input type="text" disabled class="form-control" name="bartd_ratio" id="bartd-ratio" value="<?= $row2['mater_amount'] ?>">
                     </div>
                     <!-- master_cate_l -->
                     <div class="flex-grow-1">
@@ -190,8 +191,7 @@ WHERE id = $id";
             <!-- 按鈕 -->
             <div class="w-100 text-center">
                 <a class="btn btn-outline-primary" href="bartd-content.php?id=<?= $_GET["id"] ?>">返回</a>
-                <a href="" class="btn btn-primary">確認</a>
-                <button></button>
+                <button class="btn btn-primary" type="submit" id="prd_submit">確定</button>
             </div>
         </form>
     </div>
