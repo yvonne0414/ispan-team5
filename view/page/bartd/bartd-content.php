@@ -92,7 +92,8 @@ require("../../../db-connect.php");
                 <!-- master_cate_l -->
                 <div class="flex-grow-1">
                     <select class="form-select" name="prd_cate_l" id="prd_cate_l">
-                        <option selected>基酒</option>
+                        <option value="1" selected="selected">基酒</option>
+                        <option value="2">副材料</option>
                     </select>
                 </div>
                 <!-- master_cate_m -->
@@ -117,7 +118,8 @@ require("../../../db-connect.php");
                 <!-- master_cate_l -->
                 <div class="flex-grow-1">
                     <select class="form-select" name="prd_cate_l" id="prd_cate_l">
-                        <option selected>副材料</option>
+                        <option value="1">基酒</option>
+                        <option value="2" selected="selected">副材料</option>
                     </select>
                 </div>
                 <!-- master_cate_m -->
@@ -135,7 +137,10 @@ require("../../../db-connect.php");
                 </div>
                 <div class="flex-grow-1">
                     <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
-                        <option selected>調法</option>
+                        <option value="1">類型</option>
+                        <option value="2" >杯型</option>
+                        <option value="3" selected="selected" >調法</option>
+                        <option value="4">飲用方式</option>
                     </select>
                 </div>
                 <div class="flex-grow-1">
@@ -150,7 +155,11 @@ require("../../../db-connect.php");
                 </div>
                 <div class="flex-grow-1">
                     <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
-                        <option selected>飲用方式</option>
+                        <option value="">請選擇</option>
+                        <option value="1">類型</option>
+                        <option value="2">杯型</option>
+                        <option value="3" selected="selected">調法</option>
+                        <option value="4">飲用方式</option>
                     </select>
                 </div>
                 <div class="flex-grow-1">
@@ -171,6 +180,24 @@ require("../../../db-connect.php");
     <?php require("../../component/footerLayout.php") ?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <script>
+        let prd_detail_cate = {
+            1: ['威士忌', '龍舌蘭', '琴酒', '香甜酒', '白蘭地', '蘭姆酒', '伏特加'],
+            2: ['果汁', '醃漬水果、果乾', '碳酸飲料', '糖漿＆酸甜汁', '冰塊', '無酒精酒款', '調味材料']
+
+        };
+
+        let bartd_cate_type = {
+            1: ['Fancy', 'Frozen', 'Sling', 'Frappe', 'Punch', 'Fizz', 'Trio', 'Duo', 'Tiki\'s', 'Cocktail', 'Highball', 'Sour', 'Collins', 'Buck', 'Dessert'],
+
+            2: ['Brandy Glass', 'Champagne Glass', 'Margarita Glass', 'Champagne Saucer', 'Hurricane Glass', 'Old Fashioned', 'Highball Glass', 'Collins Glass', 'Cocktail Glass', 'Mojito Glass'],
+
+            3: ['Roll', 'Blend', 'Shake', 'Stir', 'Build'],
+
+            4: ['Straight', 'Longdrink', 'On the Rock', 'Frozen']
+
+        };
+    </script>
 </body>
 
 </html>
