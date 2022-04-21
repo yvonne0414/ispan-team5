@@ -1,5 +1,5 @@
 <?php
-require("../db-connect.php");
+require("../../../db-connect.php");
 
 $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
 JOIN user_list ON order_list.user_id = user_list.id
@@ -24,12 +24,12 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../component/headerLayout.php">
     <title>訂單列表</title>
-    <?php require("component/headerLayout.php") ?>
+    <?php require("../../component/headerLayout.php") ?>
 </head>
 
 <body>
-    <?php require("component/header.php") ?>
-    <?php require("component/sidemenu.php") ?>
+    <?php require("../../component/header.php") ?>
+    <?php require("../../component/sidemenu.php") ?>
     <div class="container py-5">
         <h2>訂單列表</h2>
 
@@ -66,7 +66,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </tbody>
         </table>
     </div>
-    <?php require("component/footerLayout.php") ?>
+    <?php require("../../component/footerLayout.php") ?>
 </body>
 
 </html>
