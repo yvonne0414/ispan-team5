@@ -64,7 +64,7 @@ $rowDetail = $resultDetail->fetch_assoc();
 
     <h2><?=($mode== "edit"?"編輯":"查看") ?>商品</h2>
 
-    <form action="../../../api/product/edit-prd.php?id=<?=$id?>" method="post" class="d-flex flex-wrap mt-4"  enctype="multipart/form-data"   onSubmit="return check();" >
+    <form action="../../../api/product/edit-prd.php?id=<?=$id?>" method="post" class="d-flex flex-wrap mt-4"  enctype="multipart/form-data"   onSubmit="return checkedit();" >
       <div class="d-flex align-items-center w-50 pe-4 mb-3">
         <div>
           <label for="prd_num" class="form-label mb-0">商品編號</label>
@@ -541,7 +541,8 @@ $rowDetail = $resultDetail->fetch_assoc();
     })
 
     // 送出表單
-    function check(){
+    function checkedit(){
+      alert("here")
       console.log("hi")
       // 抓值
       let prdNumVal = prdNum.value;
