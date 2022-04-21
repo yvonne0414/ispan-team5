@@ -52,12 +52,12 @@ require("../../../db-connect.php");
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <!-- <tr>
                     <td>001</td>
                     <td>首次消費滿2000元,即折抵200元</td>
                     <td>折抵200元</td>
                     <td>滿2000元</td>
-                    <td>td123</td>
+                    <td>td123222 ~ 123456789</td>
                     <td class="text-end">
                         <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
                         <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
@@ -73,7 +73,33 @@ require("../../../db-connect.php");
                         <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
                         <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
                     </td>
+                </tr> -->
+                <?php $sql = "SELECT * FROM coupon_list";
+                $result = $conn->query($sql);
+                $rows = $result->fetch_all(MYSQLI_ASSOC);
+                foreach ($rows as $row) :
+                ?>
+                <tr>
+                    <td><?= $row["id"] ?></td>
+                    <td><?= $row["name"] ?></td>
+                    <?php if($row["coupon_cate"] == 1):?>
+                    <td>折抵<?= $row["discount"] ?>元</td>
+                    <?php endif;?>
+                    <?php if($row["coupon_cate"] == 2):?>
+                    <td><?= $row["discount"] ?>折</td>
+                    <?php endif;?>
+                    <td><?= $row["rule_min"] ?> ~ <?= $row["rule_max"]?>元 </td>
+                    <td><?= $row["start_time"]?>~<?= $row["end_time"] ?></td>
+                    <td class="text-end">
+                        <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
+                        <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+                    </td>
                 </tr>
+
+                <?php
+                endforeach;
+                ?>
+
             </tbody>
         </table>
 
