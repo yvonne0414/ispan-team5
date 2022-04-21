@@ -14,7 +14,7 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
 
 } else{
 
-  $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list";
+  $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list WHERE status!=3";
   $result = $conn->query($sql);
   $rows = $result->fetch_all(MYSQLI_ASSOC);
 }
