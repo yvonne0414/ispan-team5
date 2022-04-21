@@ -58,7 +58,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <td><?= $row["logistics_state_cate_name"] ?></td>
                         <td><?= $row["order_time"] ?></td>
                         <td class="text-end">
-                            <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
+                            <a class="px-2" href=""><i class="fa-solid fa-eye"></i></a>
 
                         </td>
                     </tr>
