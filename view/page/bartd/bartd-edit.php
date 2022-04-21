@@ -55,7 +55,7 @@ $id = $_GET["id"];
                         <label for="prd_num" class="form-label mb-0">酒譜名稱</label>
                     </div>
                     <div class="flex-grow-1">
-                        <input type="text" disabled class="form-control" name="bartd_num" id="prd_num" value="<?= $row['name'] ?>">
+                        <input type="text" class="form-control" name="bartd_num" id="prd_num" value="<?= $row['name'] ?>">
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@ $id = $_GET["id"];
                         <label for="prd_disc" class="form-label mb-0">商品描述</label>
                     </div>
                     <div class="flex-grow-1">
-                        <textarea class="form-control" disabled id="prd_disc" rows="3" name="bartd_content"><?= $row['recipe'] ?></textarea>
+                        <textarea class="form-control" id="prd_disc" rows="3" name="bartd_content"><?= $row['recipe'] ?></textarea>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -85,6 +85,7 @@ $id = $_GET["id"];
             <!-- 材料 -->
 
             <?php
+            $id = $_GET["id"];
             $sql2 = "SELECT * FROM bartd_material
             WHERE bartd_id = $id";
             $result2 = $conn->query($sql2);
@@ -97,11 +98,11 @@ $id = $_GET["id"];
                     </div>
                     <!-- 名稱 -->
                     <div class="flex-grow-1">
-                        <input type="text" disabled class="form-control" name="bartd_name" id="bartd-name" value="<?= $row2['name'] ?>">
+                        <input type="text" class="form-control" name="bartd_name" id="bartd-name" value="<?= $row2['name'] ?>">
                     </div>
                     <!-- 比例 -->
                     <div class="flex-grow-1">
-                        <input type="text" disabled class="form-control" name="bartd_ratio" id="bartd-ratio" value="<?= $row2['mater_amount'] ?>">
+                        <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio" value="<?= $row2['mater_amount'] ?>">
                     </div>
                     <!-- master_cate_l -->
                     <div class="flex-grow-1">
@@ -139,11 +140,12 @@ $id = $_GET["id"];
                     </div>
                 </div>
 
-            <?php endforeach ?>
+            <?php endforeach; ?>
 
             <!-- 酒譜類別 -->
 
             <?php
+            $id = $_GET["id"];
             $sql3 = "SELECT * FROM bartd_cate_list
             WHERE bartd_id = $id";
             $result3 = $conn->query($sql3);
@@ -156,16 +158,14 @@ $id = $_GET["id"];
                     </div>
                     <div class="flex-grow-1">
                         <input type="text" disabled class="form-control" name="bartd_cate_id_m" id="bartd_cate_id_m" value="
-<?php
+                <?php
                 $id = $row3["bartd_cate_id_m"];
                 $sqlbartd_cate_type = "SELECT * FROM bartd_cate_type
-WHERE id = $id";
+                WHERE id = $id";
                 $resultbartd_cate_type = $conn->query($sqlbartd_cate_type);
                 $rowbartd_cate_type = $resultbartd_cate_type->fetch_assoc();
-
                 echo $rowbartd_cate_type['name'];
-
-?>
+                ?>
                         ">
                     </div>
                     <div class="flex-grow-1">
@@ -189,8 +189,9 @@ WHERE id = $id";
 
             <!-- 按鈕 -->
             <div class="w-100 text-center">
-                <a class="btn btn-outline-primary" href="bartd-list.php">返回</a>
+                <a class="btn btn-outline-primary" href="bartd-content.php?id=<?= $_GET["id"] ?>">返回</a>
                 <a href="" class="btn btn-primary">確認</a>
+                <button></button>
             </div>
         </form>
     </div>
