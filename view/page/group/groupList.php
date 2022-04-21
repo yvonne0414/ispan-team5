@@ -1,6 +1,12 @@
 <?php
 require("../../../db-connect.php");
-$sql="SELECT * FROM group_list ";
+
+$sql="SELECT name, disc, user_id, pass_num, max_num, is_official, start_time, end_time, activity_start_time FROM group_list";
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+
+var_dump($rows);
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +28,7 @@ $sql="SELECT * FROM group_list ";
 
     <div class="d-flex justify-content-end align-items-center">
       <div>
-        <a class="btn btn-primary mb-3" href="group-add.php">新增活動</a>
+        <a class="btn btn-primary mb-3" href="group-info.php">新增活動</a>
       </div>
     </div>
 
