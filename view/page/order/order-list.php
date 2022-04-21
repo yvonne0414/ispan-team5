@@ -1,8 +1,18 @@
 <?php
-require("../../../db-connect.php");
+require("../db-connect.php");
 
-$sql = "SELECT * FROM user_list";
-$result = $conn->query($sql); 
+$sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
+JOIN user_list ON order_list.user_id = user_list.id
+JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
+
+";
+
+
+
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+//var_dump($rows);
+//exit;
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +24,12 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../component/headerLayout.php">
     <title>訂單列表</title>
-    <?php require("../../component/headerLayout.php") ?>
+    <?php require("component/headerLayout.php") ?>
 </head>
 
-
 <body>
-    <?php require("../../component/header.php") ?>
-    <?php require("../../component/sidemenu.php") ?>
+    <?php require("component/header.php") ?>
+    <?php require("component/sidemenu.php") ?>
     <div class="container py-5">
         <h2>訂單列表</h2>
 
@@ -41,49 +50,23 @@ $result = $conn->query($sql);
                     <td class="text-end">功能列</td>
                 </tr>
             </thead>
-            <tbody class="table_body">
-                <tr>
-                    <td>001</td>
-                    <td>joe</td>
-                    <td>待出貨</td>
-                    <td>2022/05/30 10:40:15</td>
-                    <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-eye"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>001</td>
-                    <td>joe</td>
-                    <td>已出貨</td>
-                    <td>2022/05/20 10:40:15</td>
-                    <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-eye"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>001</td>
-                    <td>joe</td>
-                    <td>已送達</td>
-                    <td>2022/05/20 10:40:15</td>
-                    <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-eye"></i></a>
-                    </td>
+            <tbody>
+                <?php foreach ($rows as $row) : ?>
+                    <tr>
+                        <td><?= $row["id"] ?></td>
+                        <td><?= $row["user_list_name"] ?></td>
+                        <td><?= $row["logistics_state_cate_name"] ?></td>
+                        <td><?= $row["order_time"] ?></td>
+                        <td class="text-end">
+                            <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
 
-                </tr>
-                <tr>
-                    <td>001</td>
-                    <td>joe</td>
-                    <td>已取消</td>
-                    <td>2022/05/20 10:40:15</td>
-                    <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-eye"></i></a>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
-
     </div>
-    <?php require("../../component/footerLayout.php") ?>
+    <?php require("component/footerLayout.php") ?>
 </body>
 
 </html>
