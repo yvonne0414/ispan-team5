@@ -46,6 +46,15 @@ if ($conn->query($sql) === TRUE) {
     exit;       
 }
 
+//DELETE 軟刪除
+// $sql="UPDATE prd_list SET status=3 WHERE id='$id'";
+// if ($conn->query($sql) === TRUE) {
+//     echo "刪除資料完成<br>";
+//     header('location:../../view/page/product/prdList.php');
+// } else {
+//     echo "刪除資料錯誤: "  . $conn->error;
+//     exit;       
+// }
 
 
 
