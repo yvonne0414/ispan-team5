@@ -35,7 +35,7 @@ require("../../../db-connect.php");
                     <a class="btn btn-secondary" href="">歷史紀錄</a>
                 </div>
                 <div class="mx-2">
-                    <a class="btn btn-primary " href="">新增優惠</a>
+                    <a class="btn btn-primary " href="coupon-info.php">新增優惠</a>
                 </div>
             </div>
         </div>
