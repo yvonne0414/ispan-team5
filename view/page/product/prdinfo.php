@@ -17,7 +17,7 @@ switch($row["category"]){
     break;
   case 3:
   case 4:
-    $tableCate = 2;
+    $tableCate = 3;
     break;
 }
 
@@ -43,7 +43,7 @@ $rowDetail = $resultDetail->fetch_assoc();
     }
     .img_container{
       max-height: 200px;
-      max-width: 200px;
+      max-width: 120px;
       border-radius:10px;
       overflow:hidden;
       display: none;
@@ -64,7 +64,8 @@ $rowDetail = $resultDetail->fetch_assoc();
 
     <h2><?=($mode== "edit"?"編輯":"查看") ?>商品</h2>
 
-    <form action="../../../api/product/edit-prd.php?id=<?=$id?>" method="post" class="d-flex flex-wrap mt-4"  enctype="multipart/form-data"   onSubmit="return checkedit();" >
+    <form action="../../../api/product/edit-prd.php" method="post" class="d-flex flex-wrap mt-4"  enctype="multipart/form-data"   onSubmit="return check();" >
+      <input type="number" class="d-none" value="<?=$row['id']?>" name="prd_id">
       <div class="d-flex align-items-center w-50 pe-4 mb-3">
         <div>
           <label for="prd_num" class="form-label mb-0">商品編號</label>
@@ -105,8 +106,8 @@ $rowDetail = $resultDetail->fetch_assoc();
           <label for="prd_disc" class="form-label mb-0">商品描述</label>
         </div>
         <div  class="flex-grow-1">
-          <textarea class="form-control" id="prd_disc" name="prd_disc" rows="3" <?=($mode== "edit"?"":"disabled") ?>>
-            <?= $_GET["mode"]!="add" ? $row["disc"]:""?>
+          <textarea class="form-control" id="prd_disc" name="prd_disc" rows="3" <?=($mode== "edit"?"":"disabled") ?> value="<?= $row["disc"]?>">
+            <?php echo trim($row["disc"])?>
           </textarea>
           <!-- <div id="prd_disc"></div> -->
         </div>
@@ -220,7 +221,7 @@ $rowDetail = $resultDetail->fetch_assoc();
       <div class="w-100 text-center">
         <a class="btn btn-outline-dark" href="./prdList.php">返回列表</a>
         <?php if($mode== "edit"): ?>
-        <a class="btn btn-dark" type="submit" id="prd_submit">確定</a>
+        <button class="btn btn-dark" type="submit" id="prd_submit">確定</button>
         <?php endif;?>
       </div>
     </form>
@@ -267,6 +268,7 @@ $rowDetail = $resultDetail->fetch_assoc();
     echo "let cateLSelect= $cateLSelect;";
     echo "let prdOriginSelect= $prdOriginSelect;";
     echo "let cateMSelect= $cateMSelect;";
+
     switch($cateLSelect){
       case 1:
         $cateSSelect=$rowDetail["cate_s"];
@@ -277,9 +279,6 @@ $rowDetail = $resultDetail->fetch_assoc();
       case 4:
         $prdMaterSelect=$rowDetail["mater"];
         echo "let prdMaterSelect= $prdMaterSelect;";
-      
-      default:
-      break;
 
     }
     
@@ -541,9 +540,7 @@ $rowDetail = $resultDetail->fetch_assoc();
     })
 
     // 送出表單
-    function checkedit(){
-      alert("here")
-      console.log("hi")
+    function check(){
       // 抓值
       let prdNumVal = prdNum.value;
       let prdNameVal = prdName.value;
@@ -562,7 +559,6 @@ $rowDetail = $resultDetail->fetch_assoc();
       let prdMaterVal = prdMater.value;
       let prdCateMVal = prdCateM.value;
       let prdCateSVal = prdCateS.value;
-      console.log(prdCateLVal)
       
       if(prdNumVal=="" || prdNameVal=="" || prdPriceVal=="" || prdStatusVal=="" || prdDiscVal=="" || prdLengthVal=="" || prdWidthVal=="" || prdHeightVal=="" || !parseInt(prdCateLVal)){
         alert("有欄位未填");
