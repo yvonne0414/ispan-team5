@@ -107,7 +107,7 @@ if($_FILES["prdImg"]["error"]==0){
                 echo "新增資料完成<br>";
             } else {
                 echo "新增資料錯誤: "  . $conn->error;
-                exit;
+                exit;       
             }
 
             echo "新增資料完成<br>";
