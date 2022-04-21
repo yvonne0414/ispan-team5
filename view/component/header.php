@@ -10,7 +10,7 @@
             </figure> -->
             <h1 class="logo-text">INJOIN</h1>
         </div>
-        <a href=""><i class="fa-solid fa-right-to-bracket text-dark display-5 me-5"></i></a>
+        <a href="/ispan-team5/api/admin-logout.php"><i class="fa-solid fa-right-to-bracket text-dark display-5 me-5"></i></a>
 
     </div>
 </header>
