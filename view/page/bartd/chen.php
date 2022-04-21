@@ -27,4 +27,3 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 var_dump($rows);
 echo "<hr>";
 
-?>
