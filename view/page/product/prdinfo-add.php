@@ -182,8 +182,8 @@ require("../../../db-connect.php");
         </div>
       </div>
       <div class="w-100 text-center">
-        <button class="btn btn-outline-primary">取消</button>
-        <button class="btn btn-primary" type="submit" id="prd_submit">確定</button>
+        <a class="btn btn-outline-dark" href="./prdList.php">返回列表</a>
+        <button class="btn btn-dark" type="submit" id="prd_submit">確定</button>
       </div>
     </form>
   </div>

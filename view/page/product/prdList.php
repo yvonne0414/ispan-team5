@@ -1,9 +1,27 @@
 <?php
 require("../../../db-connect.php");
 
-$sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list";
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
+if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
+  $searchType = $_GET["searchType"];
+  $searchInput = $_GET["searchInput"];
+
+
+  $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list WHERE $searchType LIKE '%$searchInput%'";
+  $result = $conn->query($sql);
+  $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+
+
+} else{
+
+  $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list";
+  $result = $conn->query($sql);
+  $rows = $result->fetch_all(MYSQLI_ASSOC);
+}
+
+// $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list";
+// $result = $conn->query($sql);
+// $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 ?>
 
@@ -24,12 +42,24 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <h2>商品列表</h2>
 
     <div class="d-flex justify-content-between align-items-center mt-4">
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control round-0 border-0 border-bottom" id="searchInput">
-        <label for="searchInput">search</label>
-      </div>
+      <form action="./prdList.php" method="get">
+        <div class="d-flex">
+          <div class="mb-3 me-2">
+            <select class="form-control round-0 border-0 border-bottom w-auto"  name="searchType" id="searchType">
+              <option disabled <?php if(!isset($_GET["searchType"]) || !isset($_GET["searchInput"])):?>selected<?php endif;?>>搜索類型</option>
+              <option value="prd_num" <?php if(isset($_GET["searchType"]) && isset($_GET["searchInput"])):?><?= ($searchType=='prd_num'? 'selected':'' ) ?><?php endif;?>>編號</option>
+              <option value="name" <?php if(isset($_GET["searchType"]) && isset($_GET["searchInput"])):?><?= ($searchType=='name'? 'selected':'' ) ?><?php endif;?>>名稱</option>
+            </select>
+          </div>
+  
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="searchInput" placeholder="search" name="searchInput" <?php if(isset($_GET["searchType"]) && isset($_GET["searchInput"])):?>value="<?= $searchInput?>"<?php endif;?> >
+            <button class="btn btn-secondary  round-0" type="submit" id="searchBtn">搜尋</button>
+          </div>
+        </div>
+      </form>
       <div>
-        <a class="btn btn-primary" href="./prdinfo-add.php">新增商品</a>
+        <a class="btn btn-outline-dark" href="./prdinfo-add.php">新增商品</a>
       </div>
     </div>
 
