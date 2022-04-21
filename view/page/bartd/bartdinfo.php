@@ -29,7 +29,8 @@ require("../../../db-connect.php");
 
     <h2>新增酒譜</h2>
 
-    <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST" enctype="multipart/form-data">
+    <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST">
+      <!--  enctype="multipart/form-data" -->
       <!-- 名稱 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>

@@ -52,7 +52,7 @@ require("../../../db-connect.php");
                         <td class="prd-list_img">
                             <img class="img-fluid " src="../../../assets/img/test/<?=$row['img']?>" alt="">
                         </td>
-                        <td><?= $row['name'] ?></td>
+                        <td><a href="http://localhost/ispan-team5/view/page/bartd/bartd-content.php?id=<?=$row['id']?>"><?= $row['name'] ?></a></td>
                         <td class="text-end">
                             <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
                             <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
