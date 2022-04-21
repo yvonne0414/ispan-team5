@@ -5,7 +5,7 @@ $coupon_cate=$_POST["coupon_cate"];
 $name=$_POST["coupon_name"];
 $rule_min=$_POST["min"];
 $rule_max=$_POST["max"];
-$vip_level=$POST["vip_leve"];
+$vip_level=$POST["vip_level"];
 $start_time=$_POST["start_time"];
 $end_time=$_POST["end_time"];
 
@@ -27,5 +27,7 @@ if ($conn->query($sql) === TRUE) {
     exit;
 }
 $conn->close();
+
+header("location: coupon-info.php");
 
 ?>

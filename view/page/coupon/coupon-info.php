@@ -60,7 +60,7 @@ require("../../../db-connect.php");
                     <input type="text" class="form-control " name="coupon_name" id="coupon_name">
                 </div>
             </div>
-            <div class="d-flex align-items-center pe-4">
+            <div class="d-flex align-items-center pe-4 w-50 me-3">
                 <div class="mb-3">
                     <label for="vip_level" class="form-label me-2">會員等級</label>
                 </div>
@@ -74,7 +74,7 @@ require("../../../db-connect.php");
                 </div>
             </div>
             <!-- coupon_cate -->
-            <div class="d-flex align-items-center w-100 pe-4 ">
+            <div class="d-flex align-items-center w-50 pe-4 me-3">
                 <div class="mb-3">
                     <label for="coupon_cate" class="form-label me-2">優惠種類</label>
                 </div>
@@ -84,6 +84,14 @@ require("../../../db-connect.php");
                         <option value="1">折扣</option>
                         <option value="2">折扣率(%)</option>
                     </select>
+                </div>
+            </div>
+            <div class="d-flex align-items-center w-50 pe-4 mb-3">
+                <div>
+                    <label for="coupon_line" class="form-label mb-0 me-2">優惠金額</label>
+                </div>
+                <div class="flex-grow-1">
+                    <input type="number" class="form-control" name="" id="" value="">
                 </div>
             </div>
 

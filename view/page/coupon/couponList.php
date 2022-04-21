@@ -31,9 +31,9 @@ require("../../../db-connect.php");
                 <label for="searchInput">search</label>
             </div>
             <div class="d-flex flex-nowrap">
-                <div class="">
+                <!-- <div class="">
                     <a class="btn btn-secondary" href="">歷史紀錄</a>
-                </div>
+                </div> -->
                 <div class="mx-2">
                     <a class="btn btn-primary " href="coupon-info.php">新增優惠</a>
                 </div>
@@ -46,7 +46,8 @@ require("../../../db-connect.php");
                     <td>序號</td>
                     <td>優惠名稱</td>
                     <td>折抵方案</td>
-                    <td>金額限制</td>
+                    <td>金額最低限制</td>
+                    <td>金額最高限制</td>
                     <td>優惠日期</td>
                     <td class="text-end">功能列</td>
                 </tr>
@@ -88,11 +89,13 @@ require("../../../db-connect.php");
                     <?php if($row["coupon_cate"] == 2):?>
                     <td><?= $row["discount"] ?>折</td>
                     <?php endif;?>
-                    <td><?= $row["rule_min"] ?> ~ <?= $row["rule_max"]?>元 </td>
+                    <td><?= $row["rule_min"] ?>元</td>
+                   
+                    <td><?= $row["rule_max"]?>元</td>
                     <td><?= $row["start_time"]?>~<?= $row["end_time"] ?></td>
                     <td class="text-end">
                         <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-                        <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+                        <a class="px-2" href="./doDelete.php?id=<?=$row["id"]?>"><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
 
