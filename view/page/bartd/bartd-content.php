@@ -190,7 +190,10 @@ WHERE id = $id";
             <!-- 按鈕 -->
             <div class="w-100 text-center">
                 <a class="btn btn-outline-primary" href="bartd-list.php">返回</a>
-                <a href="" class="btn btn-primary">編輯</a>
+                <a href="http://localhost/ispan-team5/view/page/bartd/bartd-edit.php?id=<?php
+                $id = $_GET["id"];
+                echo $id;
+                ?>" class="btn btn-primary">編輯</a>
             </div>
         </form>
     </div>

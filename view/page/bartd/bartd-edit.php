@@ -1,6 +1,6 @@
 <?php
 require("../../../db-connect.php");
-
+$id = $_GET["id"];
 
 ?>
 
@@ -38,95 +38,159 @@ require("../../../db-connect.php");
     <?php require("../../component/sidemenu.php") ?>
     <div class="container py-5">
 
-        <h2>查看酒譜</h2>
+        <h2>編輯酒譜</h2>
 
         <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST">
             <!--  enctype="multipart/form-data" -->
             <!-- 名稱 -->
-            <div class="d-flex align-items-center w-100 pe-4 mb-3">
-                <div>
-                    <label for="prd_num" class="form-label mb-0">酒譜名稱</label>
+            <?php
+            $sql = "SELECT * FROM bartd_list
+            WHERE id = $id";
+            $result = $conn->query($sql);
+            $rows = $result->fetch_all(MYSQLI_ASSOC);
+            foreach ($rows as $row) :
+            ?>
+                <div class="d-flex align-items-center w-100 pe-4 mb-3">
+                    <div>
+                        <label for="prd_num" class="form-label mb-0">酒譜名稱</label>
+                    </div>
+                    <div class="flex-grow-1">
+                        <input type="text" disabled class="form-control" name="bartd_num" id="prd_num" value="<?= $row['name'] ?>">
+                    </div>
                 </div>
-                <div class="flex-grow-1">
-                    <input type="text" disabled class="form-control" name="bartd_num" id="prd_num" value="CHEN">
-                </div>
-            </div>
 
-            <!-- image -->
-            <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
-                <div>
-                    <label for="prd_img" class="form-label mb-0">商品圖片</label>
-                </div>
-                <div class="justify-content-center align-items-center img_container my-2">
-                    <img id="prdImg_show" src="../../../assets/img/test/A008.jpg" />
-                </div>
-            </div>
 
-            <!-- textarea -->
-            <div class="d-flex align-items-center w-100 pe-4 mb-3">
-                <div>
-                    <label for="prd_disc" class="form-label mb-0">商品描述</label>
+                <!-- image -->
+                <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
+                    <div>
+                        <label for="prd_img" class="form-label mb-0">商品圖片</label>
+                    </div>
+                    <div class="justify-content-center align-items-center img_container my-2">
+                        <img id="prdImg_show" src="../../../assets/img/test/<?= $row["img"] ?>" />
+                    </div>
                 </div>
-                <div class="flex-grow-1">
-                    <textarea class="form-control" id="prd_disc" rows="3" name="bartd_content">１．將啤酒以外的材料加入做好粉口的握把式啤酒杯
-２．攪拌均勻後，插入啤酒
-３．最後放上裝飾物即可
 
-裝飾物：Tajin墨西哥調味粉、檸檬角</textarea>
+
+                <!-- textarea -->
+                <div class="d-flex align-items-center w-100 pe-4 mb-3">
+                    <div>
+                        <label for="prd_disc" class="form-label mb-0">商品描述</label>
+                    </div>
+                    <div class="flex-grow-1">
+                        <textarea class="form-control" disabled id="prd_disc" rows="3" name="bartd_content"><?= $row['recipe'] ?></textarea>
+                    </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
 
             <!-- 材料 -->
-            <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
-                <div>
-                    <label for="bartd-name" class="form-label mb-0">材料</label>
+
+            <?php
+            $sql2 = "SELECT * FROM bartd_material
+            WHERE bartd_id = $id";
+            $result2 = $conn->query($sql2);
+            $rows2 = $result2->fetch_all(MYSQLI_ASSOC);
+            foreach ($rows2 as $row2) :
+            ?>
+                <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
+                    <div>
+                        <label for="bartd-name" class="form-label mb-0">材料</label>
+                    </div>
+                    <!-- 名稱 -->
+                    <div class="flex-grow-1">
+                        <input type="text" disabled class="form-control" name="bartd_name" id="bartd-name" value="<?= $row2['name'] ?>">
+                    </div>
+                    <!-- 比例 -->
+                    <div class="flex-grow-1">
+                        <input type="text" disabled class="form-control" name="bartd_ratio" id="bartd-ratio" value="<?= $row2['mater_amount'] ?>">
+                    </div>
+                    <!-- master_cate_l -->
+                    <div class="flex-grow-1">
+                        <input type="text" disabled class="form-control" name="prd_cate_l" id="prd_cate_l" value="
+                        <?php
+
+                        $id = $row2["mater_cate_l"];
+                        $sqlprd_detail_cate = "SELECT * FROM prd_detail_cate
+                        WHERE id = $id";
+                        $resultprd_detail_cate = $conn->query($sqlprd_detail_cate);
+                        $row2["mater_cate_l"] = $resultprd_detail_cate->fetch_assoc();
+
+                        echo $row2["mater_cate_l"]['name'];
+
+                        ?>
+                        
+                        ">
+                    </div>
+                    <!-- master_cate_m -->
+
+                    <div class="flex-grow-1">
+                        <input type="text" disabled class="form-control" name="prd_cate_m" id="prd_cate_m" value="
+
+                        <?php
+                        $id = $row2["mater_cate_m"];
+                        $sqlprd_detail_cate = "SELECT * FROM prd_detail_cate
+                        WHERE id = $id";
+                        $resultprd_detail_cate = $conn->query($sqlprd_detail_cate);
+                        $row2["mater_cate_m"] = $resultprd_detail_cate->fetch_assoc();
+
+                        echo $row2["mater_cate_m"]['name'];
+                        ?>
+                        
+                        ">
+                    </div>
                 </div>
-                <!-- 名稱 -->
-                <div class="flex-grow-1">
-                    <input type="text" class="form-control" name="bartd_name" id="bartd-name" value="蕃茄汁">
-                </div>
-                <!-- 比例 -->
-                <div class="flex-grow-1">
-                    <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio" value="60 ml">
-                </div>
-                <!-- master_cate_l -->
-                <div class="flex-grow-1">
-                    <select class="form-select" name="prd_cate_l" id="prd_cate_l">
-                        <option selected>基酒</option>
-                    </select>
-                </div>
-                <!-- master_cate_m -->
-                <div class="flex-grow-1">
-                    <select class="form-select" name="prd_cate_m" id="prd_cate_m">
-                        <option selected>其他</option>
-                    </select>
-                </div>
-            </div>
-            
+
+            <?php endforeach ?>
 
             <!-- 酒譜類別 -->
-            <div class="d-flex align-items-center w-100 pe-4 mb-3">
-                <div>
-                    <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
-                </div>
-                <div class="flex-grow-1">
-                    <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
-                        <option selected>調法</option>
-                    </select>
-                </div>
-                <div class="flex-grow-1">
-                    <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
-                        <option selected>Build</option>
-                    </select>
-                </div>
-            </div>
-            
 
+            <?php
+            $sql3 = "SELECT * FROM bartd_cate_list
+            WHERE bartd_id = $id";
+            $result3 = $conn->query($sql3);
+            $rows3 = $result3->fetch_all(MYSQLI_ASSOC);
+            foreach ($rows3 as $row3) :
+            ?>
+                <div class="d-flex align-items-center w-100 pe-4 mb-3">
+                    <div>
+                        <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
+                    </div>
+                    <div class="flex-grow-1">
+                        <input type="text" disabled class="form-control" name="bartd_cate_id_m" id="bartd_cate_id_m" value="
+<?php
+                $id = $row3["bartd_cate_id_m"];
+                $sqlbartd_cate_type = "SELECT * FROM bartd_cate_type
+WHERE id = $id";
+                $resultbartd_cate_type = $conn->query($sqlbartd_cate_type);
+                $rowbartd_cate_type = $resultbartd_cate_type->fetch_assoc();
+
+                echo $rowbartd_cate_type['name'];
+
+?>
+                        ">
+                    </div>
+                    <div class="flex-grow-1">
+                        <input type="text" disabled class="form-control" name="bartd_cate_id_s" id="bartd_cate_id_s" value="
+                        <?php
+                        $id = $row3["bartd_cate_id_s"];
+                        $sqlbartd_cate_type = "SELECT * FROM bartd_cate_type
+WHERE id = $id";
+                        $resultbartd_cate_type = $conn->query($sqlbartd_cate_type);
+                        $rowbartd_cate_type = $resultbartd_cate_type->fetch_assoc();
+
+                        echo $rowbartd_cate_type['name'];
+
+                        ?>
+                        
+                        ">
+                    </div>
+                </div>
+
+            <?php endforeach; ?>
 
             <!-- 按鈕 -->
             <div class="w-100 text-center">
                 <a class="btn btn-outline-primary" href="bartd-list.php">返回</a>
-                <a href="" class="btn btn-primary">編輯</a>
+                <a href="" class="btn btn-primary">確認</a>
             </div>
         </form>
     </div>
@@ -134,6 +198,24 @@ require("../../../db-connect.php");
     <?php require("../../component/footerLayout.php") ?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <script>
+        let prd_detail_cate = {
+            1: ['威士忌', '龍舌蘭', '琴酒', '香甜酒', '白蘭地', '蘭姆酒', '伏特加'],
+            2: ['果汁', '醃漬水果、果乾', '碳酸飲料', '糖漿＆酸甜汁', '冰塊', '無酒精酒款', '調味材料']
+
+        };
+
+        let bartd_cate_type = {
+            1: ['Fancy', 'Frozen', 'Sling', 'Frappe', 'Punch', 'Fizz', 'Trio', 'Duo', 'Tiki\'s', 'Cocktail', 'Highball', 'Sour', 'Collins', 'Buck', 'Dessert'],
+
+            2: ['Brandy Glass', 'Champagne Glass', 'Margarita Glass', 'Champagne Saucer', 'Hurricane Glass', 'Old Fashioned', 'Highball Glass', 'Collins Glass', 'Cocktail Glass', 'Mojito Glass'],
+
+            3: ['Roll', 'Blend', 'Shake', 'Stir', 'Build'],
+
+            4: ['Straight', 'Longdrink', 'On the Rock', 'Frozen']
+
+        };
+    </script>
 </body>
 
 </html>
