@@ -27,7 +27,7 @@ require("../../../db-connect.php");
 
         <h2>新增活動</h2>
 
-        <form action="../../../api/group/add-group.php" method="post" class="d-flex flex-wrap mt-4">
+        <form action="../../../api/group/grp-doUpdate.php?id=<?=$id?>" method="post" class="d-flex flex-wrap mt-4">
             <div class="d-flex align-items-center w-50 pe-4 mb-3">
                 <div>
                 <label for="name" class="form-label mb-0">活動名稱</label>

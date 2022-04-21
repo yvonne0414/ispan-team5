@@ -46,29 +46,29 @@ if(empty($name) || empty($userid) || empty($price) || empty($pass_num) || empty(
 // $now=date('Y-m-d H:i:s');
 
 // echo "$name, $email, $phones";
-$sql="INSERT INTO  group_list(name, disc, user_id, pass_num, max_num, is_official, start_time, end_time, activity_start_time) VALUES('$name', '$disc', '$userid', '$pass_num', '$max_num', 1, '$date','$date1', '$date2')";
+$sql="UPDATE group_list SET name='$name', disc='$disc', user_id='$userid', pass_num='$pass_num', max_num='$max_num', is_official='1', start_time='$date', end_time='$date1', activity_start_time='$date2' WHERE id='$id'";
 
 
 // echo $sql;
 // exit;
 
 if ($conn->query($sql) === TRUE) {
-    echo "新增資料完成<br>";
+    echo "更新資料完成<br>";
     $last_id=$conn->insert_id;
     // echo "last id is $last_id";
     // exit;
-    $sql_2="INSERT INTO group_official(group_id,price, vip_level) VALUES($last_id, $price, $vip_level)";
+    $sql_2="UPDATE group_official SET group_id='$last_id', price=$price, vip_level='$vip_level'  WHERE id='$group_id'";
     if ($conn->query($sql_2) === TRUE) {
-        echo "新增資料完成<br>";
+        echo "更新資料完成<br>";
     } else {
-        echo "新增資料錯誤: "  . $conn->error;
+        echo "更新資料錯誤: "  . $conn->error;
         exit;       
     }
 
-    echo "新增資料完成<br>";
+    echo "更新資料完成<br>";
 
 } else {
-    echo "新增資料錯誤: " . $conn->error;
+    echo "更新資料錯誤: " . $conn->error;
     exit;
 }
 
