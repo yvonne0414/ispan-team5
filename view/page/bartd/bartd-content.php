@@ -105,40 +105,87 @@ $id = $_GET["id"];
                     </div>
                     <!-- master_cate_l -->
                     <div class="flex-grow-1">
-                        <select class="form-select" name="prd_cate_l" id="prd_cate_l">
-                            <option value="1" selected="selected">基酒</option>
-                            <option value="2">副材料</option>
-                        </select>
+                        <input type="text" disabled class="form-control" name="prd_cate_l" id="prd_cate_l" value="
+                        <?php
+
+                        $id = $row2["mater_cate_l"];
+                        $sqlprd_detail_cate = "SELECT * FROM prd_detail_cate
+                        WHERE id = $id";
+                        $resultprd_detail_cate = $conn->query($sqlprd_detail_cate);
+                        $row2["mater_cate_l"] = $resultprd_detail_cate->fetch_assoc();
+
+                        echo $row2["mater_cate_l"]['name'];
+
+                        ?>
+                        
+                        ">
                     </div>
                     <!-- master_cate_m -->
+
                     <div class="flex-grow-1">
-                        <select class="form-select" name="prd_cate_m" id="prd_cate_m">
-                            <option selected>其他</option>
-                        </select>
+                        <input type="text" disabled class="form-control" name="prd_cate_m" id="prd_cate_m" value="
+
+                        <?php
+                        $id = $row2["mater_cate_m"];
+                        $sqlprd_detail_cate = "SELECT * FROM prd_detail_cate
+                        WHERE id = $id";
+                        $resultprd_detail_cate = $conn->query($sqlprd_detail_cate);
+                        $row2["mater_cate_m"] = $resultprd_detail_cate->fetch_assoc();
+
+                        echo $row2["mater_cate_m"]['name'];
+                        ?>
+                        
+                        ">
                     </div>
                 </div>
 
             <?php endforeach ?>
 
             <!-- 酒譜類別 -->
-            <div class="d-flex align-items-center w-100 pe-4 mb-3">
-                <div>
-                    <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
+
+            <?php
+            $sql3 = "SELECT * FROM bartd_cate_list
+            WHERE bartd_id = $id";
+            $result3 = $conn->query($sql3);
+            $rows3 = $result3->fetch_all(MYSQLI_ASSOC);
+            foreach ($rows3 as $row3) :
+            ?>
+                <div class="d-flex align-items-center w-100 pe-4 mb-3">
+                    <div>
+                        <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
+                    </div>
+                    <div class="flex-grow-1">
+                        <input type="text" disabled class="form-control" name="bartd_cate_id_m" id="bartd_cate_id_m" value="
+<?php
+                $id = $row3["bartd_cate_id_m"];
+                $sqlbartd_cate_type = "SELECT * FROM bartd_cate_type
+WHERE id = $id";
+                $resultbartd_cate_type = $conn->query($sqlbartd_cate_type);
+                $rowbartd_cate_type = $resultbartd_cate_type->fetch_assoc();
+
+                echo $rowbartd_cate_type['name'];
+
+?>
+                        ">
+                    </div>
+                    <div class="flex-grow-1">
+                        <input type="text" disabled class="form-control" name="bartd_cate_id_s" id="bartd_cate_id_s" value="
+                        <?php
+                        $id = $row3["bartd_cate_id_s"];
+                        $sqlbartd_cate_type = "SELECT * FROM bartd_cate_type
+WHERE id = $id";
+                        $resultbartd_cate_type = $conn->query($sqlbartd_cate_type);
+                        $rowbartd_cate_type = $resultbartd_cate_type->fetch_assoc();
+
+                        echo $rowbartd_cate_type['name'];
+
+                        ?>
+                        
+                        ">
+                    </div>
                 </div>
-                <div class="flex-grow-1">
-                    <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
-                        <option value="1">類型</option>
-                        <option value="2">杯型</option>
-                        <option value="3" selected="selected">調法</option>
-                        <option value="4">飲用方式</option>
-                    </select>
-                </div>
-                <div class="flex-grow-1">
-                    <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
-                        <option selected>Build</option>
-                    </select>
-                </div>
-            </div>
+
+            <?php endforeach; ?>
 
             <!-- 按鈕 -->
             <div class="w-100 text-center">
