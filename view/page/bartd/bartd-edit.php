@@ -102,31 +102,7 @@ require("../../../db-connect.php");
                     </select>
                 </div>
             </div>
-            <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
-                <div>
-                    <label for="bartd-name" class="form-label mb-0"></label>
-                </div>
-                <!-- 名稱 -->
-                <div class="flex-grow-1">
-                    <input type="text" class="form-control" name="bartd_name" id="bartd-name" value="現榨檸檬汁">
-                </div>
-                <!-- 比例 -->
-                <div class="flex-grow-1">
-                    <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio" value="15 ml">
-                </div>
-                <!-- master_cate_l -->
-                <div class="flex-grow-1">
-                    <select class="form-select" name="prd_cate_l" id="prd_cate_l">
-                        <option selected>副材料</option>
-                    </select>
-                </div>
-                <!-- master_cate_m -->
-                <div class="flex-grow-1">
-                    <select class="form-select" name="prd_cate_m" id="prd_cate_m">
-                        <option selected>其他</option>
-                    </select>
-                </div>
-            </div>
+            
 
             <!-- 酒譜類別 -->
             <div class="d-flex align-items-center w-100 pe-4 mb-3">
@@ -144,21 +120,7 @@ require("../../../db-connect.php");
                     </select>
                 </div>
             </div>
-            <div class="d-flex align-items-center w-100 pe-4 mb-3">
-                <div>
-                    <label for="bartd_cate_id_m" class="form-label mb-0"></label>
-                </div>
-                <div class="flex-grow-1">
-                    <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
-                        <option selected>飲用方式</option>
-                    </select>
-                </div>
-                <div class="flex-grow-1">
-                    <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
-                        <option selected>Longdrink</option>
-                    </select>
-                </div>
-            </div>
+            
 
 
             <!-- 按鈕 -->
