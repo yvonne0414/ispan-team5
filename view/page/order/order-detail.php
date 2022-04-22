@@ -1,5 +1,6 @@
 <?php
 require("../../../db-connect.php");
+$sql ="SELECT order_detail.*, order_de"
 ?>
 
 <!DOCTYPE html>
