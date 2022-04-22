@@ -259,6 +259,7 @@ $mater_cate_m = $rows2[0]["mater_cate_m"];
 echo "let materCateM = $mater_cate_m";
 ?> 
             // 分水
+            console.log(materCateL);
             console.log(materCateM);
             $.ajax({
                 method: "POST",
@@ -271,12 +272,15 @@ echo "let materCateM = $mater_cate_m";
             .done(function(response) {
                 
                 console.log(response);
-                cateM = document.querySelector("#prd_cate_m");
 
                 let count = `${response.length}`;
+                let optionList="";
                 for (let i = 0; i < response.length; i++) {
                     let item = response[i]
+                    // console.log(item.id)
+                    // console.log(item.name)
                     // optionList += `<option value="${item.id}">${item.name}</option>`
+                    
                     // 判斷selected
                     if (item.id == materCateM) {
                         optionList += `<option value="${item.id}" selected>${item.name}</option>`
@@ -288,7 +292,8 @@ echo "let materCateM = $mater_cate_m";
 
                 }
 
-                cateM.innerHTML = optionList
+                console.log(optionList)
+                prdCateM.innerHTML += optionList
 
             }).fail(function(jqXHR, textStatus) {
                 while (prdCateM.options.length > 0) {
