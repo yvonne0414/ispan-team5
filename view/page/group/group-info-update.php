@@ -77,9 +77,7 @@ $row2 = $result2->fetch_assoc();
                 <label for="disc" class="form-label mb-0">活動描述</label>
                 </div>
                 <div  class="flex-grow-1">
-                <textarea class="form-control" name="disc" id="disc" rows="3" value='<?=$row["disc"]?>' >
-                    <?=$row["disc"]?>
-                </textarea>
+                <textarea class="form-control" name="disc" id="disc" rows="3" value='<?=$row["disc"]?>' ><?=$row["disc"]?></textarea>
                 </div>
             </div>
             <div class="d-flex align-items-center w-50 pe-4 mb-3">
@@ -162,7 +160,7 @@ $row2 = $result2->fetch_assoc();
             </div>
             <div class="w-100 text-center">
                 <a class="btn btn-outline-primary" href="groupList.php">返回列表</a>
-                <buttom class="btn btn-primary"  type="submit" id="group-submit">確定</buttom>
+                <button class="btn btn-primary"  type="submit" id="group-submit">確定</button>
             </div>
             </div>
         </form>
