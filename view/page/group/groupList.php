@@ -44,11 +44,20 @@ require("../../../db-connect.php");
           $result = $conn->query($sql);
           $rows = $result->fetch_all(MYSQLI_ASSOC);
           
-          foreach ($rows as $row) :
+          
+          for($i=0; $i<count($rows); $i++):
+            $row= $rows[$i];
+            $start=$row["start_time"];
+            $start=strtotime($start);
+            $start=date('Y-m-d', $start);
+          
+            $end=$row["end_time"];
+            $end=strtotime($end);
+            $end=date('Y-m-d', $end);
         ?>
           <tr>
-            <!-- 活動序號 -->
-            <td><?= $row['id'] ?></td> 
+            <!-- 序號 -->
+            <td><?= $i+1 ?></td> 
             <!-- 活動名稱 -->
             <td><?= $row['name'] ?></td>
             <!-- 主辦人 -->
@@ -56,15 +65,15 @@ require("../../../db-connect.php");
             <!-- 狀態 -->
             <td><?= $row['status'] ?></td>
             <!-- 開團時間 -->
-            <td><?= $row['start_time'] ?></td>
+            <td><?= $start ?></td>
             <!-- 結團時間 -->
-            <td><?= $row['end_time'] ?></td>
+            <td><?= $end ?></td>
             <td class="text-end">
-              <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
+              <a class="px-2" href="group-info-update.php?id=<?=$row['id']?>"><i class="fa-solid fa-pen"></i></a>
               <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
-        <?php endforeach ?>
+        <?php endfor; ?>
       </tbody>
     </table>
 

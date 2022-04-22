@@ -123,7 +123,7 @@ require("../../../db-connect.php");
                 </div>
             </div>
             <div class="w-100 text-center">
-                <button class="btn btn-outline-primary">取消</button>
+            <a class="btn btn-outline-primary" href="groupList.php">取消</a>
                 <button class="btn btn-primary"  type="submit" id="group-submit">送出表單</button>
             </div>
             </div>
