@@ -14,7 +14,7 @@
         </div>
         <div class="d-flex flex-grow-1 justify-content-evenly">
             <a href="">優惠券</a>
-            <a href="">訂單詳情</a>
+            <a href="../shopingCart.php">訂單詳情</a>
             <a href="/ispan-team5/view/frontend/api/user-logout.php" title='登出'><i class="fa-solid fa-right-to-bracket fa-xl text-white me-5"></i></a>
         </div>
         

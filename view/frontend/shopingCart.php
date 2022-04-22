@@ -1,17 +1,6 @@
 <?php
 require("../../db-connect.php");
 
-function  uuid(){  
-  $chars = md5(uniqid(mt_rand(), true));  
-  $uuid = substr ( $chars, 0, 8 ) . '-'
-          . substr ( $chars, 8, 4 ) . '-' 
-          . substr ( $chars, 12, 4 ) . '-'
-          . substr ( $chars, 16, 4 ) . '-'
-          . substr ( $chars, 20, 12 );  
-  return $uuid ;  
-}  
-
-echo  uuid();
 
 $data=[
     'user_id'=>3,
@@ -57,7 +46,7 @@ $row = $result->fetch_assoc();
 <body>
   <?php require("./component/header.php")?>
 
-  <div class="container">
+  <div class="container py-5">
     <h1>確認訂單</h1>
 
     <form>
@@ -127,16 +116,14 @@ $row = $result->fetch_assoc();
       </table>
 
 
-
+      <div class="text-end mt-4">
+        <a class="btn btn-outline-light" href="./api/add-order.php">確定下單</a>
+    </div>
 
     </from>
 
-    <div>
-    </div>
 
-    <div class="text-end">
-      <button class="btn btn-outline-light">確定下單</button>
-    </div>
+    
   </div>
 
   <?php require("../component/footerLayout.php")?>
