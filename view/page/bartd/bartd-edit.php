@@ -222,9 +222,9 @@ $id = $_GET["id"];
 
         <?php
         $mater_cate_l = $rows2[0]["mater_cate_l"];
-        $mater_cate_m = $rows2[0]["mater_cate_m"];
+        // $mater_cate_m = $rows2[0]["mater_cate_m"];
         echo "let materCateL = $mater_cate_l";
-        echo "let materCateM = $mater_cate_m";
+        // echo "let materCateM = $mater_cate_m";
 
         ?>
         //呼叫產品大分類
@@ -235,6 +235,8 @@ $id = $_GET["id"];
             })
             .done(function(response) {
                 let optionList = "";
+                
+                console.log(response);
                 for (let i = 0; i < response.length; i++) {
                     let item = response[i]
                     // 判斷selected
@@ -245,15 +247,20 @@ $id = $_GET["id"];
                         optionList += `<option value="${item.id}">${item.name}</option>`
                     }
 
-
                 }
                 prdCateL.innerHTML += optionList
             }).fail(function(jqXHR, textStatus) {
 
                 console.log("Request failed: " + textStatus);
             });
-
-        $.ajax({
+            
+<?php
+$mater_cate_m = $rows2[0]["mater_cate_m"];
+echo "let materCateM = $mater_cate_m";
+?> 
+            // 分水
+            console.log(materCateM);
+            $.ajax({
                 method: "POST",
                 url: "../../../api/bartd/get-bartd_master_cate_m.php",
                 dataType: "json",
@@ -262,17 +269,14 @@ $id = $_GET["id"];
                 }
             })
             .done(function(response) {
-
-                while (prdCateM.options.length > 0) {
-                    prdCateM.options.remove(0);
-                }
-
+                
+                console.log(response);
                 cateM = document.querySelector("#prd_cate_m");
-                let optionList = "<option selected>中分類</option>";
 
                 let count = `${response.length}`;
                 for (let i = 0; i < response.length; i++) {
                     let item = response[i]
+                    // optionList += `<option value="${item.id}">${item.name}</option>`
                     // 判斷selected
                     if (item.id == materCateM) {
                         optionList += `<option value="${item.id}" selected>${item.name}</option>`
@@ -291,6 +295,7 @@ $id = $_GET["id"];
                     prdCateM.options.remove(0);
                 }
             });
+
 
         // 呼叫完大分類
         prdCateL.addEventListener('change', function() {
