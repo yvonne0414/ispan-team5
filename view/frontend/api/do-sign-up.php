@@ -29,7 +29,7 @@ if($role==1){
   $address=$_POST["address"];
 
   if(isset($_SESSION["user"])){
-    header("location: ../home.php");
+    header("location: ../homePage.php");
   }
 
 }
@@ -71,6 +71,12 @@ if ($conn->query($sql) === TRUE) {
         "phone"=>$user["phone"],
         "role"=>$user["vip_level"]
     ];
+    
+    if($role==1){
+      header("location: ../../page/product/prdList.php");
+    }else{
+      header("location: ../homePage.php");
+    }
 
     
     } else {
@@ -85,10 +91,6 @@ if ($conn->query($sql) === TRUE) {
 }
 $conn->close();
 
-if($role==1){
-  header("location: ../../page/product/prdList.php");
-}else{
-  header("location: ../home.php");
-}
+
 
 ?>
