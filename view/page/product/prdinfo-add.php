@@ -44,7 +44,7 @@ require("../../../db-connect.php");
           <label for="prd_num" class="form-label mb-0">商品編號</label>
         </div>
         <div class="flex-grow-1">
-          <input type="text"  class="form-control" name="prd_num" id="prd_num">
+          <input type="text" required class="form-control" name="prd_num" id="prd_num">
         </div>
       </div>
       <div class="d-flex align-items-center w-50 pe-4 mb-3">
@@ -52,7 +52,7 @@ require("../../../db-connect.php");
           <label for="prd_name" class="form-label mb-0">商品名稱</label>
         </div>
         <div  class="flex-grow-1">
-          <input type="text"  class="form-control" name="prd_name" id="prd_name">
+          <input type="text" required class="form-control" name="prd_name" id="prd_name">
         </div>
       </div>
       <div class="d-flex align-items-center w-50 pe-4 mb-3">
@@ -60,7 +60,7 @@ require("../../../db-connect.php");
           <label for="prd_price" class="form-label mb-0">商品價格</label>
         </div>
         <div class="flex-grow-1">
-          <input type="number"  class="form-control" name="prd_price" id="prd_price">
+          <input type="number" required class="form-control" name="prd_price" id="prd_price">
         </div>
       </div>
       <div class="d-flex align-items-center w-50 pe-4 mb-3">
@@ -88,11 +88,11 @@ require("../../../db-connect.php");
           <label for="" class="form-label mb-0">商品材積</label>
         </div>
         <div class="d-flex align-items-center">
-          <input type="number"  min="0" class="form-control" placeholder="長(mm)" name="prd_length" id="prd_length">
+          <input type="number" required min="0" class="form-control" placeholder="長(mm)" name="prd_length" id="prd_length">
           <span class="mx-3">:</span>
-          <input type="number" min="0"  class="form-control" placeholder="寬(mm)" name="prd_width" id="prd_width">
+          <input type="number" required min="0"  class="form-control" placeholder="寬(mm)" name="prd_width" id="prd_width">
           <span class="mx-3">:</span>
-          <input type="number" min="0" class="form-control" placeholder="高(mm)" name="prd_height" id="prd_height">
+          <input type="number" required min="0" class="form-control" placeholder="高(mm)" name="prd_height" id="prd_height">
         </div>
       </div>
       <div class="d-flex align-items-center w-50 pe-4 mb-3">
@@ -100,7 +100,7 @@ require("../../../db-connect.php");
           <label for="inventory_quantity" class="form-label mb-0">庫存數量</label>
         </div>
         <div class="flex-grow-1">
-          <input type="number" min="0" class="form-control" name="inventory_quantity" id="inventory_quantity">
+          <input type="number" required min="0" class="form-control" name="inventory_quantity" id="inventory_quantity">
         </div>
       </div>
       <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">

@@ -87,8 +87,7 @@ if(isset($_FILES["prdImg"])){
     }
 
 }else{
-    echo "i'm here";
-    
+
     $id = $_POST["prd_id"];
     $prdNum=$_POST["prd_num"];
     $prdName=$_POST["prd_name"];
@@ -99,7 +98,6 @@ if(isset($_FILES["prdImg"])){
     $prdWidth=$_POST["prd_width"];
     $prdHeight=$_POST["prd_height"];
     $inventoryQuantity=$_POST["inventory_quantity"];
-    $prdImg=$_FILES["prdImg"]["name"];
     $prdCateL=$_POST["prd_cate_l"];
 
 
