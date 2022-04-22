@@ -321,9 +321,8 @@ $id = $_GET["id"];
         <?php
         $bartd_cate_id_m = $rows3[0]["bartd_cate_id_m"];
         // echo "let bartdCateIdM = $bartd_cate_id_m";
-
+        echo "let bartdCateIdM = $bartd_cate_id_m;";
         ?>
-
         $.ajax({
                 method: "POST",
                 url: "../../../api/bartd/get-bartd_cate_id_l.php",
