@@ -80,6 +80,31 @@ require("../../../db-connect.php");
         </div>
       </div>
 
+      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
+        <div>
+          <label for="bartd-name" class="form-label mb-0">材料</label>
+        </div>
+        <!-- 名稱 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd_name" id="bartd-name">
+        </div>
+        <!-- 比例 -->
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio">
+        </div>
+        <!-- master_cate_l -->
+        <div class="flex-grow-1">
+          <select class="form-select prd_cate_l" name="prd_cate_l" id="prd_cate_l">
+            <option selected>材料類別</option>
+          </select>
+        </div>
+        <!-- master_cate_m -->
+        <div class="flex-grow-1">
+          <select class="form-select prd_cate_m" name="prd_cate_m" id="prd_cate_m">
+            <option selected>請選擇</option>
+          </select>
+        </div>
+      </div>
       
       <!-- 酒譜類別 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
@@ -137,8 +162,8 @@ require("../../../db-connect.php");
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script>
-    let prdCateL = document.querySelector("#prd_cate_l");
-    let prdCateM = document.querySelector("#prd_cate_m");
+    let prdCateL = document.querySelector(".prd_cate_l");
+    let prdCateM = document.querySelector(".prd_cate_m");
     let bartdCateM = document.querySelector("#bartd_cate_id_m");
     let bartdCateS = document.querySelector("#bartd_cate_id_s");
 

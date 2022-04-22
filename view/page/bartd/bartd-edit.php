@@ -98,12 +98,26 @@ $id = $_GET["id"];
                     </div>
                     <!-- 名稱 -->
                     <div class="flex-grow-1">
-                        <input type="hidden" name ="bartd_id" value="<?= $_GET['id']?>">
+                        <input type="hidden" name="bartd_id" value="<?= $_GET['id'] ?>">
                         <input type="text" disabled class="form-control" name="bartd_name" id="bartd-name" value="<?= $row2['name'] ?>">
                     </div>
                     <!-- 比例 -->
                     <div class="flex-grow-1">
                         <input type="text" disabled class="form-control" name="bartd_ratio" id="bartd-ratio" value="<?= $row2['mater_amount'] ?>">
+                    </div>
+                    <!-- master_cate_l -->
+                    <div class="flex-grow-1">
+                        <select class="form-select prd_cate_l" name="prd_cate_l" id="prd_cate_l">
+                            <option>材料類別</option>
+                            
+                            <option> </option>
+                        </select>
+                    </div>
+                    <!-- master_cate_m -->
+                    <div class="flex-grow-1">
+                        <select class="form-select prd_cate_m" name="prd_cate_m" id="prd_cate_m">
+                            <option>請選擇</option>
+                        </select>
                     </div>
                     <!-- master_cate_l -->
                     <div class="flex-grow-1">
@@ -174,7 +188,7 @@ $id = $_GET["id"];
                         <?php
                         $id = $row3["bartd_cate_id_s"];
                         $sqlbartd_cate_type = "SELECT * FROM bartd_cate_type
-WHERE id = $id";
+                        WHERE id = $id";
                         $resultbartd_cate_type = $conn->query($sqlbartd_cate_type);
                         $rowbartd_cate_type = $resultbartd_cate_type->fetch_assoc();
 
@@ -217,6 +231,118 @@ WHERE id = $id";
 
         };
     </script>
+    <script>
+        let prdCateL = document.querySelector("#prd_cate_l");
+        let prdCateM = document.querySelector("#prd_cate_m");
+        let bartdCateM = document.querySelector("#bartd_cate_id_m");
+        let bartdCateS = document.querySelector("#bartd_cate_id_s");
+
+
+        //呼叫產品大分類
+        $.ajax({
+                method: "POST",
+                url: "../../../api/bartd/get-bartd_master_cate_l.php",
+                dataType: "json"
+            })
+            .done(function(response) {
+                let optionList = "";
+                for (let i = 0; i < response.length; i++) {
+                    let item = response[i]
+                    optionList += `<option value="${item.id}">${item.name}</option>`
+                }
+                prdCateL.innerHTML += optionList
+            }).fail(function(jqXHR, textStatus) {
+                console.log("Request failed: " + textStatus);
+            });
+        // 呼叫完大分類
+        prdCateL.addEventListener('change', function() {
+            let parentId = this.value;
+            $.ajax({
+                    method: "POST",
+                    url: "../../../api/bartd/get-bartd_master_cate_m.php",
+                    dataType: "json",
+                    data: {
+                        parentId: parentId
+                    }
+                })
+                .done(function(response) {
+
+                    while (prdCateM.options.length > 0) {
+                        prdCateM.options.remove(0);
+                    }
+
+                    cateM = document.querySelector("#prd_cate_m");
+                    let optionList = "<option selected>中分類</option>";
+
+                    let count = `${response.length}`;
+                    for (let i = 0; i < count; i++) {
+                        let master_cate_id = `${response[i].id}`;
+                        let master_cate_m_name = `${response[i].name}`;
+                        optionList += `<option value="${master_cate_id}">${master_cate_m_name}</option>`
+                    }
+
+                    cateM.innerHTML = optionList
+
+                }).fail(function(jqXHR, textStatus) {
+                    while (prdCateM.options.length > 0) {
+                        prdCateM.options.remove(0);
+                    }
+                });
+        });
+
+        // 呼叫酒譜大分類
+        $.ajax({
+                method: "POST",
+                url: "../../../api/bartd/get-bartd_cate_id_l.php",
+                dataType: "json"
+            })
+            .done(function(response) {
+                let optionList = "";
+                for (let i = 0; i < response.length; i++) {
+                    let item = response[i]
+                    optionList += `<option value="${item.id}">${item.name}</option>`
+                }
+                bartdCateM.innerHTML += optionList
+            }).fail(function(jqXHR, textStatus) {
+                console.log("Request failed: " + textStatus);
+            });
+        // 呼叫完酒譜大分類
+        bartdCateM.addEventListener('change', function() {
+            let cateParentId = this.value;
+            $.ajax({
+                    method: "POST",
+                    url: "../../../api/bartd/get-bartd_cate_id_m.php",
+                    dataType: "json",
+                    data: {
+                        cateParentId: cateParentId
+                    }
+                })
+                .done(function(response) {
+
+                    while (bartdCateS.options.length > 0) {
+                        bartdCateS.options.remove(0);
+                    }
+
+                    bartdCateM = document.querySelector("#bartd_cate_id_s");
+                    let optionList = "<option selected>中分類</option>";
+
+                    let count = `${response.length}`;
+                    for (let i = 0; i < count; i++) {
+                        let master_cate_id = `${response[i].id}`;
+                        let master_cate_m_name = `${response[i].name}`;
+                        optionList += `<option value="${master_cate_id}">${master_cate_m_name}</option>`
+                    }
+
+                    bartdCateM.innerHTML = optionList
+
+                }).fail(function(jqXHR, textStatus) {
+                    while (bartdCateS.options.length > 0) {
+                        bartdCateS.options.remove(0);
+                    }
+                });
+        })
+    </script>
+
 </body>
 
 </html>
