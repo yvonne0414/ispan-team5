@@ -157,7 +157,7 @@ require("../../../db-connect.php");
           <label for="prd_capacity" class="form-label mb-0">容量</label>
         </div>
         <div class="flex-grow-1">
-          <input type="text"  class="form-control" name="prd_capacity" id="prd_capacity" placeholder="ml">
+          <input type="number"  class="form-control" name="prd_capacity" id="prd_capacity" placeholder="ml">
         </div>
       </div>
       <div class=" align-items-center w-50 pe-4 mb-3 prd_abv-wraper">
@@ -165,7 +165,7 @@ require("../../../db-connect.php");
           <label for="prd_abv" class="form-label mb-0">酒精濃度</label>
         </div>
         <div class="flex-grow-1">
-          <input type="number" min="0" class="form-control" name="prd_abv" id="prd_abv" placeholder="%">
+          <input type="number" min="0" max="100" class="form-control" name="prd_abv" id="prd_abv" placeholder="%">
         </div>
       </div>
       <div class="align-items-center w-50 pe-4 mb-3 prd_cate_m-wraper">
