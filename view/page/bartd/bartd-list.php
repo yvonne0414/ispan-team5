@@ -7,66 +7,47 @@ if (!isset($_GET["p"])) {
     $p = $_GET["p"];
 }
 
-$sql = "SELECT * FROM bartd_list";
-$result = $conn->query($sql);
 
-$rows = $result->fetch_all(MYSQLI_ASSOC);
-$total = $result->num_rows;
-// echo $total;
-$per_page = 1;
+if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) {
+    $searchType = $_GET["searchType"];
+    $searchInput = $_GET["searchInput"];
 
-$page_count = CEIL($total / $per_page);
-$start = ($p - 1) * $per_page;
-// echo $page_count;
+    $sql = "SELECT * FROM bartd_list
+    WHERE $searchType LIKE '%$searchInput%'";
+    $result = $conn->query($sql);
 
-$sql = "SELECT * FROM bartd_list
-LIMIT $start,$per_page";
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $total = $result->num_rows;
+    // echo $total;
+    $per_page = 2;
 
-// if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
-//   $searchType = $_GET["searchType"];
-//   $searchInput = $_GET["searchInput"];
+    $page_count = CEIL($total / $per_page);
+    $start = ($p - 1) * $per_page;
+    // echo $page_count;
 
+    $sql = "SELECT * FROM bartd_list
+    WHERE $searchType LIKE '%$searchInput%'
+    LIMIT $start,$per_page";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+} else {
+    $sql = "SELECT * FROM bartd_list";
+    $result = $conn->query($sql);
 
-//   $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list 
-//   WHERE $searchType LIKE '%$searchInput%' AND status!=3";
-//   $result = $conn->query($sql);
-//   $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $total = $result->num_rows;
+    // echo $total;
+    $per_page = 2;
 
-//   $total=$result->num_rows;
-//   $per_page=3;
+    $page_count = CEIL($total / $per_page);
+    $start = ($p - 1) * $per_page;
+    // echo $page_count;
 
-//   $page_count=CEIL($total/$per_page);
-//   $start=($p-1)*$per_page;
-
-//   $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list 
-//   WHERE $searchType LIKE '%$searchInput%' AND status!=3
-//   LIMIT $start,$per_page";
-
-//   $result = $conn->query($sql);
-//   $rows = $result->fetch_all(MYSQLI_ASSOC);
-
-
-
-// } else{
-
-//   $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list WHERE status!=3";
-//   $result = $conn->query($sql);
-//   $rows = $result->fetch_all(MYSQLI_ASSOC);
-
-//   $total=$result->num_rows;
-//   $per_page=3;
-
-//   $page_count=CEIL($total/$per_page);
-//   $start=($p-1)*$per_page;
-
-//   $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list 
-//   WHERE status!=3 
-//   LIMIT $start,$per_page";
-//   $result = $conn->query($sql);
-//   $rows = $result->fetch_all(MYSQLI_ASSOC);
-// }
+    $sql = "SELECT * FROM bartd_list
+    LIMIT $start,$per_page";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+}
 
 ?>
 
@@ -89,12 +70,12 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         <h2>商品列表</h2>
 
         <div class="d-flex justify-content-between align-items-center mt-4">
-            <form class="py-3" action="./prdList.php" method="get">
+            <form class="py-3" action="./bartd-list.php" method="get">
                 <div class="d-flex ">
                     <div class="me-2">
                         <select class="form-control round-0 border-0 border-bottom w-auto" name="searchType" id="searchType">
                             <option disabled <?php if (!isset($_GET["searchType"]) || !isset($_GET["searchInput"])) : ?>selected<?php endif; ?>>搜索類型</option>
-                            <option value="prd_num" <?php if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) : ?><?= ($searchType == 'prd_num' ? 'selected' : '') ?><?php endif; ?>>編號</option>
+                            <option value="id" <?php if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) : ?><?= ($searchType == 'id' ? 'selected' : '') ?><?php endif; ?>>編號</option>
                             <option value="name" <?php if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) : ?><?= ($searchType == 'name' ? 'selected' : '') ?><?php endif; ?>>名稱</option>
                         </select>
                     </div>
@@ -121,7 +102,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </thead>
             <tbody>
                 <?php
-                for($i=0; $i<count($rows); $i++):
+                for ($i = 0; $i < count($rows); $i++) :
                 ?>
                     <tr>
                         <td><?= $rows[$i]['id'] ?></td>
@@ -129,10 +110,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <td class="prd-list_img">
                             <img class="img-fluid " src="../../../assets/img/test/<?= $rows[$i]['img'] ?>" alt="">
                         </td>
-                        <td><a href="/ispan-team5/view/page/bartd/bartd-content.php?id=<?= $rows[$i]['id'] ?>"><?= $rows[$i]['name'] ?></a></td>
+                        <td><?= $rows[$i]['name'] ?></td>
                         <td class="text-end">
-                            <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
-                            <a class="px-2" oncilck="delconfirm()" href=""><i class="fa-solid fa-trash-can"></i></a>
+                        <a class="px-2" href="/ispan-team5/view/page/bartd/bartd-content.php?id=<?= $rows[$i]['id'] ?>"><i class="fa-solid fa-eye"></i></a>
+                            <a class="px-2" href="/ispan-team5/view/page/bartd/bartd-edit.php?id=<?= $rows[$i]['id'] ?>"><i class="fa-solid fa-pen"></i></a>
+                            <a class="px-2" oncilck="delconfirm()" href="./doDelete.php?id=<?= $rows[$i]['id']?>"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>
                 <?php endfor; ?>

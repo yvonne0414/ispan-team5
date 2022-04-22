@@ -134,7 +134,7 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
           <td class="text-end">
             <a class="px-2" href="./prdinfo.php?mode=view&id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-eye"></i></a>
             <a class="px-2" href="./prdinfo.php?mode=edit&id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-pen"></i></a>
-            <a class="px-2" type="buttom" oncilck="delconfirm()" href="../../../api/product/del-prd.php?id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-trash-can"></i></a>
+            <a class="px-2" type="buttom" href="../../../api/product/del-prd.php?id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-trash-can"></i></a>
           </td>
         </tr>
         <?php endfor;?>

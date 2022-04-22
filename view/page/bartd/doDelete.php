@@ -15,4 +15,6 @@ $conn->query($sql_DelBartdMaterial);
 
 $conn->close();
 
+
+header("location: bartd-list.php");
 ?>
