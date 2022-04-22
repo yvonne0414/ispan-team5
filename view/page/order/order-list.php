@@ -1,14 +1,29 @@
 <?php
 require("../../../db-connect.php");
 
-$sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
-JOIN user_list ON order_list.user_id = user_list.id
-JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
-
+if(isset($_GET["user_id"])){
+    $user_id=$_GET["user_id"];
+    $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
+    JOIN user_list ON order_list.user_id = user_list.id
+    JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
+    WHERE order_list.user_id = '$user_id'
+    ORDER BY order_list.order_time DESC
+";
+}else{
+    $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
+    JOIN user_list ON order_list.user_id = user_list.id
+    JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
+    ORDER BY order_list.order_time DESC
 ";
 
+}
+   
 
+// $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
+// JOIN user_list ON order_list.user_id = user_list.id
+// JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
 
+// ";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 //var_dump($rows);
@@ -38,6 +53,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 <input type="text" class="form-control round-0 border-0 border-bottom" id="searchInput">
                 <label for="searchInput">search</label>
             </div>
+            <div>
+                <a class="btn btn-primary" href="order-list.php">回所有訂單</a>
+            </div>
 
         </div>
         <table class="table table-striped">
@@ -54,7 +72,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 <?php foreach ($rows as $row) : ?>
                     <tr>
                         <td><?= $row["id"] ?></td>
-                        <td><?= $row["user_list_name"] ?></td>
+                        <td>
+                            <a href="order-list.php?user_id=<?=$row["user_id"]?>"><?= $row["user_list_name"] ?></a>
+                        </td>
                         <td><?= $row["logistics_state_cate_name"] ?></td>
                         <td><?= $row["order_time"] ?></td>
                         <td class="text-end">
