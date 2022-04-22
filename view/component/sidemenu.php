@@ -11,12 +11,39 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <div class="list-group">
-            <a href="/ispan-team5/view/page/product/prdList.php" class="list-group-item">商品列表</a>
-            <a href="/ispan-team5/view/page/group/groupList.php" class="list-group-item">揪團活動</a>
-            <a href="/ispan-team5/view/page/coupon/couponList.php" class="list-group-item">優惠卷</a>
-            <a href="/ispan-team5/view/page/bartd/bartd-list.php" class="list-group-item">酒譜清單</a>
-            <a href="/ispan-team5/view/page/order/order-list.php" class="list-group-item">訂單列表</a>
-        </div>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="/ispan-team5/view/page/product/prdList.php" class="nav-link" aria-current="page">
+                    <i class="fa-solid fa-shop"></i>
+                    商品管理
+                </a>
+            </li>
+            <li>
+                <a href="/ispan-team5/view/page/group/groupList.php" class="nav-link">
+                    <i class="fa-solid fa-champagne-glasses"></i>
+                    揪團活動
+                </a>
+            </li>
+            <li>
+                <a href="/ispan-team5/view/page/coupon/couponList.php" class="nav-link">
+                    <i class="fa-solid fa-tags"></i>
+                    優惠卷
+                </a>
+            </li>
+            <li>
+                <a href="/ispan-team5/view/page/bartd/bartd-list.php" class="nav-link">
+                    <i class="fa-solid fa-martini-glass-citrus"></i>
+                    酒譜清單
+                </a>
+            </li>
+            <li>
+                <a href="/ispan-team5/view/page/order/order-list.php" class="nav-link">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    訂單管理
+                </a>
+            </li>
+        </ul>
     </div>
+
+    
 </div>

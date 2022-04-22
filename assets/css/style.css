@@ -1,6 +1,6 @@
 /* bootsrtap修正 */
 .modal-backdrop.show{
-    z-index: auto;
+    z-index: 999;
 }
 /* ============================= 基礎設定 ============================= */
 body{
@@ -10,14 +10,21 @@ body{
 .logo-text{
     font-family: 'Whisper',cursive;
 }
-.sidemenu .list-group a:hover{
-    background-color: #ccc;
+.nav-pills .nav-link.active,
+.nav-pills .nav-link:hover {
+    background-color: black;
     color: #fff;
 }
-
-.page-item.active .page-link {
-background-color: #454645;
-border-color: #454645;
+.nav-link {
+    color: black;
+}
+.page-link{
+    color: #454645;
+}
+.page-item.active .page-link{
+    border-color: #454645;
+    background-color: #454645;
+    color: #fff;
 }
 /* 表格 */
 table .fa-solid{
