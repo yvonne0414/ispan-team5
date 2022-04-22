@@ -110,8 +110,7 @@ $id = $_GET["id"];
                     <div class="flex-grow-1">
                         <select class="form-select prd_cate_l" name="prd_cate_l" id="prd_cate_l">
                             <option>材料類別</option>
-                            
-                            <option></option>
+
                         </select>
                     </div>
                     <!-- master_cate_m -->
@@ -222,9 +221,11 @@ $id = $_GET["id"];
         let bartdCateS = document.querySelector("#bartd_cate_id_s");
 
         <?php
-        $mater_cate_l=$rows2[0]["mater_cate_l"];
+        $mater_cate_l = $rows2[0]["mater_cate_l"];
+        $mater_cate_m = $rows2[0]["mater_cate_m"];
         echo "let materCateL = $mater_cate_l";
-        
+        echo "let materCateM = $mater_cate_m";
+
         ?>
         //呼叫產品大分類
         $.ajax({
@@ -237,10 +238,10 @@ $id = $_GET["id"];
                 for (let i = 0; i < response.length; i++) {
                     let item = response[i]
                     // 判斷selected
-                    if(item.id == materCateL){
+                    if (item.id == materCateL) {
                         optionList += `<option value="${item.id}" selected>${item.name}</option>`
 
-                    }else{
+                    } else {
                         optionList += `<option value="${item.id}">${item.name}</option>`
                     }
 
@@ -248,8 +249,49 @@ $id = $_GET["id"];
                 }
                 prdCateL.innerHTML += optionList
             }).fail(function(jqXHR, textStatus) {
+
                 console.log("Request failed: " + textStatus);
             });
+
+        $.ajax({
+                method: "POST",
+                url: "../../../api/bartd/get-bartd_master_cate_m.php",
+                dataType: "json",
+                data: {
+                    parentId: materCateL
+                }
+            })
+            .done(function(response) {
+
+                while (prdCateM.options.length > 0) {
+                    prdCateM.options.remove(0);
+                }
+
+                cateM = document.querySelector("#prd_cate_m");
+                let optionList = "<option selected>中分類</option>";
+
+                let count = `${response.length}`;
+                for (let i = 0; i < response.length; i++) {
+                    let item = response[i]
+                    // 判斷selected
+                    if (item.id == materCateM) {
+                        optionList += `<option value="${item.id}" selected>${item.name}</option>`
+
+                    } else {
+                        optionList += `<option value="${item.id}">${item.name}</option>`
+                    }
+
+
+                }
+
+                cateM.innerHTML = optionList
+
+            }).fail(function(jqXHR, textStatus) {
+                while (prdCateM.options.length > 0) {
+                    prdCateM.options.remove(0);
+                }
+            });
+
         // 呼叫完大分類
         prdCateL.addEventListener('change', function() {
             let parentId = this.value;
