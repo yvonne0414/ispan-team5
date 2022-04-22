@@ -4,11 +4,23 @@
 }
 /* ============================= 基礎設定 ============================= */
 body{
-    font-family: 'Noto Sans TC','Roboto',sans-serif;
+    font-family: 'Roboto','Noto Sans TC',sans-serif;
     
 }
 .logo-text{
-    font-family: 'Whisper',cursive;
+    font-family: 'Whisper','Roboto','Noto Sans TC',sans-serif;
+    background: linear-gradient(to top, #533419, #F08F53, gold);
+    background: -webkit-linear-gradient(to top, #533419, #F08F53, gold);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    padding: auto .25rem;
+}
+.sidemenu .offcanvas-body .nav-link i{
+    margin-right: 1rem;
+}
+.sidemenu .offcanvas-body .nav-link {
+    font-size: 1.25rem;
 }
 .nav-pills .nav-link.active,
 .nav-pills .nav-link:hover {

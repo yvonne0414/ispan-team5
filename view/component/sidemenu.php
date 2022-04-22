@@ -1,6 +1,6 @@
 <!-- 側邊選單 -->
 <div class="offcanvas offcanvas-start sidemenu" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header border-bottom">
+    <div class="offcanvas-header border-bottom bg-dark py-4">
         <div class="d-flex text-nowrap justify-content-center align-items-center flex-grow-1">
             <!-- <figure>
                 <img class="object-cover" src="" alt="Logo.jpg">
@@ -14,31 +14,31 @@
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
                 <a href="/ispan-team5/view/page/product/prdList.php" class="nav-link" aria-current="page">
-                    <i class="fa-solid fa-shop"></i>
+                    <i class="fa-solid fa-shop fa-fw"></i>
                     商品管理
                 </a>
             </li>
             <li>
                 <a href="/ispan-team5/view/page/group/groupList.php" class="nav-link">
-                    <i class="fa-solid fa-champagne-glasses"></i>
+                    <i class="fa-solid fa-champagne-glasses fa-fw"></i>
                     揪團活動
                 </a>
             </li>
             <li>
                 <a href="/ispan-team5/view/page/coupon/couponList.php" class="nav-link">
-                    <i class="fa-solid fa-tags"></i>
+                    <i class="fa-solid fa-tags fa-fw"></i>
                     優惠卷
                 </a>
             </li>
             <li>
                 <a href="/ispan-team5/view/page/bartd/bartd-list.php" class="nav-link">
-                    <i class="fa-solid fa-martini-glass-citrus"></i>
+                    <i class="fa-solid fa-martini-glass-citrus  fa-fw"></i>
                     酒譜清單
                 </a>
             </li>
             <li>
                 <a href="/ispan-team5/view/page/order/order-list.php" class="nav-link">
-                    <i class="fa-solid fa-clipboard-list"></i>
+                    <i class="fa-solid fa-clipboard-list fa-fw"></i>
                     訂單管理
                 </a>
             </li>
