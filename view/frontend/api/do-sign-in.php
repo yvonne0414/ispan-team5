@@ -28,10 +28,10 @@ if($resultCount>0){
         "role"=>$user["vip_level"]
     ];
 
-    if($user["vip_level"]==1){
+    if($role==1){
       header("location: ../../page/product/prdList.php");
     }else{
-      header("location: ../home.php");
+      header("location: ../homePage.php");
     }
 
 }else{
