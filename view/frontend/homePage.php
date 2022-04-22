@@ -21,6 +21,7 @@ require("../../db-connect.php");
 <body>
   <div class="container">
     HOME
+    <a href="./api/user-logout.php">登出</a>
   </div>
 
   <?php require("../component/footerLayout.php")?>
