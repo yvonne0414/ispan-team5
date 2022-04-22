@@ -19,6 +19,18 @@ require("../../../db-connect.php");
       width: 100px;
     }
 
+    .img_container {
+      max-height: 200px;
+      max-width: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .img_container img {
+      object-fit: cover;
+      width: 100%;
+    }
   </style>
 </head>
 
@@ -29,7 +41,7 @@ require("../../../db-connect.php");
 
     <h2>新增酒譜</h2>
 
-    <form action="doUpdate.php" class="d-flex flex-wrap mt-4" method="POST">
+    <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST" enctype="multipart/form-data" onSubmit="return check();">
       <!--  enctype="multipart/form-data" -->
       <!-- 名稱 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
@@ -56,18 +68,19 @@ require("../../../db-connect.php");
         </div>
         <!-- master_cate_l -->
         <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_l" id="prd_cate_l">
+          <select class="form-select prd_cate_l" name="prd_cate_l" id="prd_cate_l">
             <option selected>材料類別</option>
           </select>
         </div>
         <!-- master_cate_m -->
         <div class="flex-grow-1">
-          <select class="form-select" name="prd_cate_m" id="prd_cate_m">
+          <select class="form-select prd_cate_m" name="prd_cate_m" id="prd_cate_m">
             <option selected>請選擇</option>
           </select>
         </div>
       </div>
 
+      
       <!-- 酒譜類別 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
@@ -87,15 +100,19 @@ require("../../../db-connect.php");
 
       <!-- image -->
 
+
       <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
         <div>
-          <label for="prd_img" class="form-label mb-0">商品圖片</label>
+          <label for="prdImg" class="form-label mb-0">商品圖片</label>
         </div>
         <div class="flex-grow-1">
-          <input type="file" class="form-control" name="bartd_img" id="prd_img"
-          accept=".jpg, .jpeg, .png, .webp, .svg">
+          <input type="file"  class="form-control"  name="bartd_img" id="prdImg" accept=".jpg, .jpeg, .png, .webp, .svg">
         </div>
       </div>
+      <div class="justify-content-center align-items-center img_container my-2">
+        <img id="prdImg_show" src="#"/>
+      </div>        
+
 
       <!-- textarea -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
@@ -117,6 +134,7 @@ require("../../../db-connect.php");
   </div>
 
   <?php require("../../component/footerLayout.php") ?>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script>
     let prdCateL = document.querySelector("#prd_cate_l");
@@ -229,6 +247,107 @@ require("../../../db-connect.php");
         });
     })
   </script>
+
+  <script>
+    // 圖片預覽
+    $("#prdImg").change(function() {
+
+      readURL(this);
+
+
+
+    });
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $(".img_container").css('display', "flex");
+
+          $("#prdImg_show").attr('src', e.target.result);
+
+        }
+
+        reader.readAsDataURL(input.files[0]);
+
+      }
+
+    }
+  </script>
+
+  <script>
+    // 送出表單
+    // function check(){
+    //   // 抓值
+    //   let prdNumVal = prdNum.value;
+    //   let prdNameVal = prdName.value;
+    //   let prdPriceVal = prdPrice.value;
+    //   let prdStatusVal = prdStatus.value;
+    //   let prdDiscVal = prdDisc.value;
+    //   let prdLengthVal = prdLength.value;
+    //   let prdWidthVal = prdWidth.value;
+    //   let prdHeightVal = prdHeight.value;
+    //   let prdImgVal = prdImg.value;
+    //   let prdCateLVal = prdCateL.value;
+    //   let prdOriginVal = prdOrigin.value;
+    //   let prdBrandVal = prdBrand.value;
+    //   let prdCapacityVal = prdCapacity.value;
+    //   let prdAbvVal = prdAbv.value;
+    //   let prdMaterVal = prdMater.value;
+    //   let prdCateMVal = prdCateM.value;
+    //   let prdCateSVal = prdCateS.value;
+
+    //   if(prdNumVal=="" || prdNameVal=="" || prdPriceVal=="" || prdStatusVal=="" || prdDiscVal=="" || prdLengthVal=="" || prdWidthVal=="" || prdHeightVal=="" || prdImgVal=="" || !parseInt(prdCateLVal)){
+    //     alert("有欄位未填");
+    //     return false; 
+
+    //   }else if(parseInt(prdCateLVal) == 1){
+
+    //     if(!parseInt(prdOriginVal) || prdBrandVal=="" || prdCapacityVal=="" || prdAbvVal=="" || !parseInt(prdCateMVal) || !parseInt(prdCateSVal)){
+    //       alert("有欄位未填");
+    //       return false; 
+    //     } else{
+    //       return true; 
+    //     }
+
+
+    //   }else if(parseInt(prdCateLVal) == 2){
+
+    //     if(!parseInt(prdOriginVal) || prdBrandVal=="" || prdCapacityVal=="" ||  !parseInt(prdCateMVal)){
+    //       alert("有欄位未填");
+    //       return false; 
+    //     } else{
+    //       return true; 
+    //     }
+
+
+    //   }else if(parseInt(prdCateLVal) == 3 || parseInt(prdCateLVal) == 4){
+
+    //     if(!parseInt(prdOriginVal) || !parseInt(prdMaterVal) || prdCapacityVal=="" ||  !parseInt(prdCateMVal) ){
+    //       alert("有欄位未填");
+    //       return false; 
+    //     } else{
+    //       return true; 
+    //     }
+
+
+    //   }else{
+    //     return true;
+    //   }
+
+
+    //   switch(parseInt(prdStatusVal)){
+    //     case 1:
+    //       alert("確認上架商品？");
+    //       break;
+    //     case 2:
+    //       alert("確認下架商品？");
+    //   }
+    // }
+  </script>
+
 </body>
 
 </html>
