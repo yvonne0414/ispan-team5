@@ -15,17 +15,13 @@ if(!isset($_SESSION["user"])){
   <link rel="stylesheet" href="../component/headerLayout.php">
   <title>INJOIN 註冊</title>
   <?php require("../component/headerLayout.php")?>
-  <style>
-    body{
-      background-color: #454645;
-      color:#fff;
-    }
-  </style>
+  <link rel="stylesheet" href="./component/fend.css">
 </head>
 <body>
+  <?php require("./component/header.php")?>
+  
   <div class="container">
     HOME
-    <a href="./api/user-logout.php">登出</a>
   </div>
 
   <?php require("../component/footerLayout.php")?>
