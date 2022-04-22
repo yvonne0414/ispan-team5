@@ -40,7 +40,7 @@ require("../../../db-connect.php");
       </thead>
       <tbody>
         <?php
-          $sql="SELECT * FROM group_list";
+          $sql="SELECT * FROM group_list WHERE status!=5";
           $result = $conn->query($sql);
           $rows = $result->fetch_all(MYSQLI_ASSOC);
           
@@ -70,7 +70,7 @@ require("../../../db-connect.php");
             <td><?= $end ?></td>
             <td class="text-end">
               <a class="px-2" href="group-info-update.php?id=<?=$row['id']?>"><i class="fa-solid fa-pen"></i></a>
-              <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
+              <a class="px-2" href="/ispan-team5/api/group/grp-doDelete.php?id=<?=$row['id']?>"><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
         <?php endfor; ?>
