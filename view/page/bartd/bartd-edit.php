@@ -91,6 +91,7 @@ $id = $_GET["id"];
             $result2 = $conn->query($sql2);
             $rows2 = $result2->fetch_all(MYSQLI_ASSOC);
             foreach ($rows2 as $row2) :
+                var_dump($rows2);
             ?>
                 <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
                     <div>
@@ -110,7 +111,7 @@ $id = $_GET["id"];
                         <select class="form-select prd_cate_l" name="prd_cate_l" id="prd_cate_l">
                             <option>材料類別</option>
                             
-                            <option> </option>
+                            <option></option>
                         </select>
                     </div>
                     <!-- master_cate_m -->
@@ -125,6 +126,7 @@ $id = $_GET["id"];
                         <?php
 
                         $id = $row2["mater_cate_l"];
+
                         $sqlprd_detail_cate = "SELECT * FROM prd_detail_cate
                         WHERE id = $id";
                         $resultprd_detail_cate = $conn->query($sqlprd_detail_cate);
@@ -173,14 +175,14 @@ $id = $_GET["id"];
                     </div>
                     <div class="flex-grow-1">
                         <input type="text" disabled class="form-control" name="bartd_cate_id_m" id="bartd_cate_id_m" value="
-                <?php
-                $id = $row3["bartd_cate_id_m"];
-                $sqlbartd_cate_type = "SELECT * FROM bartd_cate_type
-                WHERE id = $id";
-                $resultbartd_cate_type = $conn->query($sqlbartd_cate_type);
-                $rowbartd_cate_type = $resultbartd_cate_type->fetch_assoc();
-                echo $rowbartd_cate_type['name'];
-                ?>
+                            <?php
+                            $id = $row3["bartd_cate_id_m"];
+                            $sqlbartd_cate_type = "SELECT * FROM bartd_cate_type
+                            WHERE id = $id";
+                            $resultbartd_cate_type = $conn->query($sqlbartd_cate_type);
+                            $rowbartd_cate_type = $resultbartd_cate_type->fetch_assoc();
+                            echo $rowbartd_cate_type['name'];
+                            ?>
                         ">
                     </div>
                     <div class="flex-grow-1">
@@ -214,30 +216,16 @@ $id = $_GET["id"];
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
-        let prd_detail_cate = {
-            1: ['威士忌', '龍舌蘭', '琴酒', '香甜酒', '白蘭地', '蘭姆酒', '伏特加'],
-            2: ['果汁', '醃漬水果、果乾', '碳酸飲料', '糖漿＆酸甜汁', '冰塊', '無酒精酒款', '調味材料']
-
-        };
-
-        let bartd_cate_type = {
-            1: ['Fancy', 'Frozen', 'Sling', 'Frappe', 'Punch', 'Fizz', 'Trio', 'Duo', 'Tiki\'s', 'Cocktail', 'Highball', 'Sour', 'Collins', 'Buck', 'Dessert'],
-
-            2: ['Brandy Glass', 'Champagne Glass', 'Margarita Glass', 'Champagne Saucer', 'Hurricane Glass', 'Old Fashioned', 'Highball Glass', 'Collins Glass', 'Cocktail Glass', 'Mojito Glass'],
-
-            3: ['Roll', 'Blend', 'Shake', 'Stir', 'Build'],
-
-            4: ['Straight', 'Longdrink', 'On the Rock', 'Frozen']
-
-        };
-    </script>
-    <script>
         let prdCateL = document.querySelector("#prd_cate_l");
         let prdCateM = document.querySelector("#prd_cate_m");
         let bartdCateM = document.querySelector("#bartd_cate_id_m");
         let bartdCateS = document.querySelector("#bartd_cate_id_s");
 
-
+        <?php
+        $mater_cate_l=$rows2[0]["mater_cate_l"];
+        echo "let materCateL = $mater_cate_l";
+        
+        ?>
         //呼叫產品大分類
         $.ajax({
                 method: "POST",
@@ -248,7 +236,15 @@ $id = $_GET["id"];
                 let optionList = "";
                 for (let i = 0; i < response.length; i++) {
                     let item = response[i]
-                    optionList += `<option value="${item.id}">${item.name}</option>`
+                    // 判斷selected
+                    if(item.id == materCateL){
+                        optionList += `<option value="${item.id}" selected>${item.name}</option>`
+
+                    }else{
+                        optionList += `<option value="${item.id}">${item.name}</option>`
+                    }
+
+
                 }
                 prdCateL.innerHTML += optionList
             }).fail(function(jqXHR, textStatus) {
