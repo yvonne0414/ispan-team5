@@ -1,5 +1,6 @@
 <?php
 require("../../../db-connect.php");
+session_start();
 
 // $sql="SELECT id, prd_num, name, main_img, price, status FROM prd_list"
 // $result = $conn->query($sql);
@@ -24,6 +25,12 @@ require("../../../db-connect.php");
     <?php require("../../component/sidemenu.php") ?>
     <div class="container py-5">
         <h2>優惠券列表</h2>
+    <h1><?php
+        if (isset( $_SESSION["message"] ) ){
+            echo  $_SESSION["message"];
+        }
+
+        ?></h1>
 
         <div class="d-flex justify-content-between align-items-center mt-4">
             <div class="form-floating mb-3">
@@ -46,25 +53,26 @@ require("../../../db-connect.php");
                     <td>序號</td>
                     <td>優惠名稱</td>
                     <td>折抵方案</td>
-                    <td>金額最低限制</td>
-                    <td>金額最高限制</td>
-                    <td>優惠日期</td>
+                    <td>金額下限</td>
+                    <td>金額上限</td>
+                    <td>優惠活動日期</td>
                     <td class="text-end">功能列</td>
                 </tr>
             </thead>
             <tbody>
-                <!-- <tr>
+                <tr>
                     <td>001</td>
                     <td>首次消費滿2000元,即折抵200元</td>
                     <td>折抵200元</td>
-                    <td>滿2000元</td>
-                    <td>td123222 ~ 123456789</td>
+                    <td>2000元</td>
+                    <td>20000元</td>
+                    <td>2022/04/01 ~ 2022/04/30</td>
                     <td class="text-end">
                         <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
                         <a class="px-2" href=""><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>002</td>
                     <td></td>
                     <td></td>
@@ -94,7 +102,7 @@ require("../../../db-connect.php");
                     <td><?= $row["rule_max"]?>元</td>
                     <td><?= $row["start_time"]?>~<?= $row["end_time"] ?></td>
                     <td class="text-end">
-                        <a class="px-2" href=""><i class="fa-solid fa-pen"></i></a>
+                        <a class="px-2" href="edit-coupon.php?id=<?= $row["id"] ?>"><i class="fa-solid fa-pen"></i></a>
                         <a class="px-2" href="./doDelete.php?id=<?=$row["id"]?>"><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
@@ -109,6 +117,8 @@ require("../../../db-connect.php");
     </div>
 
     <?php require("../../component/footerLayout.php") ?>
+
+
 </body>
 
 </html>

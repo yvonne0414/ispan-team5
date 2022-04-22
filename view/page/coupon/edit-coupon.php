@@ -1,11 +1,28 @@
 <?php
 require("../../../db-connect.php");
+$id=$_GET["id"];
 
-// $sql = "SELECT * FROM prd_material_cate";
-// $result = $conn->query($sql);
-// $rows = $result->fetch_all(MYSQLI_ASSOC);
+$sql = "SELECT * FROM coupon_list WHERE id='$id'";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
 
 
+// echo "row";
+// echo "<br>";
+// var_dump($row);
+$sql = "SELECT * FROM vip_level";
+$result = $conn->query($sql);
+$vips_level = $result->fetch_all(MYSQLI_ASSOC);
+// echo "<br>";
+// echo "vips_level";
+// echo "<br>";
+// var_dump($vips_level);
+
+$sql = "SELECT * FROM coupon_cate";
+$result = $conn->query($sql);
+$coupons_cate = $result->fetch_all(MYSQLI_ASSOC);
+
+//var_dump($coupons_cate);
 ?>
 
 <!DOCTYPE html>
@@ -40,21 +57,23 @@ require("../../../db-connect.php");
     <?php require("../../component/sidemenu.php") ?>
     <div class="container py-5">
 
-        <h2>優惠折扣券</h2>
+        <h2>優惠折編輯</h2>
 
-        <form action="doCoupon.php" class="d-flex flex-wrap mt-4" method="POST">
+        <form action="" class="d-flex flex-wrap mt-4" method="post">
             <div class="d-flex align-items-center w-50 pe-4 mb-3">
                 <div class="mb-3">
                     <label for="coupon_id" class="form-label mb-0 me-2">序號</label>
                 </div>
-                <input class="form-control" type="text" placeholder="Number" aria-label="readonly input example" readonly name="coupon_id" id="coupon_id">
+
+                <input class="form-control" type="text" aria-label="readonly input example" readonly name="coupon_id" id="coupon_id">
             </div>
+
             <div class="d-flex align-items-center w-100 pe-4 mb-3">
                 <div class="mb-3">
                     <label for="coupon_name" class="form-label me-2">優惠券名稱</label>
                 </div>
                 <div class="flex-grow-1">
-                    <input type="text" class="form-control " name="coupon_name" id="coupon_name">
+                    <input class="form-control" name="name" type="text" value="<?= $row["name"] ?>">
                 </div>
             </div>
             <div class="d-flex align-items-center pe-4 w-50 me-3">
@@ -63,10 +82,15 @@ require("../../../db-connect.php");
                 </div>
                 <div class="mb-3">
                     <select class="form-select form-select-md " name="vip_level" id="vip_level">
-                        <option selected>請選擇</option>
-                        <option value="2">銅卡會員</option>
-                        <option value="3">銀卡會員</option>
-                        <option value="4">金卡會員</option>
+                       <?php  
+                        for($i=1; $i<count($vips_level); $i++): ?>
+
+                        <option   <?=
+                        $row["vip_level"] == $vips_level[$i]["id"] ?  "selected" : "";
+                        ?> value= <?= $vips_level[$i]["id"] ?>><?= $vips_level[$i]["name"] ?></option>
+                     
+
+                        <?php endfor; ?>
                     </select>
                 </div>
             </div>
@@ -76,10 +100,15 @@ require("../../../db-connect.php");
                     <label for="coupon_cate" class="form-label me-2">優惠種類</label>
                 </div>
                 <div class="mb-3">
-                    <select class="form-select form-select-md " name="coupon_cate" id="coupon_cate">
-                        <option selected>請選擇種類</option>
-                        <option value="1">折扣</option>
-                        <option value="2">折扣率(%)</option>
+                    <select class="form-select form-select-md " name="coupon_cate" id="coupon_cate" value="<?= $row["coupon_cate"] ?>">
+                    <?php  
+                        foreach($coupons_cate as $cate): ?>
+                        <option   <?php echo
+                        $cate["id"] == $row["coupon_cate"] ?  "selected" : "";
+                        ?> value= <?= $cate["id"] ?>><?= $cate["name"] ?></option>
+                     
+
+                        <?php endforeach ?>
                     </select>
                 </div>
             </div>
@@ -88,20 +117,24 @@ require("../../../db-connect.php");
                     <label for="discount" class="form-label mb-0 me-2">優惠折扣</label>
                 </div>
                 <div class="flex-grow-1">
-                    <input type="number" class="form-control" name="discount" id="discount" value="">
+                    <input class="form-control" name="discount" type="num" value="<?= $row["discount"] ?>">
                 </div>
             </div>
 
-            <!-- coupon_line -->
+            <!-- coupon_rule -->
             <div class="d-flex align-items-center w-100 pe-4 mb-3">
                 <div>
                     <label for="coupon_line" class="form-label mb-0 me-2">優惠金額限制</label>
                 </div>
                 <div class="flex-grow-1 d-flex">
-                    <input type="number" class="form-control me-1" name="min" id="rule_min" value="">
+                <input class="form-control"
+                            name="rule_min"
+                            type="number" value="<?= $row["rule_min"] ?>">
 
                     <span class="mx-2 my-2">~</span>
-                    <input type="text" class="form-control me-1" name="max" id="rule_max" value="">
+                    <input class="form-control"
+                            name="rule_max"
+                            type="number" value="<?= $row["rule_max"] ?>">
                     <span class="my-2"> 元</span>
                 </div>
             </div>
@@ -112,7 +145,9 @@ require("../../../db-connect.php");
                     <label for="start_time" class="form-label mb-0 me-2">開始日期</label>
                 </div>
                 <div class="flex-grow-1 d-flex">
-                    <input type="date" class="form-control me-1" name="start_time" id="start_time" value="">
+                <input class="form-control"
+                            name="start_time"
+                            type="date" value="<?= $row["start_time"] ?>">
                 </div>
             </div>
 
@@ -122,14 +157,18 @@ require("../../../db-connect.php");
                     <label for="end_time" class="form-label mb-0 me-2">結束日期</label>
                 </div>
                 <div class="flex-grow-1 d-flex">
-                    <input type="date" class="form-control me-1" name="end_time" id="end_time" value="">
+                <input class="form-control"
+                            name="end_time"
+                            type="date" value="<?= $row["end_time"] ?>">
 
                 </div>
             </div>
             <!-- submit -->
             <div class="w-100 text-center">
                 <a class="btn btn-outline-primary" href="couponList.php">取消</a>
-                <button class="btn btn-primary py-2 px-3" type="submit">儲存</button>
+
+                <!-- Button trigger modal -->
+                <a class="btn btn-primary py-2 px-3 " href="couponList.php" type="submit">修改</a>
             </div>
         </form>
     </div>
