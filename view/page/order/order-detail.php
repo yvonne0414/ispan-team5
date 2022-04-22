@@ -1,6 +1,14 @@
 <?php
 require("../../../db-connect.php");
-$sql ="SELECT order_detail.*, order_de"
+$sql ="SELECT order_detail.*, order_detail.order_id, order_list.id AS order_list_id, order_detail.prd_id, prd_list.id AS prd_list_id FROM order_detail
+JOIN order_list ON order_detail.order_id = order_list.id
+JOIN prd_list ON order_detail.prd_id = prd_list.id
+";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+// var_dump($rows);
+// exit;
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +59,7 @@ $sql ="SELECT order_detail.*, order_de"
         <div class="row mb-3">
           <label for="ord_state" class="col-sm-2 col-form-label">訂單狀態</label>
           <div class="col-sm-10">
-            <input class="form-control" id="ord_state" disabled>
+            <input class="form-control" id="ord_state"  disabled>
           </div>
         </div>
         <div class="row mb-3">
