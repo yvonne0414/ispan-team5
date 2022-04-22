@@ -24,12 +24,12 @@ if ($conn->query($sql) === TRUE) {
     // echo "last id is $last_id";
     // exit;
     
-    $_SESSION["message"] = "成功";
-    echo $_SESSION["message"];
-    
+   // $_SESSION["message"] = "成功";
+   // echo $_SESSION["message"];
+
 } else {
     echo "新增資料錯誤: "  . $conn->error;
-    $_SESSION["message"] = "失敗";
+   // $_SESSION["message"] = "失敗";
     exit;
 }
 $conn->close();

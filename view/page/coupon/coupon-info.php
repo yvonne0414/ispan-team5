@@ -43,12 +43,14 @@ require("../../../db-connect.php");
         <h2>優惠折扣券</h2>
 
         <form action="doCoupon.php" class="d-flex flex-wrap mt-4" method="POST">
+        <!-- id -->
             <div class="d-flex align-items-center w-50 pe-4 mb-3">
                 <div class="mb-3">
                     <label for="coupon_id" class="form-label mb-0 me-2">序號</label>
                 </div>
-                <input class="form-control" type="text" placeholder="Number" aria-label="readonly input example" readonly name="coupon_id" id="coupon_id">
+                <input class="form-control" type="text" aria-label="readonly input example" readonly name="coupon_id" id="coupon_id">
             </div>
+        <!-- coupon_name -->
             <div class="d-flex align-items-center w-100 pe-4 mb-3">
                 <div class="mb-3">
                     <label for="coupon_name" class="form-label me-2">優惠券名稱</label>
@@ -57,6 +59,7 @@ require("../../../db-connect.php");
                     <input type="text" class="form-control " name="coupon_name" id="coupon_name">
                 </div>
             </div>
+        <!-- vip_level -->
             <div class="d-flex align-items-center pe-4 w-50 me-3">
                 <div class="mb-3">
                     <label for="vip_level" class="form-label me-2">會員等級</label>

@@ -25,27 +25,49 @@ session_start();
     <?php require("../../component/sidemenu.php") ?>
     <div class="container py-5">
         <h2>優惠券列表</h2>
-    <h1><?php
-        if (isset( $_SESSION["message"] ) ){
-            echo  $_SESSION["message"];
-        }
+        <h1><?php
+            // if (isset( $_SESSION["message"] ) ){
+            //     echo  $_SESSION["message"];
+            // }
 
-        ?></h1>
+            ?></h1>
 
-        <div class="d-flex justify-content-between align-items-center mt-4">
+        <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+            <form action="./prdList.php" method="get">
+                <div class="d-flex ">
+                    <div class="me-2">
+                        <select class="form-control round-0 border-0 border-bottom w-auto"  name="searchType" id="searchType">
+                        <option disabled>搜索類型</option>
+                        <option value="name" selected>名稱</option>
+                        </select>
+                    </div>
+            
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchInput" placeholder="search" name="searchInput">
+                        <button class="btn btn-secondary  round-0" type="submit" id="searchBtn">搜尋</button>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <a class="btn btn-outline-dark" href="coupon-info.php">新增商品</a>
+            </div>
+        </div>
+
+
+        <!-- <div class="d-flex justify-content-between align-items-center mt-4">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control round-0 border-0 border-bottom" id="searchInput">
                 <label for="searchInput">search</label>
             </div>
             <div class="d-flex flex-nowrap">
-                <!-- <div class="">
+                <div class="">
                     <a class="btn btn-secondary" href="">歷史紀錄</a>
-                </div> -->
+                </div>
                 <div class="mx-2">
                     <a class="btn btn-primary " href="coupon-info.php">新增優惠</a>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <table class="table table-striped">
             <thead>
@@ -61,7 +83,7 @@ session_start();
             </thead>
             <tbody>
                 <tr>
-                    <td>001</td>
+                    <td class="text-danger">001</td>
                     <td>首次消費滿2000元,即折抵200元</td>
                     <td>折抵200元</td>
                     <td>2000元</td>
