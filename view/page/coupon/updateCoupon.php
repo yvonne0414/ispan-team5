@@ -13,22 +13,25 @@ $start_time = $_POST["start_time"];
 $end_time = $_POST["end_time"];
 
 
-echo "$name";
+//echo "$name";
 
 $sql = "UPDATE coupon_list SET coupon_cate='$coupon_cate', name='$name', discount='$discount', rule_min='$rule_min', rule_max='$rule_max', vip_level='$vip_level', start_time='$start_time',
 end_time='$end_time' WHERE id='$id'";
 
 
- echo $sql;
+ //echo $sql;
 if ($conn->query($sql) === TRUE) {
-    echo "更新成功";
-    $conn->close();
-   header("location: couponList.php");
+    //echo "更新成功";
+    echo "<script>alert('修改成功');</script>";
+    echo "<script>location.href='couponList.php';</script>";
+    exit;
+ 
 
 } else {
     echo "更新資料錯誤: " . $conn->error;
     exit;
 }    
+$conn->close();
 
-
+header("location: couponList.php");
 ?>

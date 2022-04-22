@@ -22,15 +22,19 @@ $sql="DELETE FROM coupon_list WHERE id='$id'";
 //echo $sql;
 
 if ($conn->query($sql) === TRUE) {
-    echo "刪除成功";
+    //echo "刪除成功";
+    echo "<script>alert('刪除成功');</script>";
+    echo "<script>location.href='couponList.php';</script>";
+    exit;
     
+
 } else {
     echo "刪除資料錯誤: "  . $conn->error;
     exit;
 }
 $conn->close();
 
-header("location: couponList.php");
+// header("location: couponList.php");
 
 
 

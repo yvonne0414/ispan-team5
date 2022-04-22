@@ -33,7 +33,7 @@ session_start();
             ?></h1>
 
         <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
-            <form action="./prdList.php" method="get">
+            <form action="couponList.php" method="get">
                 <div class="d-flex ">
                     <div class="me-2">
                         <select class="form-control round-0 border-0 border-bottom w-auto"  name="searchType" id="searchType">

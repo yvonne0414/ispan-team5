@@ -1,13 +1,13 @@
 <?php
 require_once("../../../db-connect.php");
-session_start();
+//session_start();
 
 $coupon_cate = $_POST["coupon_cate"];
 $name = $_POST["coupon_name"];
 $discount = $_POST["discount"];
 $rule_min = $_POST["min"];
 $rule_max = $_POST["max"];
-$vip_level = $POST["vip_level"];
+$vip_level = $_POST["vip_level"];
 $start_time = $_POST["start_time"];
 $end_time = $_POST["end_time"];
 
@@ -19,13 +19,16 @@ VALUES ('$coupon_cate', '$name', '$discount','$rule_min','$rule_max', '$vip_leve
 ";
 
 if ($conn->query($sql) === TRUE) {
-    echo "新增資料完成<br>";
-    $last_id = $conn->insert_id;
+    // echo "新增資料完成<br>";
+    echo "<script>alert('新增成功');</script>";
+    echo "<script>location.href='couponList.php';</script>";
+    // $last_id = $conn->insert_id;
     // echo "last id is $last_id";
-    // exit;
+    exit;
     
    // $_SESSION["message"] = "成功";
    // echo $_SESSION["message"];
+
 
 } else {
     echo "新增資料錯誤: "  . $conn->error;
@@ -34,4 +37,4 @@ if ($conn->query($sql) === TRUE) {
 }
 $conn->close();
 
-header("location: couponList.php");
+// header("location: couponList.php");

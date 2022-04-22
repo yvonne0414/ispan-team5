@@ -56,7 +56,7 @@ require("../../../db-connect.php");
                     <label for="coupon_name" class="form-label me-2">優惠券名稱</label>
                 </div>
                 <div class="flex-grow-1">
-                    <input type="text" class="form-control " name="coupon_name" id="coupon_name">
+                    <input type="text" class="form-control " name="coupon_name" id="coupon_name" required="required">
                 </div>
             </div>
         <!-- vip_level -->
@@ -91,7 +91,7 @@ require("../../../db-connect.php");
                     <label for="discount" class="form-label mb-0 me-2">優惠折扣</label>
                 </div>
                 <div class="flex-grow-1">
-                    <input type="number" class="form-control" name="discount" id="discount" value="">
+                    <input type="number" class="form-control" name="discount" id="discount" value="" required="required">
                 </div>
             </div>
 
@@ -101,10 +101,10 @@ require("../../../db-connect.php");
                     <label for="coupon_line" class="form-label mb-0 me-2">優惠金額限制</label>
                 </div>
                 <div class="flex-grow-1 d-flex">
-                    <input type="number" class="form-control me-1" name="min" id="rule_min" value="">
+                    <input type="number" class="form-control me-1" name="min" id="rule_min" value="" required="required">
 
                     <span class="mx-2 my-2">~</span>
-                    <input type="text" class="form-control me-1" name="max" id="rule_max" value="">
+                    <input type="text" class="form-control me-1" name="max" id="rule_max" value="" required="required">
                     <span class="my-2"> 元</span>
                 </div>
             </div>
@@ -115,7 +115,7 @@ require("../../../db-connect.php");
                     <label for="start_time" class="form-label mb-0 me-2">開始日期</label>
                 </div>
                 <div class="flex-grow-1 d-flex">
-                    <input type="date" class="form-control me-1" name="start_time" id="start_time" value="">
+                    <input type="date" class="form-control me-1" name="start_time" id="start_time" value="" required="required">
                 </div>
             </div>
 
