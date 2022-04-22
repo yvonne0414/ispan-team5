@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION["user"])){
-    header("location: ./homePage.php");
+    header("location: ../page/product/prdList.php");
 }
 ?>
 
@@ -39,7 +39,6 @@ if(isset($_SESSION["user"])){
         <div class="text-center"> 您已嘗試超過允許的錯誤次數</div>
       <?php else: ?>
         <form action="./api/do-sign-in.php" method="post" class="mx-auto">
-          <input type="number" name="role" class="d-none" value="1">
           <div class="row mb-3">
             <label for="email" class="col-sm-3 col-form-label">Email</label>
             <div class="col-sm-9">
@@ -58,6 +57,7 @@ if(isset($_SESSION["user"])){
               <?php endif; ?>
           </div>
           <div class="mb-4">
+              <a href="./admin-sign-up.php" class="btn btn-outline-light mt-4 px-4">來去註冊</a>
               <button type="submit" class="btn btn-dark mt-4 px-4">登入</button>
           </div>
         </form>

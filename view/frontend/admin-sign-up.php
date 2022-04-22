@@ -1,5 +1,9 @@
 <?php
 require("../../db-connect.php");
+session_start();
+if(isset($_SESSION["user"])){
+    header("location: ../page/product/prdList.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,8 +63,10 @@ require("../../db-connect.php");
             <input type="tel" class="form-control" id="phone" name="phone">
           </div>
         </div>
-        
-        <button type="submit" class="btn btn-dark mt-4">註冊</button>
+        <div class="mb-4">
+            <a href="./admin-sign-in.php" class="btn btn-outline-light mt-4 px-4">已有帳號</a>
+            <button type="submit" class="btn btn-dark mt-4 px-4">註冊</button>
+        </div>
       </form>
     </div>
     
