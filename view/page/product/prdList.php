@@ -18,7 +18,7 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
   $rows = $result->fetch_all(MYSQLI_ASSOC);
 
   $total=$result->num_rows;
-  $per_page=3;
+  $per_page=5;
 
   $page_count=CEIL($total/$per_page);
   $start=($p-1)*$per_page;
@@ -39,7 +39,7 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
   $rows = $result->fetch_all(MYSQLI_ASSOC);
 
   $total=$result->num_rows;
-  $per_page=3;
+  $per_page=5;
 
   $page_count=CEIL($total/$per_page);
   $start=($p-1)*$per_page;
@@ -70,6 +70,11 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
   <link rel="stylesheet" href="../component/headerLayout.php">
   <title>商品列表</title>
   <?php require("../../component/headerLayout.php")?>
+  <style>
+    td.prd-list_name{
+      width: 400px;
+    }
+  </style>
 </head>
 <body>
   <?php require("../../component/header.php")?>
@@ -108,7 +113,7 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
           <td class="text-center">序號</td>
           <td class="text-center">圖片</td>
           <td>編號</td>
-          <td>名稱</td>
+          <td class="prd-list_name">名稱</td>
           <td>價格</td>
           <td>狀態</td>
           <td class="text-end">功能列</td>
@@ -117,9 +122,11 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
       <tbody>
         <?php for($i=0; $i<count($rows); $i++):?>
         <tr>
-          <td class="text-center"><?=$i+1?></td>
-          <td class="prd-list_img">
-            <img class="img-fluid " src="../../../assets/img/test/<?=$rows[$i]["main_img"]?>" alt="">
+          <td class="text-center"><?=$i+1+($p-1)*$per_page?></td>
+          <td class="text-center">
+            <div  class="prd-list_img mx-auto">
+              <img class="img-fluid " src="../../../assets/img/test/<?=$rows[$i]["main_img"]?>" alt="">
+            </div>
           </td>
           <td><?=$rows[$i]["prd_num"]?></td>
           <td><?=$rows[$i]["name"]?></td>
@@ -132,9 +139,9 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
             </span>
           </td>
           <td class="text-end">
-            <a class="px-2" href="./prdinfo.php?mode=view&id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-eye"></i></a>
+            <a class="px-2" href="./prdinfo.php?mode=view&id=<?=$rows[$i]["id"]?>" ><i class="fa-solid fa-eye"></i></a>
             <a class="px-2" href="./prdinfo.php?mode=edit&id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-pen"></i></a>
-            <a class="px-2" type="buttom" href="../../../api/product/del-prd.php?id=<?=$rows[$i]["id"]?>"><i class="fa-solid fa-trash-can"></i></a>
+            <a class="px-2" type="buttom" href="../../../api/product/del-prd.php?id=<?=$rows[$i]["id"]?>" onclick='return delclick();' ><i class="fa-solid fa-trash-can"></i></a>
           </td>
         </tr>
         <?php endfor;?>
@@ -153,15 +160,40 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
 
   </div>
 
+  <script type="text/javascript">
+    function delclick(event){
+      if(confirm("確定要刪除此項商品嗎？")){
+        return true;
+
+      }else{
+        return false;
+      }
+    }
+  </script>
+
   <?php require("../../component/footerLayout.php")?>
 
   <script>
-    function delconfirm(){
-      // 沒有功能
-      alert("hi");
-      confirm('確定要刪除這項商品嗎？');
-      event.preventDefault();
-    }
+    //呼叫產品大分類
+    $.ajax({
+      method: "POST",
+      url: "../../../api/product/get-prd_cate_l.php",
+      dataType: "json"
+    })
+    .done(function(response) {
+      let optionList = ""; 
+      for(let i =0; i<response.length; i++){
+        let item= response[i]
+        if(item.id == cateLSelect){
+          optionList += `<option value=${item.id} selected>${item.name}</option>`
+        }else{
+          optionList += `<option value=${item.id}>${item.name}</option>`
+        }
+      }
+      prdCateL.innerHTML += optionList
+    }).fail(function(jqXHR, textStatus) {
+      console.log("Request failed: " + textStatus);
+    });
   </script>
 </body>
 </html>
