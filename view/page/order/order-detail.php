@@ -1,14 +1,24 @@
 <?php
 require("../../../db-connect.php");
-$sql ="SELECT order_detail.*, order_detail.order_id, order_list.id AS order_list_id, order_detail.prd_id, prd_list.id AS prd_list_id FROM order_detail
+$user_id=$_GET["id"];
+$order_id=$_GET["order_id"];
+
+$usersql="SELECT * FROM user_list
+WHERE id = '$user_id'
+";
+$userresult = $conn->query($usersql);
+$userrow = $userresult->fetch_assoc();
+
+$prdsql ="SELECT order_detail.*, order_detail.order_id, order_list.id AS order_list_id, order_detail.prd_id, prd_list.id AS prd_list_id FROM order_detail
 JOIN order_list ON order_detail.order_id = order_list.id
 JOIN prd_list ON order_detail.prd_id = prd_list.id
+WHERE order_id = '$order_id'
 ";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
+$prdresult = $conn->query($prdsql);
+$prdrow = $prdresult->fetch_assoc();
 
-// var_dump($rows);
-// exit;
+// var_dump($userrow);
+//  exit;
 ?>
 
 <!DOCTYPE html>
@@ -33,45 +43,45 @@ $row = $result->fetch_assoc();
     <div class="container py-5">
       <form>
         <div class="row mb-3">
-          <label for="order_id" class="col-sm-2 col-form-label">訂單編號</label>
+          <label for="id" class="col-sm-2 col-form-label">訂單編號</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="order_id" disabled>
+            <input type="text" class="form-control" name="id" id="id" value=""disabled>
           </div>
         </div>
         <div class="row mb-3">
-          <label for="prd_id" class="col-sm-2 col-form-label">訂購者</label>
+          <label for="user" class="col-sm-2 col-form-label">訂購者</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="prd_id" disabled>
+            <input type="text" class="form-control" id="user" value="" disabled>
           </div>
         </div>
         <div class="row mb-3">
           <label for="phone" class="col-sm-2 col-form-label">電話</label></label>
           <div class="col-sm-10">
-            <input type="tel" class="form-control" id="phone" disabled>
+            <input type="tel" class="form-control" id="phone" value="" disabled>
           </div>
         </div>
         <div class="row mb-3">
           <label for="address" class="col-sm-2 col-form-label">地址</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="address" disabled>
+            <input type="text" class="form-control" id="address" value="" disabled>
           </div>
         </div>
         <div class="row mb-3">
           <label for="ord_state" class="col-sm-2 col-form-label">訂單狀態</label>
           <div class="col-sm-10">
-            <input class="form-control" id="ord_state"  disabled>
+            <input class="form-control" id="ord_state" value="" disabled>
           </div>
         </div>
         <div class="row mb-3">
           <label for="ord_time" class="col-sm-2 col-form-label">下單時間</label>
           <div class="col-sm-10">
-            <input type="datetime" class="form-control" id="ord_time" disabled>
+            <input type="datetime" class="form-control" id="ord_time" value="" disabled>
           </div>
         </div>
         <table class="table table-striped ord_table">
           <thead>
             <tr>
-              <th scope="col">商品編號</th>
+              <th scope="col">編號</th>
               <th scope="col">商品名稱</th>
               <th scope="col">單價</th>
               <th scope="col">數量</th>
