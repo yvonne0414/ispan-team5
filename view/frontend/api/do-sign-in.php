@@ -1,11 +1,12 @@
 <?php
+session_start();
+
 if(!$_POST["email"]){
     echo "error";
     exit;
 }
 require_once("../../../db-connect.php");
 
-$role=$_POST["role"];
 $email=$_POST["email"];
 $password=$_POST["password"];
 $password=md5($password);
@@ -16,10 +17,12 @@ $result = $conn->query($sql);
 
 $resultCount=$result->num_rows;
 
+
+
+
 if($resultCount>0){
     $user=$result->fetch_assoc();
-
-
+    $role=$user['vip_level'];
 
     $_SESSION["user"]=[
         "name"=>$user["name"],
@@ -28,11 +31,15 @@ if($resultCount>0){
         "role"=>$user["vip_level"]
     ];
 
+
+    
+
     if($role==1){
       header("location: ../../page/product/prdList.php");
     }else{
       header("location: ../homePage.php");
     }
+  
 
 }else{
     // echo "登入失敗";

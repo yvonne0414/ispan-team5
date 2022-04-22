@@ -45,7 +45,7 @@ $sql="UPDATE group_list SET name='$name', disc='$disc', user_id='$userid', pass_
 if ($conn->query($sql) === TRUE) {
     echo "更新資料完成<br>";
    
-    $sql_2="UPDATE group_official SET  price=$price, vip_level='$vip_level'  WHERE $group_id='id'";
+    $sql_2="UPDATE group_official SET  price=$price, vip_level='$vip_level'  WHERE group_id='$id'";
     if ($conn->query($sql_2) === TRUE) {
         echo "更新資料完成<br>";
     } else {

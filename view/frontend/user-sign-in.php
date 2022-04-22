@@ -57,6 +57,7 @@ if(isset($_SESSION["user"])){
               <?php endif; ?>
           </div>
           <div class="mb-4">
+              <a href="./user-sign-up.php" class="btn btn-outline-light mt-4 px-4 ">來去註冊</a>
               <button type="submit" class="btn btn-dark mt-4 px-4">登入</button>
           </div>
         </form>
