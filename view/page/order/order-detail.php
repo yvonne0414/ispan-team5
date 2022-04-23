@@ -30,17 +30,19 @@ echo "prdrow" ;
 echo "<br>" ;
 var_dump($prdrows);
 echo "<br>" ;
-echo $prdrows[0] ;
-var_dump($prdrows[0]);
+//echo $prdrows[0] ;
+//var_dump($prdrows[0]);
 
 // echo $prdrows[1] ["prd_id"];
 // echo $prdrows[2] ["prd_id"];
 
 foreach($prdrows as $prdrow ){
   echo "<hr>" ;
-  var_dump($prdrow["prd_id"]);
- 
+  var_dump($prdrow["prd_id"]); 
 }
+
+$prd_id =$prdrow["prd_id"];
+var_dump($prd_id);
 
 
 
@@ -154,24 +156,25 @@ echo "<br>" ;
             </tr>
           </thead>
           <tbody>
-          <?php foreach ($prdrows as $prdrow) : 
+          <?php  
             
             $prdlistsql ="SELECT prd_num, name, price FROM prd_list 
-            WHERE id = $prd_id
-            ";
+            WHERE id =$prd_id";
             $prdlistresult = $conn->query($prdlistsql);
-            $prdlistrows = $prdlistresult->fetch_all(MYSQLI_ASSOC);;
+            $prdlistrows = $prdlistresult->fetch_all(MYSQLI_ASSOC);
             
-            echo "prdlistrow" ;
-            echo "<br>" ;
-            var_dump($prdlistrows);
-            echo "<br>" ;
+            // echo "prdlistrow" ;
+            // echo "<br>" ;
+            // var_dump($prdlistrows);
+            // echo "<br>" ;
+            foreach ($prdrows as $prdrow) :
+            
             ?>
 
             <tr>
-              <td><?=$prdlistrow[""]?></td>
-              <td></td>
-              <td></td>
+              <td><?=$prdlistrow['prd_num']?></td>
+              <td><?=$prdlistrow['name']?></td>
+              <td><?=$prdlistrow['price']?></td>
               <td></td>
               <td></td>
             </tr>
