@@ -4,6 +4,9 @@ $user_id=$_GET['user_id'];
 $order_id=$_GET['order_id'];
 
 
+
+
+
 $usersql="SELECT * FROM user_list
 WHERE id = '$user_id'
 ";
@@ -21,12 +24,34 @@ $prdsql ="SELECT prd_id, amount FROM order_detail
 WHERE order_id = '$order_id'
 ";
 $prdresult = $conn->query($prdsql);
-$prdrow = $prdresult->fetch_all(MYSQLI_ASSOC);
+$prdrows = $prdresult->fetch_all(MYSQLI_ASSOC);
 
 echo "prdrow" ;
 echo "<br>" ;
-var_dump($prdrow);
+var_dump($prdrows);
 echo "<br>" ;
+
+
+$ordsql ="SELECT logistics_state, order_time FROM order_list
+WHERE  id='$order_id'
+";
+$ordresult = $conn->query($ordsql);
+$ordrow = $ordresult->fetch_assoc();;
+echo "ordrow" ;
+echo "<br>" ;
+var_dump($ordrow);
+echo "<br>" ;
+
+// $prdlistsql ="SELECT prd_num, name, price FROM prd_list
+
+// ";
+// $prdlistresult = $conn->query($prdlistsql);
+// $prdlistrow = $prdlistresult->fetch_assoc();;
+// echo "prdlistrow" ;
+// echo "<br>" ;
+// var_dump($prdlistrow);
+// echo "<br>" ;
+
 
 
 // var_dump($userrow);
@@ -63,31 +88,31 @@ echo "<br>" ;
         <div class="row mb-3">
           <label for="user" class="col-sm-2 col-form-label">訂購者</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="user" value="" disabled>
+            <input type="text" class="form-control" id="user" value="<?=$userrow["name"]?>" disabled>
           </div>
         </div>
         <div class="row mb-3">
           <label for="phone" class="col-sm-2 col-form-label">電話</label></label>
           <div class="col-sm-10">
-            <input type="tel" class="form-control" id="phone" value="" disabled>
+            <input type="tel" class="form-control" id="phone" value="<?=$userrow["phone"]?>" disabled>
           </div>
         </div>
         <div class="row mb-3">
           <label for="address" class="col-sm-2 col-form-label">地址</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="address" value="" disabled>
+            <input type="text" class="form-control" id="address" value="<?=$userrow["address"]?>" disabled>
           </div>
         </div>
         <div class="row mb-3">
           <label for="ord_state" class="col-sm-2 col-form-label">訂單狀態</label>
           <div class="col-sm-10">
-            <input class="form-control" id="ord_state" value="" disabled>
+            <input class="form-control" id="ord_state" value="<?=$ordrow["logistics_state"]?>" disabled>
           </div>
         </div>
         <div class="row mb-3">
           <label for="ord_time" class="col-sm-2 col-form-label">下單時間</label>
           <div class="col-sm-10">
-            <input type="datetime" class="form-control" id="ord_time" value="" disabled>
+            <input type="datetime" class="form-control" id="ord_time" value="<?=$ordrow["order_time"]?>" disabled>
           </div>
         </div>
         <table class="table table-striped ord_table">
@@ -101,7 +126,19 @@ echo "<br>" ;
             </tr>
           </thead>
           <tbody>
-          <?php foreach ($prdrows as $prdrow) : ?>
+          <?php foreach ($prdrows as $prdrow) : 
+            $prdlistsql ="SELECT prd_num, name, price FROM prd_list
+
+            ";
+            $prdlistresult = $conn->query($prdlistsql);
+            $prdlistrow = $prdlistresult->fetch_assoc();;
+            
+            echo "prdlistrow" ;
+            echo "<br>" ;
+            var_dump($prdlistrow);
+            echo "<br>" ;
+            ?>
+
             <tr>
               <td></td>
               <td></td>
