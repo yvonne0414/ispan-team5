@@ -1,7 +1,8 @@
 <?php
 require("../../../db-connect.php");
-$user_id=$_GET["id"];
-$order_id=$_GET["order_id"];
+$user_id=$_GET['user_id'];
+$order_id=$_GET['order_id'];
+
 
 $usersql="SELECT * FROM user_list
 WHERE id = '$user_id'
@@ -9,13 +10,24 @@ WHERE id = '$user_id'
 $userresult = $conn->query($usersql);
 $userrow = $userresult->fetch_assoc();
 
-$prdsql ="SELECT order_detail.*, order_detail.order_id, order_list.id AS order_list_id, order_detail.prd_id, prd_list.id AS prd_list_id FROM order_detail
-JOIN order_list ON order_detail.order_id = order_list.id
-JOIN prd_list ON order_detail.prd_id = prd_list.id
+echo "userrow" ;
+echo "<br>" ;
+var_dump($userrow);
+echo "<br>" ;
+
+
+
+$prdsql ="SELECT prd_id, amount FROM order_detail
 WHERE order_id = '$order_id'
 ";
 $prdresult = $conn->query($prdsql);
-$prdrow = $prdresult->fetch_assoc();
+$prdrow = $prdresult->fetch_all(MYSQLI_ASSOC);
+
+echo "prdrow" ;
+echo "<br>" ;
+var_dump($prdrow);
+echo "<br>" ;
+
 
 // var_dump($userrow);
 //  exit;
@@ -45,7 +57,7 @@ $prdrow = $prdresult->fetch_assoc();
         <div class="row mb-3">
           <label for="id" class="col-sm-2 col-form-label">訂單編號</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="id" id="id" value=""disabled>
+            <input type="text" class="form-control" name="id" id="id" value="<?=$order_id?>" disabled>
           </div>
         </div>
         <div class="row mb-3">
@@ -89,6 +101,7 @@ $prdrow = $prdresult->fetch_assoc();
             </tr>
           </thead>
           <tbody>
+          <?php foreach ($prdrows as $prdrow) : ?>
             <tr>
               <td></td>
               <td></td>
@@ -96,20 +109,7 @@ $prdrow = $prdresult->fetch_assoc();
               <td></td>
               <td></td>
             </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            <?php endforeach; ?>
           </tbody>
           <tfoot>
             <tr>

@@ -72,7 +72,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                 <?php foreach ($rows as $row) : ?>
                     <tr>
                         <td>
-                            <a href="./order-detail.php?order_id=<?=$row["id"]?>"><?=$row["id"]?></a>
+                            <?=$row["id"]?>
                         </td>
                         <td>
                             <a href="order-list.php?user_id=<?=$row["user_id"]?>"><?= $row["user_list_name"] ?></a>
@@ -80,7 +80,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <td><?= $row["logistics_state_cate_name"] ?></td>
                         <td><?= $row["order_time"] ?></td>
                         <td class="text-end">
-                            <a class="px-2" href="./order-detail.php?id=<?=$row["user_id"]?>"><i class="fa-solid fa-eye"></i></a>
+                            <a class="px-2" href="./order-detail.php?user_id=<?=$row["user_id"]?>&order_id=<?=$row["id"]?>">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
 
                         </td>
                     </tr>
