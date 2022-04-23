@@ -30,6 +30,20 @@ echo "prdrow" ;
 echo "<br>" ;
 var_dump($prdrows);
 echo "<br>" ;
+echo $prdrows[0] ;
+var_dump($prdrows[0]);
+
+// echo $prdrows[1] ["prd_id"];
+// echo $prdrows[2] ["prd_id"];
+
+foreach($prdrows as $prdrow ){
+  echo "<hr>" ;
+  var_dump($prdrow["prd_id"]);
+ 
+}
+
+
+
 
 
 $ordsql ="SELECT logistics_state, order_time FROM order_list
@@ -56,15 +70,15 @@ echo "starow" ;
 echo "<br>" ;
 var_dump($starow);
 echo "<br>" ;
-// $prdlistsql ="SELECT prd_num, name, price FROM prd_list
+$prdlistsql ="SELECT prd_num, name, price FROM prd_list
 
-// ";
-// $prdlistresult = $conn->query($prdlistsql);
-// $prdlistrow = $prdlistresult->fetch_assoc();;
-// echo "prdlistrow" ;
-// echo "<br>" ;
-// var_dump($prdlistrow);
-// echo "<br>" ;
+";
+$prdlistresult = $conn->query($prdlistsql);
+$prdlistrow = $prdlistresult->fetch_assoc();;
+echo "prdlistrow" ;
+echo "<br>" ;
+var_dump($prdlistrow);
+echo "<br>" ;
 
 
 
@@ -141,20 +155,21 @@ echo "<br>" ;
           </thead>
           <tbody>
           <?php foreach ($prdrows as $prdrow) : 
-            $prdlistsql ="SELECT prd_num, name, price FROM prd_list 
             
+            $prdlistsql ="SELECT prd_num, name, price FROM prd_list 
+            WHERE id = $prd_id
             ";
             $prdlistresult = $conn->query($prdlistsql);
-            $prdlistrow = $prdlistresult->fetch_assoc();;
+            $prdlistrows = $prdlistresult->fetch_all(MYSQLI_ASSOC);;
             
             echo "prdlistrow" ;
             echo "<br>" ;
-            var_dump($prdlistrow);
+            var_dump($prdlistrows);
             echo "<br>" ;
             ?>
 
             <tr>
-              <td><?=$prdlistrow["prd_num"]?></td>
+              <td><?=$prdlistrow[""]?></td>
               <td></td>
               <td></td>
               <td></td>
