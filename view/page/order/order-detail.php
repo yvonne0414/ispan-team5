@@ -41,7 +41,21 @@ echo "ordrow" ;
 echo "<br>" ;
 var_dump($ordrow);
 echo "<br>" ;
+echo "<hr>" ;
+$state = $ordrow["logistics_state"];
+var_dump($state);
+echo "<hr>" ;
 
+$stasql = "SELECT * FROM logistics_state_cate 
+WHERE id = '$state'
+";
+
+$staresult = $conn->query($stasql);
+$starow = $staresult->fetch_assoc();;
+echo "starow" ;
+echo "<br>" ;
+var_dump($starow);
+echo "<br>" ;
 // $prdlistsql ="SELECT prd_num, name, price FROM prd_list
 
 // ";
@@ -106,7 +120,7 @@ echo "<br>" ;
         <div class="row mb-3">
           <label for="ord_state" class="col-sm-2 col-form-label">訂單狀態</label>
           <div class="col-sm-10">
-            <input class="form-control" id="ord_state" value="<?=$ordrow["logistics_state"]?>" disabled>
+            <input class="form-control" id="ord_state" value="<?=$starow["name"]?>" disabled>
           </div>
         </div>
         <div class="row mb-3">
@@ -127,8 +141,8 @@ echo "<br>" ;
           </thead>
           <tbody>
           <?php foreach ($prdrows as $prdrow) : 
-            $prdlistsql ="SELECT prd_num, name, price FROM prd_list
-
+            $prdlistsql ="SELECT prd_num, name, price FROM prd_list 
+            
             ";
             $prdlistresult = $conn->query($prdlistsql);
             $prdlistrow = $prdlistresult->fetch_assoc();;
@@ -140,7 +154,7 @@ echo "<br>" ;
             ?>
 
             <tr>
-              <td></td>
+              <td><?=$prdlistrow["prd_num"]?></td>
               <td></td>
               <td></td>
               <td></td>
