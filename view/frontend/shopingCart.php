@@ -77,11 +77,11 @@ $row = $result->fetch_assoc();
       <table class="table table-striped table-dark">
         <thead>
           <tr>
-            <th scope="col">商品編號</th>
-            <th scope="col">商品名稱</th>
-            <th scope="col">單價</th>
-            <th scope="col">數量</th>
-            <th scope="col">小計</th>
+            <th >商品編號</th>
+            <th >商品名稱</th>
+            <th >單價</th>
+            <th  class="text-end">數量</th>
+            <th  class="text-end">小計</th>
           </tr>
         </thead>
         <tbody>
@@ -100,7 +100,7 @@ $row = $result->fetch_assoc();
             <td><?= $rowprd['prd_num']?></td>
             <td><?= $rowprd['name']?></td>
             <td><?= '$'.$rowprd['price']?></td>
-            <td><?= $prd_amount?></td>
+            <td  class="text-end"><?= $prd_amount?></td>
             <td class="text-end"><?= '$'.$rowprd['price']*$prd_amount?></td>
             <?php $total+=$rowprd['price']*$prd_amount?>
           </tr>
