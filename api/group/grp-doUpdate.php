@@ -21,10 +21,11 @@ require("../../db-connect.php");
 //     echo '?activity_start_time=' . $date2 . '&activity_start_time=' . $date2;
 // }
 
+var_dump($_POST);
+
 $id=$_GET["id"];
 $name=$_POST["name"];
 $disc=$_POST["disc"];
-$userid=$_POST["user_id"];
 $vip_level=$_POST["vip_level"];
 $price=$_POST["price"];
 $pass_num=$_POST["pass_num"];
@@ -35,8 +36,10 @@ $date2 = $_POST['activity_start_time'];
 
 
 
+
+
 // echo "$name, $email, $phones";
-$sql="UPDATE group_list SET name='$name', disc='$disc', user_id='$userid', pass_num='$pass_num', max_num='$max_num', is_official='1', start_time='$date', end_time='$date1', activity_start_time='$date2' WHERE id='$id'";
+$sql="UPDATE group_list SET name='$name', disc='$disc', pass_num='$pass_num', max_num='$max_num', is_official='1', start_time='$date', end_time='$date1', activity_start_time='$date2' WHERE id='$id'";
 
 
 // echo $sql;

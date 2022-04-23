@@ -1,6 +1,9 @@
 <?php
 require("../../../db-connect.php");
 
+session_start();
+$user=$_SESSION['user'];
+
 $id=$_GET['id'];
 $sql="SELECT * FROM group_list WHERE id='$id'";
 $result = $conn->query($sql);
@@ -85,18 +88,49 @@ $row2 = $result2->fetch_assoc();
                 <label for="user_id" class="form-label mb-0">主辦人</label>
                 </div>
                 <div class="flex-grow-1">
-                <input type="text"  class="form-control" name="user_id" id="user_id" value='<?=$row["user_id"]?>'>
+                <?php
+                    $owner_id=$row["user_id"];
+                    $ownersql="SELECT name FROM user_list WHERE id=$owner_id";
+                    $ownerresualt=$conn->query($ownersql);
+                    $ownerrow=$ownerresualt->fetch_assoc();
+                
+                ?>
+                <input type="text"  class="form-control" name="user_id" id="user_id" value='<?=$ownerrow["name"]?>' disabled>
                 </div>
             </div>
             <div class="d-flex align-items-center w-50 pe-4 mb-3">
                 <div>
-                <label for="vip_level" class="form-label mb-0">VIP等級</label>
+                <label for="is_official" class="form-label mb-0">活動類型</label>
+                </div>
+                <div class="flex-grow-1">
+                <input  class="form-control" name="is_official" id="is_official" disabled value="官方">
+                </div>
+            </div>
+            <div class="d-flex align-items-center w-50 pe-4 mb-3">
+                <div>
+                <label for="vip_level" class="form-label mb-0">參加門檻</label>
                 </div>
                 <div class="flex-grow-1">
                 <select class="form-select" name="vip_level" id="vip_level" >
-                    <option value="2" <?= ($row2["vip_level"]==2)? 'selected': ''?>>銅卡</option>
-                    <option value="3" <?= ($row2["vip_level"]==3)? 'selected': ''?>>銀卡</option>
-                    <option value="4" <?= ($row2["vip_level"]==4)? 'selected': ''?>>金卡</option>
+                    <?php
+                    $vipsql="SELECT * FROM vip_level WHERE id!=1";
+                    $viprs=$conn->query($vipsql);
+                    $viprows=$viprs->fetch_all(MYSQLI_ASSOC);
+                    // var_dump($viprows);
+
+                    $vipSelected = $row2["vip_level"];
+                    foreach($viprows as $viprow){
+                        $viprowVal=$viprow['id'];
+                        $viprowname=$viprow['name'];
+
+                        if($vipSelected == $viprowVal){
+                            echo "<option value='$viprowVal' selected>$viprowname</option>";
+                        }else{
+                            echo "<option value='$viprowVal'>$viprowname</option>";
+                        }
+
+                    }
+                    ?>
                 </select>
                 </div>
             </div>
@@ -108,7 +142,7 @@ $row2 = $result2->fetch_assoc();
                 <input type="number" min="0" class="form-control" name="price" id="price" value='<?=$row2["price"]?>' >
                 </div>
             </div>
-            <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
+            <div class="d-flex align-items-center w-50 pe-4 mb-3">
                 <div>
                 <label for="pass_num" class="form-label mb-0">成團人數</label>
                 </div>
@@ -116,7 +150,7 @@ $row2 = $result2->fetch_assoc();
                 <input type="number" min="0" class="form-control" name="pass_num" id="pass_num" value='<?=$row["pass_num"]?>'>
                 </div>
             </div>
-            <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
+            <div class="d-flex align-items-center w-50 pe-4 mb-3">
                 <div>
                 <label for="max_num" class="form-label mb-0">人數上限</label>
                 </div>
@@ -124,50 +158,38 @@ $row2 = $result2->fetch_assoc();
                 <input type="number" min="0" class="form-control" name="max_num" id="max_num" value='<?=$row["max_num"]?>'>
                 </div>
             </div>
-            <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
+            
+            <div class="d-flex align-items-center w-50 pe-4 mb-3">
                 <div>
-                <label for="is_official" class="form-label mb-0">活動類型</label>
+                    <label for="start_time" class="form-label mb-0">開團日期</label>
                 </div>
                 <div class="flex-grow-1">
-                <input  class="form-control" name="is_official" id="is_official" disabled value="官方">
+                    <input class="form-control" type="date" name="start_time" value='<?=$start?>' >
+                </div>
+            </div>
+            <div class="d-flex align-items-center w-50 pe-4 mb-3">
+                <div>
+                    <label for="end_time" class="form-label mb-0">結束日期</label>
+                </div>
+                <div class="flex-grow-1">
+                    <input class="form-control" type="date" name="end_time" value='<?=$end?>'>
                 </div>
             </div>
             <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
                 <div>
-                
-                    <div>
-                    <label for="start_time" class="form-label mb-0">開團日期</label>
-                    
-                    <input class="mt-3" type="date" name="start_time" value='<?=$start?>' >
-                    </div>
-                
-                    <br>
-                    <div>
-                    <label for="end_time" class="form-label mb-0">結束日期</label>
-            
-                    <input class="mt-3" type="date" name="end_time" value='<?=$end?>'>
-                    </div>    
-                
-                    <br>
-                    <div>
                     <label for="activity_start_time" class="form-label mb-0">活動日期</label>
-                    
-                    <input class="mt-3 mb-5" type="date" name="activity_start_time" value='<?=$activity_start?>' >
-                    </div>    
-                
-                    
+                </div>
+                <div class="flex-grow-1">
+                    <input class="form-control" type="date" name="activity_start_time" value='<?=$activity_start?>' >
                 </div>
             </div>
-            <div class="w-100 text-center">
-                <a class="btn btn-outline-primary" href="groupList.php">返回列表</a>
-                <button class="btn btn-primary"  type="submit" id="group-submit">確定</button>
+            <div class="w-100 text-center mt-4">
+                <a class="btn btn-outline-dark" href="groupList.php">返回列表</a>
+                <button class="btn btn-dark"  type="submit" id="group-submit">確定</button>
             </div>
             </div>
         </form>
 <?php require("../../component/footerLayout.php")?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script>
-
-</script>
 </body>
 </html>

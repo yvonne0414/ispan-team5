@@ -3,12 +3,12 @@ require("../../db-connect.php");
 
 if(isset($_GET['cate'])){
   $cate= $_GET['cate'];
-  $sql="SELECT id, name, main_img, price, status, category FROM prd_list WHERE status!=3 AND status!=2 AND category=$cate";
+  $sql="SELECT id, name, main_img, price, status, category FROM prd_list WHERE status=1 AND category=$cate";
   $result=$conn->query($sql);
   $rows=$result->fetch_all(MYSQLI_ASSOC);
 
 }else{
-  $sql="SELECT id, name, main_img, price, status FROM prd_list WHERE status!=3 AND status!=2";
+  $sql="SELECT id, name, main_img, price, status FROM prd_list WHERE status=1";
   $result=$conn->query($sql);
   $rows=$result->fetch_all(MYSQLI_ASSOC);
   // var_dump($rows);
