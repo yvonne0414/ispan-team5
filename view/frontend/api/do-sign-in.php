@@ -25,6 +25,7 @@ if($resultCount>0){
     $role=$user['vip_level'];
 
     $_SESSION["user"]=[
+        "id"=>$user["id"],
         "name"=>$user["name"],
         "email"=>$user["email"],
         "phone"=>$user["phone"],

@@ -5,6 +5,10 @@ require_once("../../../db-connect.php");
 $role=$_POST["role"];
 
 if($role==1){
+  if(isset($_SESSION["user"])){
+    header("location: ../..//page/product/prdList.php");
+  }
+  
   $name='後台管理員';
   $sex= 'F';
   $age= 20;
@@ -14,11 +18,12 @@ if($role==1){
   $phone=$_POST["phone"];
   $address='';
 
-  if(isset($_SESSION["user"])){
-    header("location: ../..//page/product/prdList.php");
-  }
 
 }else{
+  if(isset($_SESSION["user"])){
+    header("location: ../homePage.php");
+  }
+  
   $name=$_POST["name"];
   $sex=$_POST["sexRadios"];
   $age=$_POST["age"];
@@ -27,11 +32,6 @@ if($role==1){
   $repassword=$_POST["repassword"];
   $phone=$_POST["phone"];
   $address=$_POST["address"];
-
-  if(isset($_SESSION["user"])){
-    header("location: ../homePage.php");
-  }
-
 }
 
 
@@ -66,6 +66,7 @@ if ($conn->query($sql) === TRUE) {
     echo "密碼新增完成<br>";
     
     $_SESSION["user"]=[
+        "id"=>$user["id"],
         "name"=>$user["name"],
         "email"=>$user["email"],
         "phone"=>$user["phone"],
