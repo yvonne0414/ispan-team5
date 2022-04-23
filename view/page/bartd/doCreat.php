@@ -56,5 +56,3 @@ $conn->query($tdMaterial_sql);
 
 
 header("location: bartd-list.php");
-
-?>

@@ -42,7 +42,6 @@ require("../../../db-connect.php");
     <h2>新增酒譜</h2>
 
     <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST" enctype="multipart/form-data" onSubmit="return check();">
-      <!--  enctype="multipart/form-data" -->
       <!-- 名稱 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
@@ -80,7 +79,7 @@ require("../../../db-connect.php");
         </div>
       </div>
 
-      
+
       <!-- 酒譜類別 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
@@ -106,12 +105,12 @@ require("../../../db-connect.php");
           <label for="prdImg" class="form-label mb-0">商品圖片</label>
         </div>
         <div class="flex-grow-1">
-          <input type="file"  class="form-control"  name="bartd_img" id="prdImg" accept=".jpg, .jpeg, .png, .webp, .svg">
+          <input type="file" class="form-control" name="bartd_img" id="prdImg" accept=".jpg, .jpeg, .png, .webp, .svg">
         </div>
       </div>
       <div class="justify-content-center align-items-center img_container my-2">
-        <img id="prdImg_show" src="#"/>
-      </div>        
+        <img id="prdImg_show" src="#" />
+      </div>
 
 
       <!-- textarea -->
@@ -279,73 +278,40 @@ require("../../../db-connect.php");
 
   <script>
     // 送出表單
-    // function check(){
-    //   // 抓值
-    //   let prdNumVal = prdNum.value;
-    //   let prdNameVal = prdName.value;
-    //   let prdPriceVal = prdPrice.value;
-    //   let prdStatusVal = prdStatus.value;
-    //   let prdDiscVal = prdDisc.value;
-    //   let prdLengthVal = prdLength.value;
-    //   let prdWidthVal = prdWidth.value;
-    //   let prdHeightVal = prdHeight.value;
-    //   let prdImgVal = prdImg.value;
-    //   let prdCateLVal = prdCateL.value;
-    //   let prdOriginVal = prdOrigin.value;
-    //   let prdBrandVal = prdBrand.value;
-    //   let prdCapacityVal = prdCapacity.value;
-    //   let prdAbvVal = prdAbv.value;
-    //   let prdMaterVal = prdMater.value;
-    //   let prdCateMVal = prdCateM.value;
-    //   let prdCateSVal = prdCateS.value;
+    function check() {
+      //   // 抓值
+      //   let prdNumVal = prdNum.value;
+      let prd_num = document.querySelector("#prd_num");
+      let bartd_name = document.querySelector("#bartd-name");
+      let bartd_ratio = document.querySelector("#bartd-ratio");
+      let prd_cate_l = document.querySelector("#prd_cate_l");
+      let prd_cate_m = document.querySelector("#prd_cate_m");
+      let bartd_cate_id_m = document.querySelector("#bartd_cate_id_m");
+      let bartd_cate_id_s = document.querySelector("#bartd_cate_id_s");
+      let prdImg = document.querySelector("#prdImg");
+      let prd_disc = document.querySelector("#prd_disc");
 
-    //   if(prdNumVal=="" || prdNameVal=="" || prdPriceVal=="" || prdStatusVal=="" || prdDiscVal=="" || prdLengthVal=="" || prdWidthVal=="" || prdHeightVal=="" || prdImgVal=="" || !parseInt(prdCateLVal)){
-    //     alert("有欄位未填");
-    //     return false; 
+      let prd_numVal = prd_num.value;
+      let bartd_nameVal = bartd_name.value;
+      let bartd_ratioVal = bartd_ratio.value;
+      let prd_cate_lVal = prd_cate_l.value;
+      let prd_cate_mVal = prd_cate_m.value;
+      let bartd_cate_id_mVal = bartd_cate_id_m.value;
+      let bartd_cate_id_sVal = bartd_cate_id_s.value;
+      let prdImgVal = prdImg.value;
+      let prd_discVal = prd_disc.value;
 
-    //   }else if(parseInt(prdCateLVal) == 1){
+      if (prd_numVal == "" || bartd_nameVal == "" || bartd_ratioVal == "" || prd_cate_lVal == "" || prd_cate_mVal == "" || bartd_cate_id_mVal == "" || bartd_cate_id_sVal == "" || prdImgVal == "" || prd_discVal == "") {
 
-    //     if(!parseInt(prdOriginVal) || prdBrandVal=="" || prdCapacityVal=="" || prdAbvVal=="" || !parseInt(prdCateMVal) || !parseInt(prdCateSVal)){
-    //       alert("有欄位未填");
-    //       return false; 
-    //     } else{
-    //       return true; 
-    //     }
-
-
-    //   }else if(parseInt(prdCateLVal) == 2){
-
-    //     if(!parseInt(prdOriginVal) || prdBrandVal=="" || prdCapacityVal=="" ||  !parseInt(prdCateMVal)){
-    //       alert("有欄位未填");
-    //       return false; 
-    //     } else{
-    //       return true; 
-    //     }
+        alert("有欄位未填");
+        return false;
+      } else {
+        return true;
+      }
+    }
 
 
-    //   }else if(parseInt(prdCateLVal) == 3 || parseInt(prdCateLVal) == 4){
-
-    //     if(!parseInt(prdOriginVal) || !parseInt(prdMaterVal) || prdCapacityVal=="" ||  !parseInt(prdCateMVal) ){
-    //       alert("有欄位未填");
-    //       return false; 
-    //     } else{
-    //       return true; 
-    //     }
-
-
-    //   }else{
-    //     return true;
-    //   }
-
-
-    //   switch(parseInt(prdStatusVal)){
-    //     case 1:
-    //       alert("確認上架商品？");
-    //       break;
-    //     case 2:
-    //       alert("確認下架商品？");
-    //   }
-    // }
+    
   </script>
 
 </body>

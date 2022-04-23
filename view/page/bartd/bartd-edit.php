@@ -100,11 +100,11 @@ $id = $_GET["id"];
                     <!-- 名稱 -->
                     <div class="flex-grow-1">
                         <input type="hidden" name="bartd_id" value="<?= $_GET['id'] ?>">
-                        <input type="text" disabled class="form-control" name="bartd_name" id="bartd-name" value="<?= $row2['name'] ?>">
+                        <input type="text" class="form-control" name="bartd_name" id="bartd-name" value="<?= $row2['name'] ?>">
                     </div>
                     <!-- 比例 -->
                     <div class="flex-grow-1">
-                        <input type="text" disabled class="form-control" name="bartd_ratio" id="bartd-ratio" value="<?= $row2['mater_amount'] ?>">
+                        <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio" value="<?= $row2['mater_amount'] ?>">
                     </div>
                     <!-- master_cate_l -->
                     <div class="flex-grow-1">
@@ -149,33 +149,6 @@ $id = $_GET["id"];
                         <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
                             <option selected>請選擇</option>
                         </select>
-                    </div>
-                    <div class="flex-grow-1">
-                        <input type="text" disabled class="form-control" name="bartd_cate_id_m" id="bartd_cate_id_m" value="
-                            <?php
-                            $id = $row3["bartd_cate_id_m"];
-                            $sqlbartd_cate_type = "SELECT * FROM bartd_cate_type
-                            WHERE id = $id";
-                            $resultbartd_cate_type = $conn->query($sqlbartd_cate_type);
-                            $rowbartd_cate_type = $resultbartd_cate_type->fetch_assoc();
-                            echo $rowbartd_cate_type['name'];
-                            ?>
-                        ">
-                    </div>
-                    <div class="flex-grow-1">
-                        <input type="text" disabled class="form-control" name="bartd_cate_id_s" id="bartd_cate_id_s" value="
-                        <?php
-                        $id = $row3["bartd_cate_id_s"];
-                        $sqlbartd_cate_type = "SELECT * FROM bartd_cate_type
-                        WHERE id = $id";
-                        $resultbartd_cate_type = $conn->query($sqlbartd_cate_type);
-                        $rowbartd_cate_type = $resultbartd_cate_type->fetch_assoc();
-
-                        echo $rowbartd_cate_type['name'];
-
-                        ?>
-                        
-                        ">
                     </div>
                 </div>
 
