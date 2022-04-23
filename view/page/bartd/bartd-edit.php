@@ -91,7 +91,7 @@ $id = $_GET["id"];
             $result2 = $conn->query($sql2);
             $rows2 = $result2->fetch_all(MYSQLI_ASSOC);
             foreach ($rows2 as $row2) :
-                var_dump($rows2);
+                // var_dump($rows2);
             ?>
                 <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
                     <div>
@@ -134,7 +134,7 @@ $id = $_GET["id"];
             $result3 = $conn->query($sql3);
             $rows3 = $result3->fetch_all(MYSQLI_ASSOC);
             foreach ($rows3 as $row3) :
-                var_dump($rows3);
+                // var_dump($rows3);
             ?>
                 <div class="d-flex align-items-center w-100 pe-4 mb-3">
                     <div>
@@ -203,7 +203,7 @@ $id = $_GET["id"];
         // $mater_cate_m = $rows2[0]["mater_cate_m"];
         echo "let materCateL = $mater_cate_l";
         // echo "let materCateM = $mater_cate_m";
-        
+
         ?>
         //呼叫產品大分類
         $.ajax({
@@ -214,7 +214,7 @@ $id = $_GET["id"];
             .done(function(response) {
                 let optionList = "";
 
-                console.log(response);
+                // console.log(response);
                 for (let i = 0; i < response.length; i++) {
                     let item = response[i]
                     // 判斷selected
@@ -237,8 +237,8 @@ $id = $_GET["id"];
         echo "let materCateM = $mater_cate_m";
         ?>
         // 分水
-        console.log(materCateL);
-        console.log(materCateM);
+        // console.log(materCateL);
+        // console.log(materCateM);
         $.ajax({
                 method: "POST",
                 url: "../../../api/bartd/get-bartd_master_cate_m.php",
@@ -249,7 +249,7 @@ $id = $_GET["id"];
             })
             .done(function(response) {
 
-                console.log(response);
+                // console.log(response);
 
                 let count = `${response.length}`;
                 let optionList = "";
@@ -270,7 +270,7 @@ $id = $_GET["id"];
 
                 }
 
-                console.log(optionList)
+                // console.log(optionList)
                 prdCateM.innerHTML += optionList
 
             }).fail(function(jqXHR, textStatus) {
@@ -320,9 +320,9 @@ $id = $_GET["id"];
 
         <?php
         $bartd_cate_id_m = $rows3[0]["bartd_cate_id_m"];
-        // echo "let bartdCateIdM = $bartd_cate_id_m";
         echo "let bartdCateIdM = $bartd_cate_id_m;";
         ?>
+        // console.log(bartdCateIdM);
         $.ajax({
                 method: "POST",
                 url: "../../../api/bartd/get-bartd_cate_id_l.php",
@@ -333,7 +333,7 @@ $id = $_GET["id"];
                 for (let i = 0; i < response.length; i++) {
                     let item = response[i]
                     if (item.id == bartdCateIdM) {
-                        optionList += `<option value="${item.id}">${item.name}</option>`
+                        optionList += `<option value="${item.id}" selected>${item.name}</option>`
 
                     } else {
                         optionList += `<option value="${item.id}">${item.name}</option>`
@@ -343,6 +343,46 @@ $id = $_GET["id"];
                 bartdCateM.innerHTML += optionList
             }).fail(function(jqXHR, textStatus) {
                 console.log("Request failed: " + textStatus);
+            });
+
+        <?php
+        $bartd_cate_id_s = $rows3[0]["bartd_cate_id_s"];
+        echo "let bartdCateIdS = $bartd_cate_id_s;";
+        ?>
+
+        // 分水
+        $.ajax({
+                method: "POST",
+                url: "../../../api/bartd/get-bartd_cate_id_m.php",
+                dataType: "json",
+                data: {
+                    cateParentId: bartdCateIdM
+                }
+            })
+            .done(function(response) {
+                // console.log(response);
+                bartdCateS = document.querySelector("#bartd_cate_id_s");
+                let optionList = "<option selected>中分類</option>";
+                let count = `${response.length}`;
+                for (let i = 0; i < count; i++) {
+                    let item = response[i];
+                    // console.log(item.id);
+                    // console.log(item.name);
+                    if (item.id == bartdCateIdS) {
+                        optionList += `<option value="${item.id}" selected>${item.name}</option>`
+
+                    } else {
+                        optionList += `<option value="${item.id}">${item.name}</option>`
+                    }
+
+                }
+
+                bartdCateS.innerHTML = optionList
+
+            }).fail(function(jqXHR, textStatus) {
+                while (bartdCateS.options.length > 0) {
+                    bartdCateS.options.remove(0);
+                }
             });
         // 呼叫完酒譜大分類
         bartdCateM.addEventListener('change', function() {
