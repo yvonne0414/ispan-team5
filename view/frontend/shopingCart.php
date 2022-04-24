@@ -1,9 +1,18 @@
 <?php
 require("../../db-connect.php");
+// 驗證是否登入
+session_start();
+if(!isset($_SESSION["user"])){
+    echo "<script>alert('請先登入！')</script>";
+    echo "<script>location.href='/ispan-team5/view/frontend/user-sign-in.php';</script>";
+    // header("location: /ispan-team5/view/frontend/user-sign-in.php");
+}
+$user=$_SESSION["user"];
+$user_id = $user['id'];
 
 
 $data=[
-    'user_id'=>3,
+    'user_id'=>$user_id,
     "prd_content"=>[
       [
         "id"=>1,
@@ -108,8 +117,33 @@ $row = $result->fetch_assoc();
         </tbody>
         <tfoot>
           <tr>
+            <td>使用優惠券</td>
+            <td colspan="2">
+              <select name="choose_coupon" id="choose_coupon">
+                <option>請選擇</option>
+                <?php
+                  $now=date('Y-m-d');
+
+                  $sql="SELECT user_coupon.id AS user_coupon_id, coupon_list.* FROM user_coupon
+                  JOIN coupon_list ON user_coupon.coupon_id = coupon_list.id 
+                  WHERE user_id=$user_id AND  start_time<='$now' AND  end_time>'$now'
+                  ";
+                  $resualt=$conn->query($sql);
+                  $rows=$resualt->fetch_All(MYSQLI_ASSOC);
+                  foreach($rows as $row):
+                    
+                ?>
+                  <option value="<?=$row['user_coupon_id']?>"><?=$row['name']?></option>
+                <?php endforeach;?>
+              </select>
+            </td>
+            <td colspan="2" class="text-end" id="coupon-price">
+              -
+            </td>
+          </tr>
+          <tr>
             <td class="text-end" colspan="5">
-              總計: $<?=$total?>
+              總計: $<span id="total"></span>
             </td>
           </tr>
         </tfoot>
@@ -128,5 +162,41 @@ $row = $result->fetch_assoc();
 
   <?php require("../component/footerLayout.php")?>
 
+  <script>
+    let chooseCoupon = document.querySelector("#choose_coupon");
+    let couponPrice = document.querySelector("#coupon-price");
+    let chooseCouponVal = chooseCoupon.value
+    let discount=0;
+    let totalNode = document.querySelector('#total')
+    <?php
+      echo "let total = $total";
+    ?>
+    
+    totalNode.innerHTML = total
+
+
+    chooseCoupon.addEventListener('change', function(){
+      console.log('in')
+      console.log(chooseCouponVal)
+      $.ajax({
+        method: "POST",
+        url: "./api/get-coupon-price.php",
+        dataType: "json",
+        data: {
+          user_coupon_id: 1
+        }
+      })
+      .done(function(response) {
+        console.log(response)
+        couponPrice.innerHTML = `-$${response['discount']}`
+        discount = response['discount']
+        totalNode.innerHTML = total-discount
+      }).fail(function(jqXHR, textStatus) {
+        console.log("Request failed: " + textStatus);
+      });
+
+    })
+    
+  </script>
 </body>
 </html>

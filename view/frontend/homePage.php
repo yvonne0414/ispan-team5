@@ -1,11 +1,12 @@
 <?php
+// 驗證是否登入
 session_start();
-require("../../db-connect.php");
 if(!isset($_SESSION["user"])){
-    header("location: ./user-sign-in.php");
+    echo "<script>alert('請先登入！')</script>";
+    echo "<script>location.href='/ispan-team5/view/frontend/user-sign-in.php';</script>";
+    // header("location: /ispan-team5/view/frontend/user-sign-in.php");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

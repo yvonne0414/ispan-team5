@@ -14,11 +14,19 @@
             
         </div>
         <div class="d-flex flex-grow-1 justify-content-evenly">
-            <a href="">優惠券</a>
+            <a href="/ispan-team5/view/frontend/coupon-list.php">優惠券</a>
             <a href="/ispan-team5/view/frontend/shopingCart.php">確認下單</a>
-            <a href="/ispan-team5/view/frontend/api/user-logout.php" title='登出'><i class="fa-solid fa-right-to-bracket fa-xl text-white me-5"></i></a>
+            <span class="mouse-pointer" title='登出' onclick='logout()' ><i class="fa-solid fa-right-to-bracket fa-xl text-white me-5"></i></span>
         </div>
         
 
     </div>
 </header>
+
+<script>
+    function logout(){
+        if(confirm('確定要登出？')){
+            location.href='/ispan-team5/view/frontend/api/user-logout.php'
+        }
+    }
+</script>
