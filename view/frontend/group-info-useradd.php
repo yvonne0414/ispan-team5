@@ -25,7 +25,7 @@ $user=$_SESSION['user'];
     .form-label{
         width: 100px;
     }
-    .form-control{
+    .form-control, .form-control:focus {
         background-color: #ffffff80;
     }
   </style>

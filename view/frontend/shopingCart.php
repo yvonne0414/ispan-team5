@@ -51,6 +51,12 @@ $row = $result->fetch_assoc();
   <title>確認訂單</title>
   <?php require("../component/headerLayout.php")?>
   <link rel="stylesheet" href="./component/fend.css">
+  <style>
+    .form-control, .form-control:focus {
+      background-color: #ffffff80;
+      width: auto;
+    }
+  </style>
 </head>
 <body>
   <?php require("./component/header.php")?>
@@ -119,7 +125,7 @@ $row = $result->fetch_assoc();
           <tr>
             <td>使用優惠券</td>
             <td colspan="2">
-              <select name="choose_coupon" id="choose_coupon">
+              <select  class="form-control" name="choose_coupon" id="choose_coupon">
                 <option value="-1">請選擇</option>
                 <?php
                   $now=date('Y-m-d');
@@ -151,7 +157,7 @@ $row = $result->fetch_assoc();
 
 
       <div class="text-end mt-4">
-        <button type="submit" class="btn btn-outline-light" onsubmit="confirm('確定下單嗎？')">確定下單</button>
+        <button type="submit" class="btn btn-outline-light">確定下單</button>
       </div>
 
     </from>
