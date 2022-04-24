@@ -46,6 +46,8 @@ $rows=$resualt->fetch_All(MYSQLI_ASSOC);
         <tr>
           <th></th>
           <th>優惠名稱</th>
+          <th>低消</th>
+          <th>最高折抵</th>
           <th>使用期限</th>
         </tr>
       </thead>
@@ -57,7 +59,9 @@ $rows=$resualt->fetch_All(MYSQLI_ASSOC);
         <tr>
           <td><?= $i+1 ?></td>
           <td><?=$row['name']?></td>
-          <td><?=$row['start_time']?> - <?=$row['end_time']?></td>
+          <td>$ <?=$row['rule_min']?></td>
+          <td>$ <?=$row['rule_max']?></td>
+          <td><?=$row['start_time']?> ~ <?=$row['end_time']?></td>
         </tr>
         <?php endfor;?>
       </tbody>

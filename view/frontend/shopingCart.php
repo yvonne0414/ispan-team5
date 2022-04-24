@@ -132,7 +132,7 @@ $row = $result->fetch_assoc();
 
                   $sql="SELECT user_coupon.id AS user_coupon_id, coupon_list.* FROM user_coupon
                   JOIN coupon_list ON user_coupon.coupon_id = coupon_list.id 
-                  WHERE user_id=$user_id AND  start_time<='$now' AND  end_time>'$now'
+                  WHERE user_id=$user_id AND  start_time<='$now' AND  end_time>'$now' AND rule_min < $total
                   ";
                   $resualt=$conn->query($sql);
                   $rows=$resualt->fetch_All(MYSQLI_ASSOC);
