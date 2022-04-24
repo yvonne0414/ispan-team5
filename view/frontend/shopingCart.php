@@ -120,7 +120,7 @@ $row = $result->fetch_assoc();
             <td>使用優惠券</td>
             <td colspan="2">
               <select name="choose_coupon" id="choose_coupon">
-                <option>請選擇</option>
+                <option value="-1">請選擇</option>
                 <?php
                   $now=date('Y-m-d');
 
@@ -133,7 +133,7 @@ $row = $result->fetch_assoc();
                   foreach($rows as $row):
                     
                 ?>
-                  <option value="<?=$row['user_coupon_id']?>"><?=$row['name']?></option>
+                  <option value=<?=$row['user_coupon_id']?>><?=$row['name']?></option>
                 <?php endforeach;?>
               </select>
             </td>
@@ -176,24 +176,29 @@ $row = $result->fetch_assoc();
 
 
     chooseCoupon.addEventListener('change', function(){
-      console.log('in')
-      console.log(chooseCouponVal)
-      $.ajax({
-        method: "POST",
-        url: "./api/get-coupon-price.php",
-        dataType: "json",
-        data: {
-          user_coupon_id: 1
-        }
-      })
-      .done(function(response) {
-        console.log(response)
-        couponPrice.innerHTML = `-$${response['discount']}`
-        discount = response['discount']
-        totalNode.innerHTML = total-discount
-      }).fail(function(jqXHR, textStatus) {
-        console.log("Request failed: " + textStatus);
-      });
+      chooseCouponVal = chooseCoupon.value
+      if(chooseCouponVal>0){
+        $.ajax({
+          method: "POST",
+          url: "./api/get-coupon-price.php",
+          dataType: "json",
+          data: {
+            user_coupon_id: chooseCouponVal
+          }
+        })
+        .done(function(response) {
+          console.log(response)
+          couponPrice.innerHTML = `-$${response['discount']}`
+          discount = response['discount']
+          totalNode.innerHTML = total-discount
+        }).fail(function(jqXHR, textStatus) {
+          console.log("Request failed: " + textStatus);
+        });
+
+      }else{
+        couponPrice.innerHTML = '-'
+        totalNode.innerHTML = total
+      }
 
     })
     
