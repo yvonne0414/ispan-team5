@@ -110,14 +110,12 @@ $starows = $staresult->fetch_all(MYSQLI_ASSOC);
         </div> -->
         <div class="container ">
             <div class="py-2 text-end">
-            <a class="btn btn-primary" href="order-list.php">回所有訂單</a>
-                <ul class="nav nav-pills  ">
+            <ul class="nav nav-pills  ">
+            <a class="btn btn-primary" href="order-list.php">全部</a>
                     <?php foreach ($starows as $starow) : ?>
-
                         <li class="nav-items">
                             <a class="nav-link" aria-curret="page" href="order-list.php?logistics_state=<?= $starow["id"] ?>"><?= $starow["name"] ?></a>
                         </li>
-
                     <?php endforeach; ?>
                 </ul>
             </div>
