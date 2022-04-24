@@ -221,7 +221,7 @@ $rowDetail = $resultDetail->fetch_assoc();
       <div class="w-100 text-center">
         <a class="btn btn-outline-dark" href="./prdList.php">返回列表</a>
         <?php if($mode== "edit"): ?>
-        <button class="btn btn-dark" type="submit" id="prd_submit">確定</button>
+        <button class="btn btn-dark" type="submit" id="prd_submit">修改</button>
         <?php endif;?>
       </div>
     </form>

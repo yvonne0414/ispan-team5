@@ -49,8 +49,11 @@ $id=$_GET['id'];
 //DELETE 軟刪除
 $sql="UPDATE prd_list SET status=3 WHERE id='$id'";
 if ($conn->query($sql) === TRUE) {
-    echo "刪除資料完成<br>";
-    header('location:../../view/page/product/prdList.php');
+    // echo "刪除資料完成<br>";
+    // header('location:../../view/page/product/prdList.php');
+
+    echo "<script>alert('刪除成功！');</script>";
+    echo "<script>location.href='../../view/page/product/prdList.php';</script>";
 } else {
     echo "刪除資料錯誤: "  . $conn->error;
     exit;       

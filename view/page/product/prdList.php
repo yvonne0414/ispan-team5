@@ -103,6 +103,9 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
         <a class="btn btn-outline-dark" href="./prdinfo-add.php">新增商品</a>
       </div>
     </div>
+    <?php
+    if(count($rows)>0):
+    ?>
     <div class="py-2 text-end">
         第 <?=$p?> /<?=$page_count?> 頁 ,共 <?=$total?> 筆
     </div>
@@ -157,7 +160,9 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
         <?php endfor; ?>
       </ul>
     </nav>
-
+    <?php else:?>
+      <h3 class="mt-5">沒有符合條件的商品</h3>
+    <?php endif;?>
   </div>
 
   <script type="text/javascript">

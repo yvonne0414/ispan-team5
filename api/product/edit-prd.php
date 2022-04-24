@@ -106,7 +106,7 @@ if(isset($_FILES["prdImg"])){
 
 
 
-    echo $sql;
+    // echo $sql;
 
     if ($conn->query($sql) === TRUE) {
         echo "更新成功";
@@ -144,14 +144,16 @@ if(isset($_FILES["prdImg"])){
                 break;
         }
         if ($conn->query($sqldetail) === TRUE) {
-            echo "更新資料完成<br>";
+            // echo "更新資料完成<br>";
+            echo "<script>alert('修改成功！');</script>";
+            echo "<script>location.href='../../view/page/product/prdList.php';</script>";
         } else {
             echo "新增資料錯誤: "  . $conn->error;
             exit;
         }
 
-        echo "更新資料完成";
-        header('location: ../../view/page/product/prdList.php');
+        // echo "更新資料完成";
+        // header('location: ../../view/page/product/prdList.php');
     } else {
         echo "新增資料錯誤: "  . $conn->error;
         exit;

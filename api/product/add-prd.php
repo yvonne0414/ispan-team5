@@ -42,7 +42,7 @@ if($_FILES["prdImg"]["error"]==0){
     $file_storepath = "../../assets/img/test/".$fileName;
 
     if(move_uploaded_file($file_tmpname, $file_storepath)){
-        echo "upload success!";
+        // echo "upload success!";
 
         $prdNum=$_POST["prd_num"];
         $prdName=$_POST["prd_name"];
@@ -65,10 +65,10 @@ if($_FILES["prdImg"]["error"]==0){
 
 
 
-        echo $sql;
+        // echo $sql;
 
         if ($conn->query($sql) === TRUE) {
-            echo "新增成功";
+            // echo "新增成功";
             
 
             $last_id=$conn->insert_id;
@@ -104,14 +104,16 @@ if($_FILES["prdImg"]["error"]==0){
                     break;
             }
             if ($conn->query($sqldetail) === TRUE) {
-                echo "新增資料完成<br>";
+                // echo "新增資料完成<br>";
+                echo "<script>alert('新增成功！');</script>";
+                echo "<script>location.href='../../view/page/product/prdList.php';</script>";
             } else {
                 echo "新增資料錯誤: "  . $conn->error;
                 exit;       
             }
 
             echo "新增資料完成<br>";
-            header('location: ../../view/page/product/prdList.php');
+            // header('location: ../../view/page/product/prdList.php');
         } else {
             echo "新增資料錯誤: "  . $conn->error;
             exit;
