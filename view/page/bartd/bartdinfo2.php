@@ -53,90 +53,55 @@ require("../../../db-connect.php");
       </div>
 
       <!-- 材料 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
-        <div>
-          <label for="bartd-name" class="form-label mb-0">材料</label>
+
+      <?php for ($i = 0; $i < 5; $i++) : ?>
+        <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
+          <div>
+            <label for="bartd-name" class="form-label mb-0">材料</label>
+          </div>
+          <!-- 名稱 -->
+          <div class="flex-grow-1">
+            <input type="text" class="form-control" name="bartd_name" id="bartd-name">
+          </div>
+          <!-- 比例 -->
+          <div class="flex-grow-1">
+            <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio">
+          </div>
+          <!-- master_cate_l -->
+          <div class="flex-grow-1">
+            <select class="form-select prd_cate_l" name="prd_cate_l" id="prd_cate_l">
+              <option selected>材料類別</option>
+            </select>
+          </div>
+          <!-- master_cate_m -->
+          <div class="flex-grow-1">
+            <select class="form-select prd_cate_m" name="prd_cate_m" id="prd_cate_m">
+              <option selected>請選擇</option>
+            </select>
+          </div>
         </div>
-        <!-- 名稱 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd_name" id="bartd-name">
-        </div>
-        <!-- 比例 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio">
-        </div>
-        <!-- master_cate_l -->
-        <div class="flex-grow-1">
-          <select class="form-select prd_cate_l" name="prd_cate_l" id="prd_cate_l">
-            <option selected>材料類別</option>
-          </select>
-        </div>
-        <!-- master_cate_m -->
-        <div class="flex-grow-1">
-          <select class="form-select prd_cate_m" name="prd_cate_m" id="prd_cate_m">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-      </div>
-      <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
-        <div>
-          <label for="bartd-name" class="form-label mb-0">材料</label>
-        </div>
-        <!-- 名稱 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd_name" id="bartd-name">
-        </div>
-        <!-- 比例 -->
-        <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio">
-        </div>
-        <!-- master_cate_l -->
-        <div class="flex-grow-1">
-          <select class="form-select prd_cate_l" name="prd_cate_l" id="prd_cate_l">
-            <option selected>材料類別</option>
-          </select>
-        </div>
-        <!-- master_cate_m -->
-        <div class="flex-grow-1">
-          <select class="form-select prd_cate_m" name="prd_cate_m" id="prd_cate_m">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-      </div>
+      <?php endfor; ?>
 
 
       <!-- 酒譜類別 -->
-      <div class="d-flex align-items-center w-100 pe-4 mb-3">
-        <div>
-          <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
+      <?php for ($i = 0; $i < 5; $i++) : ?>
+        <div class="d-flex align-items-center w-100 pe-4 mb-3">
+          <div>
+            <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
+          </div>
+          <div class="flex-grow-1">
+            <select class="form-select bartd_cate_id_m" name="bartd_cate_id_m" id="bartd_cate_id_m">
+              <option selected>酒譜類別</option>
+            </select>
+          </div>
+          <div class="flex-grow-1">
+            <select class="form-select bartd_cate_id_s" name="bartd_cate_id_s" id="bartd_cate_id_s">
+              <option selected>請選擇</option>
+            </select>
+          </div>
         </div>
-        <div class="flex-grow-1">
-          <select class="form-select bartd_cate_id_m" name="bartd_cate_id_m" id="bartd_cate_id_m">
-            <option selected>酒譜類別</option>
-          </select>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select bartd_cate_id_s" name="bartd_cate_id_s" id="bartd_cate_id_s">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-      </div>
 
-      <div class="d-flex align-items-center w-100 pe-4 mb-3">
-        <div>
-          <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select bartd_cate_id_m" name="bartd_cate_id_m" id="bartd_cate_id_m">
-            <option selected>酒譜類別</option>
-          </select>
-        </div>
-        <div class="flex-grow-1">
-          <select class="form-select bartd_cate_id_s" name="bartd_cate_id_s" id="bartd_cate_id_s">
-            <option selected>請選擇</option>
-          </select>
-        </div>
-      </div>
+      <?php endfor; ?>
 
       <!-- image -->
 
@@ -182,100 +147,102 @@ require("../../../db-connect.php");
     let bartdCateM = document.querySelectorAll(".bartd_cate_id_m");
     let bartdCateS = document.querySelectorAll(".bartd_cate_id_s");
 
-
-    //呼叫產品大分類
-    $.ajax({
-        method: "POST",
-        url: "../../../api/bartd/get-bartd_master_cate_l.php",
-        dataType: "json"
-      })
-      .done(function(response) {
-        let optionList = "";
-        for (let i = 0; i < response.length; i++) {
-          let item = response[i]
-          optionList += `<option value="${item.id}">${item.name}</option>`
-        }
-        prdCateL[1].innerHTML += optionList
-      }).fail(function(jqXHR, textStatus) {
-        console.log("Request failed: " + textStatus);
-      });
-    // 呼叫完大分類
-    prdCateL[1].addEventListener('change', function() {
-      let parentId = this.value;
+    let rows = 5;
+    for (let num = 0; num < rows; num++) {
+      //呼叫產品大分類
       $.ajax({
           method: "POST",
-          url: "../../../api/bartd/get-bartd_master_cate_m.php",
-          dataType: "json",
-          data: {
-            parentId: parentId
-          }
+          url: "../../../api/bartd/get-bartd_master_cate_l.php",
+          dataType: "json"
         })
         .done(function(response) {
-          // console.log(response);
-          let optionList = "<option selected>中分類</option>";
-
-          let count = `${response.length}`;
-          for (let i = 0; i < count; i++) {
-            let master_cate_id = `${response[i].id}`;
-            let master_cate_m_name = `${response[i].name}`;
-            optionList += `<option value="${master_cate_id}">${master_cate_m_name}</option>`
+          let optionList = "";
+          for (let i = 0; i < response.length; i++) {
+            let item = response[i]
+            optionList += `<option value="${item.id}">${item.name}</option>`
           }
-
-          prdCateM[1].innerHTML = optionList
-
+          prdCateL[num].innerHTML += optionList
         }).fail(function(jqXHR, textStatus) {
-          while (prdCateM[1].options.length > 0) {
-            prdCateM[1].options.remove(0);
-          }
+          console.log("Request failed: " + textStatus);
         });
-    });
+      // 呼叫完大分類
+      prdCateL[num].addEventListener('change', function() {
+        let parentId = this.value;
+        $.ajax({
+            method: "POST",
+            url: "../../../api/bartd/get-bartd_master_cate_m.php",
+            dataType: "json",
+            data: {
+              parentId: parentId
+            }
+          })
+          .done(function(response) {
+            // console.log(response);
+            let optionList = "<option selected>中分類</option>";
 
-    // 呼叫酒譜大分類
-    $.ajax({
-        method: "POST",
-        url: "../../../api/bartd/get-bartd_cate_id_l.php",
-        dataType: "json"
-      })
-      .done(function(response) {
-        let optionList = "";
-        for (let i = 0; i < response.length; i++) {
-          let item = response[i]
-          optionList += `<option value="${item.id}">${item.name}</option>`
-        }
-        bartdCateM[1].innerHTML += optionList
-      }).fail(function(jqXHR, textStatus) {
-        console.log("Request failed: " + textStatus);
+            let count = `${response.length}`;
+            for (let i = 0; i < count; i++) {
+              let master_cate_id = `${response[i].id}`;
+              let master_cate_m_name = `${response[i].name}`;
+              optionList += `<option value="${master_cate_id}">${master_cate_m_name}</option>`
+            }
+
+            prdCateM[num].innerHTML = optionList
+
+          }).fail(function(jqXHR, textStatus) {
+            while (prdCateM[num].options.length > 0) {
+              prdCateM[num].options.remove(0);
+            }
+          });
       });
-    // 呼叫完酒譜大分類
-    bartdCateM[1].addEventListener('change', function() {
-      let cateParentId = this.value;
+
+      // 呼叫酒譜大分類
       $.ajax({
           method: "POST",
-          url: "../../../api/bartd/get-bartd_cate_id_m.php",
-          dataType: "json",
-          data: {
-            cateParentId: cateParentId
-          }
+          url: "../../../api/bartd/get-bartd_cate_id_l.php",
+          dataType: "json"
         })
         .done(function(response) {
-          // console.log(response);
-          let optionList = "<option selected>中分類</option>";
-
-          let count = `${response.length}`;
-          for (let i = 0; i < count; i++) {
-            let master_cate_s_id = `${response[i].id}`;
-            let master_cate_s_name = `${response[i].name}`;
-            optionList += `<option value="${master_cate_s_id}">${master_cate_s_name}</option>`
+          let optionList = "";
+          for (let i = 0; i < response.length; i++) {
+            let item = response[i]
+            optionList += `<option value="${item.id}">${item.name}</option>`
           }
-          // console.log(optionList);
-          bartdCateS[1].innerHTML = optionList;
-
+          bartdCateM[num].innerHTML += optionList
         }).fail(function(jqXHR, textStatus) {
-          while (bartdCateS[1].options.length > 0) {
-            bartdCateS[1].options.remove(0);
-          }
+          console.log("Request failed: " + textStatus);
         });
-    })
+      // 呼叫完酒譜大分類
+      bartdCateM[num].addEventListener('change', function() {
+        let cateParentId = this.value;
+        $.ajax({
+            method: "POST",
+            url: "../../../api/bartd/get-bartd_cate_id_m.php",
+            dataType: "json",
+            data: {
+              cateParentId: cateParentId
+            }
+          })
+          .done(function(response) {
+            // console.log(response);
+            let optionList = "<option selected>中分類</option>";
+
+            let count = `${response.length}`;
+            for (let i = 0; i < count; i++) {
+              let master_cate_s_id = `${response[i].id}`;
+              let master_cate_s_name = `${response[i].name}`;
+              optionList += `<option value="${master_cate_s_id}">${master_cate_s_name}</option>`
+            }
+            // console.log(optionList);
+            bartdCateS[num].innerHTML = optionList;
+
+          }).fail(function(jqXHR, textStatus) {
+            while (bartdCateS[num].options.length > 0) {
+              bartdCateS[num].options.remove(0);
+            }
+          });
+      })
+    }
   </script>
 
   <script>
@@ -340,9 +307,6 @@ require("../../../db-connect.php");
         return true;
       }
     }
-
-
-    
   </script>
 
 </body>
