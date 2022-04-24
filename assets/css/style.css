@@ -10,6 +10,7 @@ body{
 .logo figure{
     max-width: 14rem;
     margin-bottom: 0;
+    margin: .5rem auto;
 }
 .logo figure img {
     width: 100%;

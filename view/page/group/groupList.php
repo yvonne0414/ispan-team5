@@ -131,7 +131,7 @@ require("../../../db-connect.php");
 
   </div>
 
-    <div class="container">
+    <div class="container mt-5">
     <h2 class="mt-3 mb-3" >私人活動</h2>
 
     <table class="table table-striped">

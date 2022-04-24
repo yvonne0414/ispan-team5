@@ -7,10 +7,12 @@
             <a href="/ispan-team5/view/frontend/groupList.php">揪團趣</a>
         </div>
         <div class="logo d-flex text-nowrap mx-4">
-            <!-- <figure>
-                <img class="object-cover" src="" alt="Logo.jpg">
-            </figure> -->
-            <a href="/ispan-team5/view/frontend/homePage.php"><h1 class="logo-text">INJOIN</h1></a>
+            <a href="/ispan-team5/view/frontend/homePage.php">
+                <figure>
+                    <img class="object-cover" src="/ispan-team5/assets/img/logo/logo.png" alt="INJOIN-Logo">
+                </figure>
+            </a>
+            <!-- <a href="/ispan-team5/view/frontend/homePage.php"><h1 class="logo-text">INJOIN</h1></a> -->
             
         </div>
         <div class="d-flex flex-grow-1 justify-content-evenly">
