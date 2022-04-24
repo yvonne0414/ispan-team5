@@ -31,7 +31,7 @@ require("../../../db-connect.php");
   <?php require("../../component/header.php")?>
   <?php require("../../component/sidemenu.php")?>
   <div class="container pt-5">
-    <h2 class="mt-3 mb-3" >官方活動</h2>
+    <h2 class="mt-3 mb-0" >官方活動</h2>
 
     <div class="d-flex justify-content-end align-items-center">
       <div>
@@ -42,7 +42,7 @@ require("../../../db-connect.php");
     <table class="table table-striped">
       <thead>
         <tr class="table-dark">
-          <td>活動序號</td>
+          <td></td>
           <td>活動名稱</td>
           <td>主辦人</td>
           <td>狀態</td>
@@ -53,7 +53,7 @@ require("../../../db-connect.php");
       </thead>
       <tbody>
         <?php
-          $sql="SELECT * FROM group_list WHERE status!=7 AND is_official=1";
+          $sql="SELECT * FROM group_list WHERE status!=7 AND is_official=1 ORDER BY start_time DESC";
           $result = $conn->query($sql);
           $rows = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -89,7 +89,7 @@ require("../../../db-connect.php");
         ?>
           <tr>
             <!-- 序號 -->
-            <td><?= $i+1 ?></td> 
+            <td class="text-end"><?= $i+1 ?></td> 
             <!-- 活動名稱 -->
             <td class="title"><?= $row['name'] ?></td>
             <!-- 主辦人 -->
@@ -101,8 +101,9 @@ require("../../../db-connect.php");
                  echo
                 ($status_id==1 ? "bg-dark" : 
                 ($status_id==2 ? "bg-primary" : 
-                ($status_id==3 ? "bg-warning" : 
-                ($status_id==4 ? "bg-success" : "bg-secondary")))) 
+                ($status_id==3 ? "bg-secondary" : 
+                ($status_id==4 ? "bg-success" : 
+                ($status_id==5 ? "bg-warning" : "bg-secondary")))))
                 ?> 
               ">
                 <?= $status?>
@@ -118,7 +119,8 @@ require("../../../db-connect.php");
               <?php 
                 if(
                 $rows[$i]["status"]==1 ||
-                $rows[$i]["status"]==3
+                $rows[$i]["status"]==3 ||
+                $rows[$i]["status"]==6
                 ):
               ?> 
               <a class="px-2" href="/ispan-team5/api/group/grp-doDelete.php?id=<?=$row['id']?>" onclick='return delclick();'><i class="fa-solid fa-trash-can"></i></a>
@@ -137,7 +139,7 @@ require("../../../db-connect.php");
     <table class="table table-striped">
       <thead>
         <tr class="table-dark">
-          <td>活動序號</td>
+          <td></td>
           <td>活動名稱</td>
           <td>主辦人</td>
           <td>狀態</td>
@@ -148,7 +150,7 @@ require("../../../db-connect.php");
       </thead>
       <tbody>
         <?php
-          $sql="SELECT * FROM group_list WHERE status!=7 AND is_official=2";
+          $sql="SELECT * FROM group_list WHERE status!=7 AND is_official=2 ORDER BY start_time DESC";
           $result = $conn->query($sql);
           $rows = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -181,7 +183,7 @@ require("../../../db-connect.php");
         ?>
           <tr>
             <!-- 序號 -->
-            <td><?= $i+1 ?></td> 
+            <td class="text-end"><?= $i+1 ?></td> 
             <!-- 活動名稱 -->
             <td class="title"><?= $row['name'] ?></td>
             <!-- 主辦人 -->
@@ -193,8 +195,9 @@ require("../../../db-connect.php");
                  echo
                 ($status_id==1 ? "bg-dark" : 
                 ($status_id==2 ? "bg-primary" : 
-                ($status_id==3 ? "bg-warning" : 
-                ($status_id==4 ? "bg-success" : "bg-secondary")))) 
+                ($status_id==3 ? "bg-secondary" : 
+                ($status_id==4 ? "bg-success" : 
+                ($status_id==5 ? "bg-warning" : "bg-secondary")))))
                 ?> 
               ">
                 <?= $status?>

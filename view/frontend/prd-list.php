@@ -48,7 +48,7 @@ if(isset($_GET['cate'])){
       height: 12rem;
       overflow:hidden;
     }
-    img{
+    td img{
       object-fit:cover;
       width: 12rem;
       height: 12rem;
