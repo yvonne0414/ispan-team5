@@ -42,7 +42,6 @@ require("../../../db-connect.php");
     <h2>新增酒譜</h2>
 
     <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST" enctype="multipart/form-data" onSubmit="return check();">
-      <!--  enctype="multipart/form-data" -->
       <!-- 名稱 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
@@ -79,7 +78,6 @@ require("../../../db-connect.php");
           </select>
         </div>
       </div>
-
       <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
         <div>
           <label for="bartd-name" class="form-label mb-0">材料</label>
@@ -105,19 +103,36 @@ require("../../../db-connect.php");
           </select>
         </div>
       </div>
-      
+
+
       <!-- 酒譜類別 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
           <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
         </div>
         <div class="flex-grow-1">
-          <select class="form-select" name="bartd_cate_id_m" id="bartd_cate_id_m">
+          <select class="form-select bartd_cate_id_m" name="bartd_cate_id_m" id="bartd_cate_id_m">
             <option selected>酒譜類別</option>
           </select>
         </div>
         <div class="flex-grow-1">
-          <select class="form-select" name="bartd_cate_id_s" id="bartd_cate_id_s">
+          <select class="form-select bartd_cate_id_s" name="bartd_cate_id_s" id="bartd_cate_id_s">
+            <option selected>請選擇</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center w-100 pe-4 mb-3">
+        <div>
+          <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select bartd_cate_id_m" name="bartd_cate_id_m" id="bartd_cate_id_m">
+            <option selected>酒譜類別</option>
+          </select>
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-select bartd_cate_id_s" name="bartd_cate_id_s" id="bartd_cate_id_s">
             <option selected>請選擇</option>
           </select>
         </div>
@@ -131,12 +146,12 @@ require("../../../db-connect.php");
           <label for="prdImg" class="form-label mb-0">商品圖片</label>
         </div>
         <div class="flex-grow-1">
-          <input type="file"  class="form-control"  name="bartd_img" id="prdImg" accept=".jpg, .jpeg, .png, .webp, .svg">
+          <input type="file" class="form-control" name="bartd_img" id="prdImg" accept=".jpg, .jpeg, .png, .webp, .svg">
         </div>
       </div>
       <div class="justify-content-center align-items-center img_container my-2">
-        <img id="prdImg_show" src="#"/>
-      </div>        
+        <img id="prdImg_show" src="#" />
+      </div>
 
 
       <!-- textarea -->
@@ -162,10 +177,10 @@ require("../../../db-connect.php");
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script>
-    let prdCateL = document.querySelector(".prd_cate_l");
-    let prdCateM = document.querySelector(".prd_cate_m");
-    let bartdCateM = document.querySelector("#bartd_cate_id_m");
-    let bartdCateS = document.querySelector("#bartd_cate_id_s");
+    let prdCateL = document.querySelectorAll(".prd_cate_l");
+    let prdCateM = document.querySelectorAll(".prd_cate_m");
+    let bartdCateM = document.querySelectorAll(".bartd_cate_id_m");
+    let bartdCateS = document.querySelectorAll(".bartd_cate_id_s");
 
 
     //呼叫產品大分類
@@ -180,12 +195,12 @@ require("../../../db-connect.php");
           let item = response[i]
           optionList += `<option value="${item.id}">${item.name}</option>`
         }
-        prdCateL.innerHTML += optionList
+        prdCateL[1].innerHTML += optionList
       }).fail(function(jqXHR, textStatus) {
         console.log("Request failed: " + textStatus);
       });
     // 呼叫完大分類
-    prdCateL.addEventListener('change', function() {
+    prdCateL[1].addEventListener('change', function() {
       let parentId = this.value;
       $.ajax({
           method: "POST",
@@ -196,12 +211,7 @@ require("../../../db-connect.php");
           }
         })
         .done(function(response) {
-
-          while (prdCateM.options.length > 0) {
-            prdCateM.options.remove(0);
-          }
-
-          cateM = document.querySelector("#prd_cate_m");
+          // console.log(response);
           let optionList = "<option selected>中分類</option>";
 
           let count = `${response.length}`;
@@ -211,11 +221,11 @@ require("../../../db-connect.php");
             optionList += `<option value="${master_cate_id}">${master_cate_m_name}</option>`
           }
 
-          cateM.innerHTML = optionList
+          prdCateM[1].innerHTML = optionList
 
         }).fail(function(jqXHR, textStatus) {
-          while (prdCateM.options.length > 0) {
-            prdCateM.options.remove(0);
+          while (prdCateM[1].options.length > 0) {
+            prdCateM[1].options.remove(0);
           }
         });
     });
@@ -232,12 +242,12 @@ require("../../../db-connect.php");
           let item = response[i]
           optionList += `<option value="${item.id}">${item.name}</option>`
         }
-        bartdCateM.innerHTML += optionList
+        bartdCateM[1].innerHTML += optionList
       }).fail(function(jqXHR, textStatus) {
         console.log("Request failed: " + textStatus);
       });
     // 呼叫完酒譜大分類
-    bartdCateM.addEventListener('change', function() {
+    bartdCateM[1].addEventListener('change', function() {
       let cateParentId = this.value;
       $.ajax({
           method: "POST",
@@ -248,26 +258,21 @@ require("../../../db-connect.php");
           }
         })
         .done(function(response) {
-
-          while (bartdCateS.options.length > 0) {
-            bartdCateS.options.remove(0);
-          }
-
-          bartdCateM = document.querySelector("#bartd_cate_id_s");
+          // console.log(response);
           let optionList = "<option selected>中分類</option>";
 
           let count = `${response.length}`;
           for (let i = 0; i < count; i++) {
-            let master_cate_id = `${response[i].id}`;
-            let master_cate_m_name = `${response[i].name}`;
-            optionList += `<option value="${master_cate_id}">${master_cate_m_name}</option>`
+            let master_cate_s_id = `${response[i].id}`;
+            let master_cate_s_name = `${response[i].name}`;
+            optionList += `<option value="${master_cate_s_id}">${master_cate_s_name}</option>`
           }
-
-          bartdCateM.innerHTML = optionList
+          // console.log(optionList);
+          bartdCateS[1].innerHTML = optionList;
 
         }).fail(function(jqXHR, textStatus) {
-          while (bartdCateS.options.length > 0) {
-            bartdCateS.options.remove(0);
+          while (bartdCateS[1].options.length > 0) {
+            bartdCateS[1].options.remove(0);
           }
         });
     })
@@ -304,73 +309,40 @@ require("../../../db-connect.php");
 
   <script>
     // 送出表單
-    // function check(){
-    //   // 抓值
-    //   let prdNumVal = prdNum.value;
-    //   let prdNameVal = prdName.value;
-    //   let prdPriceVal = prdPrice.value;
-    //   let prdStatusVal = prdStatus.value;
-    //   let prdDiscVal = prdDisc.value;
-    //   let prdLengthVal = prdLength.value;
-    //   let prdWidthVal = prdWidth.value;
-    //   let prdHeightVal = prdHeight.value;
-    //   let prdImgVal = prdImg.value;
-    //   let prdCateLVal = prdCateL.value;
-    //   let prdOriginVal = prdOrigin.value;
-    //   let prdBrandVal = prdBrand.value;
-    //   let prdCapacityVal = prdCapacity.value;
-    //   let prdAbvVal = prdAbv.value;
-    //   let prdMaterVal = prdMater.value;
-    //   let prdCateMVal = prdCateM.value;
-    //   let prdCateSVal = prdCateS.value;
+    function check() {
+      //   // 抓值
+      //   let prdNumVal = prdNum.value;
+      let prd_num = document.querySelector("#prd_num");
+      let bartd_name = document.querySelector("#bartd-name");
+      let bartd_ratio = document.querySelector("#bartd-ratio");
+      let prd_cate_l = document.querySelector("#prd_cate_l");
+      let prd_cate_m = document.querySelector("#prd_cate_m");
+      let bartd_cate_id_m = document.querySelector("#bartd_cate_id_m");
+      let bartd_cate_id_s = document.querySelector("#bartd_cate_id_s");
+      let prdImg = document.querySelector("#prdImg");
+      let prd_disc = document.querySelector("#prd_disc");
 
-    //   if(prdNumVal=="" || prdNameVal=="" || prdPriceVal=="" || prdStatusVal=="" || prdDiscVal=="" || prdLengthVal=="" || prdWidthVal=="" || prdHeightVal=="" || prdImgVal=="" || !parseInt(prdCateLVal)){
-    //     alert("有欄位未填");
-    //     return false; 
+      let prd_numVal = prd_num.value;
+      let bartd_nameVal = bartd_name.value;
+      let bartd_ratioVal = bartd_ratio.value;
+      let prd_cate_lVal = prd_cate_l.value;
+      let prd_cate_mVal = prd_cate_m.value;
+      let bartd_cate_id_mVal = bartd_cate_id_m.value;
+      let bartd_cate_id_sVal = bartd_cate_id_s.value;
+      let prdImgVal = prdImg.value;
+      let prd_discVal = prd_disc.value;
 
-    //   }else if(parseInt(prdCateLVal) == 1){
+      if (prd_numVal == "" || bartd_nameVal == "" || bartd_ratioVal == "" || prd_cate_lVal == "" || prd_cate_mVal == "" || bartd_cate_id_mVal == "" || bartd_cate_id_sVal == "" || prdImgVal == "" || prd_discVal == "") {
 
-    //     if(!parseInt(prdOriginVal) || prdBrandVal=="" || prdCapacityVal=="" || prdAbvVal=="" || !parseInt(prdCateMVal) || !parseInt(prdCateSVal)){
-    //       alert("有欄位未填");
-    //       return false; 
-    //     } else{
-    //       return true; 
-    //     }
-
-
-    //   }else if(parseInt(prdCateLVal) == 2){
-
-    //     if(!parseInt(prdOriginVal) || prdBrandVal=="" || prdCapacityVal=="" ||  !parseInt(prdCateMVal)){
-    //       alert("有欄位未填");
-    //       return false; 
-    //     } else{
-    //       return true; 
-    //     }
+        alert("有欄位未填");
+        return false;
+      } else {
+        return true;
+      }
+    }
 
 
-    //   }else if(parseInt(prdCateLVal) == 3 || parseInt(prdCateLVal) == 4){
-
-    //     if(!parseInt(prdOriginVal) || !parseInt(prdMaterVal) || prdCapacityVal=="" ||  !parseInt(prdCateMVal) ){
-    //       alert("有欄位未填");
-    //       return false; 
-    //     } else{
-    //       return true; 
-    //     }
-
-
-    //   }else{
-    //     return true;
-    //   }
-
-
-    //   switch(parseInt(prdStatusVal)){
-    //     case 1:
-    //       alert("確認上架商品？");
-    //       break;
-    //     case 2:
-    //       alert("確認下架商品？");
-    //   }
-    // }
+    
   </script>
 
 </body>
