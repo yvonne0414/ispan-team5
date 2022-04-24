@@ -10,6 +10,7 @@ $result = $conn->query($sql);
 $total = $result->num_rows;
 
 
+
 $per_page = 10;
 
 $page_count = CEIL($total / $per_page);
@@ -43,6 +44,31 @@ $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 //var_dump($rows);
 //exit;
+if (isset($_GET["state"])) {
+} else {
+}
+$stasql = "SELECT * FROM logistics_state_cate";
+$staresult = $conn->query($stasql);
+$starows = $staresult->fetch_all(MYSQLI_ASSOC);
+// var_dump($starows);
+// exit;
+
+if (isset($_GET["state"])) {
+    $state = $_GET["state"];
+    $sql = "SELECT order_list.*, logistics_state_cate.name AS logistics_state_cate_name, order_list.logistics_state FROM order_list
+    JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
+    WHERE order_list.logistics_state = '$state'
+    ";
+} else {
+    $sql = "SELECT order_list.*, logistics_state_cate.name AS logistics_state_cate_name, order_list.logistics_state FROM order_list
+    JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id";
+}
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +81,28 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="../component/headerLayout.php">
     <title>訂單列表</title>
     <?php require("../../component/headerLayout.php") ?>
+    <style>
+        td.order-list_num {
+            width: 400px;
+        }
+
+        td.order-list_time {
+            width: 190px;
+        }
+
+        td.order-list_stace {
+            width: 100px;
+        }
+
+        td.order-list_name a {
+            width: 450px;
+        }
+
+        td.order-list_name a {
+            text-decoration: none;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -68,33 +116,47 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         </div>
         <div class="py-2 text-end">
             <a class="btn btn-primary" href="order-list.php">回所有訂單</a>
-
         </div>
+        <ul>
+            <?php foreach ($starows as $starow) : ?>
+                <li class="nav-item">
+                    <a class="nav-link 
+                    <?php if (isset($_GET["state"]) && $_GET["state"] == $row["logistics_state"]) echo "active"; ?>" 
+                    aria-current="page" href="order-list.php?cate=<?= $row["logistics_state"] ?>"><?= $starow["name"] ?>
+                </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
         <div class="py-2 text-end">
             第 <?= $p ?> /<?= $page_count ?> 頁 ,共 <?= $total ?> 筆
+        </div>
+        <div class="text-end">
+            <a href=""></a>
+        </div>
+        <div class="col-auto">
         </div>
 
         <table class="table table-striped">
             <thead>
                 <tr class="table-dark">
-                    <td>訂單編號</td>
-                    <td>會員名稱</td>
-                    <td>訂單狀態</td>
-                    <td>下單時間</td>
+                    <td class="order-list_num">訂單編號</td>
+                    <td class="order-list_name">會員名稱</td>
+                    <td class="order-list_stace">訂單狀態</td>
+                    <td class="order-list_time text-center">下單時間</td>
                     <td class="text-end">功能列</td>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($rows as $row) : ?>
                     <tr>
-                        <td>
+                        <td class="order-list_num">
                             <?= $row["id"] ?>
                         </td>
-                        <td>
+                        <td class="order-list_name">
                             <a href="order-list.php?user_id=<?= $row["user_id"] ?>"><?= $row["user_list_name"] ?></a>
                         </td>
-                        <td><?= $row["logistics_state_cate_name"] ?></td>
-                        <td><?= $row["order_time"] ?></td>
+                        <td class="order-list_stace"><?= $row["logistics_state_cate_name"] ?></td>
+                        <td class="order-list_time text-end"><?= $row["order_time"] ?></td>
                         <td class="text-end">
                             <a class="px-2" href="./order-detail.php?user_id=<?= $row["user_id"] ?>&order_id=<?= $row["id"] ?>">
                                 <i class="fa-solid fa-eye"></i>
@@ -107,7 +169,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         </table>
         <nav>
             <ul class="pagination justify-content-center">
-                <?php for ($i=1; $i <=$page_count; $i++) : ?>
+                <?php for ($i = 1; $i <= $page_count; $i++) : ?>
                     <li class="page-item <?php if ($i == $p) echo "active"; ?>">
                         <a class="page-link" href="order-list.php?p=<?= $i ?>"><?= $i ?></a>
                     </li>
