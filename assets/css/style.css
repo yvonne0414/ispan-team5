@@ -7,9 +7,19 @@ body{
     font-family: 'Roboto','Noto Sans TC',sans-serif;
     
 }
+.logo figure{
+    max-width: 14rem;
+    margin-bottom: 0;
+}
+.logo figure img {
+    width: 100%;
+}
+.sidemenu .logo figure {
+    max-width: 10rem;
+}
 .logo-text{
     font-family: 'Whisper','Roboto','Noto Sans TC',sans-serif;
-    background: linear-gradient(to top, #533419, #F08F53, gold);
+    background: linear-gradient(to top, #533419, #F08F53, #ffd700);
     background: -webkit-linear-gradient(to top, #533419, #F08F53, gold);
     background-clip: text;
     -webkit-background-clip: text;

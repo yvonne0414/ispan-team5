@@ -1,12 +1,12 @@
 <!-- 側邊選單 -->
 <div class="offcanvas offcanvas-start sidemenu" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header border-bottom bg-dark py-4">
-        <div class="d-flex text-nowrap justify-content-center align-items-center flex-grow-1">
-            <!-- <figure>
-                <img class="object-cover" src="" alt="Logo.jpg">
-            </figure> -->
+        <div class="logo d-flex text-nowrap justify-content-center align-items-center flex-grow-1">
+            <figure>
+                <img class="object-cover" src="/ispan-team5/assets/img/logo/logo.png" alt="INJOIN-Logo">
+            </figure>
 
-            <h3 class="offcanvas-title logo-text" id="offcanvasExampleLabel">INJOIN</h3>
+            <!-- <h3 class="offcanvas-title logo-text" id="offcanvasExampleLabel">INJOIN</h3> -->
         </div>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
