@@ -58,7 +58,7 @@ $row = $result->fetch_assoc();
   <div class="container py-5">
     <h1>確認訂單</h1>
 
-    <form>
+    <form action="./api/add-order.php" method="post">
       <div class="w-50">
         <div class="row mb-3">
           <label for="prd_id" class="col-sm-2 col-form-label  py-2">訂購者</label>
@@ -151,8 +151,8 @@ $row = $result->fetch_assoc();
 
 
       <div class="text-end mt-4">
-        <a class="btn btn-outline-light" href="./api/add-order.php">確定下單</a>
-    </div>
+        <button type="submit" class="btn btn-outline-light" onsubmit="confirm('確定下單嗎？')">確定下單</button>
+      </div>
 
     </from>
 
