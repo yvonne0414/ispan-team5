@@ -156,8 +156,8 @@ $id = $_GET["id"];
 
             <!-- 按鈕 -->
             <div class="w-100 text-center">
-                <a class="btn btn-outline-primary" href="bartd-content.php?id=<?= $_GET["id"] ?>">返回</a>
-                <button class="btn btn-primary" type="submit" id="prd_submit">確定</button>
+                <a class="btn btn-outline-dark" href="bartd-content.php?id=<?= $_GET["id"] ?>">返回</a>
+                <button class="btn btn-dark" type="submit" id="prd_submit">確定</button>
             </div>
         </form>
     </div>

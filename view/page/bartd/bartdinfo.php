@@ -126,8 +126,8 @@ require("../../../db-connect.php");
 
       <!-- submit -->
       <div class="w-100 text-center">
-        <a class="btn btn-outline-primary" href="bartd-list.php">取消</a>
-        <button class="btn btn-primary" type="submit" id="prd_submit">確定</button>
+        <a class="btn btn-outline-dark" href="bartd-list.php">取消</a>
+        <button class="btn btn-dark" type="submit" id="prd_submit">確定</button>
       </div>
     </form>
   </div>

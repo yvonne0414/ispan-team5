@@ -67,7 +67,7 @@ if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) {
     <?php require("../../component/header.php") ?>
     <?php require("../../component/sidemenu.php") ?>
     <div class="container py-5">
-        <h2>商品列表</h2>
+        <h2>酒譜列表</h2>
 
         <div class="d-flex justify-content-between align-items-center mt-4">
             <form class="py-3" action="./bartd-list.php" method="get">
@@ -87,7 +87,7 @@ if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) {
                 </div>
             </form>
             <div>
-                <a class="btn btn-primary" href="bartdinfo.php">新增商品</a>
+                <a class="btn btn-outline-dark" href="bartdinfo.php">新增商品</a>
             </div>
         </div>
 
