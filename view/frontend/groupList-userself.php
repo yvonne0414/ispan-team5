@@ -66,7 +66,7 @@ $uesr_id=$_SESSION["user"]['id'];
           </thead>
           <tbody>
             <?php
-              $sql="SELECT * FROM group_list WHERE is_official=2 AND status!=7  ORDER BY start_time DESC";
+              $sql="SELECT * FROM group_list WHERE is_official=2 AND status!=7 AND user_id=$uesr_id  ORDER BY start_time DESC";
               $rs=$conn->query($sql);
               $rows=$rs->fetch_all(MYSQLI_ASSOC);
               

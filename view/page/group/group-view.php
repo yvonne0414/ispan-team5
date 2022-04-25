@@ -50,7 +50,7 @@ $row = $result->fetch_assoc();
 
         $start=$row["start_time"];
         $start=strtotime($start);
-        // 樣式選定才能顯示
+        // 使用Y-m-d\TH:i:s樣式才能顯示
         $start=date('Y-m-d\TH:i:s', $start);
 
         $end=$row["end_time"];
