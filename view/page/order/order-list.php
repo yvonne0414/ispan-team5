@@ -5,6 +5,7 @@ if (!isset($_GET["p"])) {
 } else {
     $p = $_GET["p"];
 }
+//頁碼
 $sql = "SELECT * FROM order_list";
 $result = $conn->query($sql);
 $total = $result->num_rows;
@@ -110,13 +111,22 @@ $starows = $staresult->fetch_all(MYSQLI_ASSOC);
         </div> -->
         <div class="container ">
             <div class="py-2 text-end">
-            <ul class="nav nav-pills  ">
-            <a class="btn btn-primary" href="order-list.php">全部</a>
-                    <?php foreach ($starows as $starow) : ?>
-                        <li class="nav-items">
-                            <a class="nav-link" aria-curret="page" href="order-list.php?logistics_state=<?= $starow["id"] ?>"><?= $starow["name"] ?></a>
-                        </li>
-                    <?php endforeach; ?>
+                <ul class="nav nav-pills  ">
+                    <li class="nav-items">
+                        <a class="nav-link <?= (!isset($_GET['logistics_state'])) ? "active" : "" ?>" href="order-list.php">全部</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if (isset($_GET['logistics_state'])) : ?><?= $_GET['logistics_state'] == 1 ? "active" : "" ?><?php endif; ?> " href="order-list.php?logistics_state=1">待出貨</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if (isset($_GET['logistics_state'])) : ?><?= $_GET['logistics_state'] == 2 ? "active" : "" ?><?php endif; ?>" href="order-list.php?logistics_state=2">已出貨</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if (isset($_GET['logistics_state'])) : ?><?= $_GET['logistics_state'] == 3 ? "active" : "" ?><?php endif; ?>" href="order-list.php?logistics_state=3">已送達</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if (isset($_GET['logistics_state'])) : ?><?= $_GET['logistics_state'] == 4 ? "active" : "" ?><?php endif; ?>" href="order-list.php?logistics_state=4">已取消</a>
+                    </li>
                 </ul>
             </div>
             <div class="py-2">
