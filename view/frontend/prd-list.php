@@ -44,14 +44,17 @@ if(isset($_GET['cate'])){
       background-color:transparent;
     }
     .card-img-wrapper{
-      width: 12rem;
-      height: 12rem;
+      height: 230px;
       overflow:hidden;
+      display: flex;
+      align-items: center;
+      background: #000;
     }
-    td img{
-      object-fit:cover;
-      width: 12rem;
-      height: 12rem;
+    .card-img-wrapper img{
+      object-fit:contain;
+      max-height: 230px;
+      max-width: 230px;
+      margin: auto;
     }
     .card-title{
       white-space: nowrap; 
