@@ -1,0 +1,147 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- 主機： 127.0.0.1
+-- 產生時間： 2022-04-25 14:52:20
+-- 伺服器版本： 10.4.24-MariaDB
+-- PHP 版本： 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- 資料庫: `9hunters_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `coupon_list`
+--
+
+CREATE TABLE `coupon_list` (
+  `id` int(3) UNSIGNED NOT NULL,
+  `coupon_cate` int(3) NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `discount` int(4) NOT NULL,
+  `rule_min` int(4) NOT NULL,
+  `rule_max` int(4) NOT NULL,
+  `vip_level` int(2) NOT NULL,
+  `start_time` date NOT NULL,
+  `end_time` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `coupon_list`
+--
+
+INSERT INTO `coupon_list` (`id`, `coupon_cate`, `name`, `discount`, `rule_min`, `rule_max`, `vip_level`, `start_time`, `end_time`) VALUES
+(1, 1, '首購百元優惠券', 100, 1000, 9999, 2, '2022-04-24', '2022-04-30'),
+(2, 1, '國慶優惠 200元', 200, 1000, 9999, 2, '2022-04-20', '2022-04-30'),
+(3, 1, '週年禮券', 600, 6000, 9999, 3, '2022-04-01', '2023-04-01'),
+(4, 1, '99 酒有揪起來', 199, 999, 9999, 3, '2022-04-24', '2022-04-30'),
+(5, 2, '8折優惠券', 8, 2000, 20000, 4, '2022-04-01', '2022-04-30'),
+(6, 2, '當月9日,消費滿千打9折', 9, 1000, 10000, 3, '2022-05-09', '2022-05-10'),
+(7, 1, '母親節活動, 消費滿五千現折5百', 500, 5000, 100000, 3, '2022-04-25', '2022-05-09'),
+(8, 1, '現金券1000元', 1000, 10000, 300000, 4, '2022-04-24', '2022-05-07'),
+(9, 1, '300元折價券', 300, 3000, 30000, 3, '2022-04-25', '2022-04-30'),
+(10, 1, '現金券100元', 100, 1000, 99999, 2, '2022-04-18', '2022-05-15');
+
+--
+-- 已傾印資料表的索引
+--
+
+--
+-- 資料表索引 `coupon_list`
+--
+ALTER TABLE `coupon_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
+--
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `coupon_list`
+--
+ALTER TABLE `coupon_list`
+  MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+COMMIT;
+
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- 主機： 127.0.0.1
+-- 產生時間： 2022-04-25 14:53:18
+-- 伺服器版本： 10.4.24-MariaDB
+-- PHP 版本： 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- 資料庫: `9hunters_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `user_coupon`
+--
+
+CREATE TABLE `user_coupon` (
+  `id` int(3) UNSIGNED NOT NULL,
+  `user_id` int(3) NOT NULL,
+  `coupon_id` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `user_coupon`
+--
+
+INSERT INTO `user_coupon` (`id`, `user_id`, `coupon_id`) VALUES
+(1, 3, 1),
+(2, 3, 2),
+(3, 3, 3),
+(5, 3, 4),
+(6, 3, 5),
+(7, 1, 6),
+(8, 3, 6),
+(9, 4, 6),
+(10, 5, 6),
+(11, 6, 6),
+(12, 1, 9),
+(13, 3, 9),
+(14, 4, 9),
+(15, 5, 9),
+(16, 6, 9),
+(17, 1, 10),
+(18, 3, 10),
+(19, 4, 10),
+(20, 5, 10),
+(21, 6, 10);
+
+--
+-- 已傾印資料表的索引
+--
+
+--
+-- 資料表索引 `user_coupon`
+--
+ALTER TABLE `user_coupon`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
+--
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `user_coupon`
+--
+ALTER TABLE `user_coupon`
+  MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+COMMIT;

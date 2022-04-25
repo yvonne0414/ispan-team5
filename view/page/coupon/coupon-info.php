@@ -43,14 +43,9 @@ require("../../../db-connect.php");
         <h2>優惠折扣券</h2>
 
         <form action="doCoupon.php" class="d-flex flex-wrap mt-4" method="POST">
-        <!-- id -->
-            <div class="d-flex align-items-center w-50 pe-4 mb-3">
-                <div class="mb-3">
-                    <label for="coupon_id" class="form-label mb-0 me-2">序號</label>
-                </div>
-                <input class="form-control" type="text" aria-label="readonly input example" readonly name="coupon_id" id="coupon_id">
-            </div>
-        <!-- coupon_name -->
+            <!-- id -->
+            <input class="form-control" type="hidden" aria-label="readonly input example" readonly name="coupon_id" id="coupon_id">
+            <!-- coupon_name -->
             <div class="d-flex align-items-center w-100 pe-4 mb-3">
                 <div class="mb-3">
                     <label for="coupon_name" class="form-label me-2">優惠券名稱</label>
@@ -59,7 +54,7 @@ require("../../../db-connect.php");
                     <input type="text" class="form-control " name="coupon_name" id="coupon_name" required="required">
                 </div>
             </div>
-        <!-- vip_level -->
+            <!-- vip_level -->
             <div class="d-flex align-items-center pe-4 w-50 me-3">
                 <div class="mb-3">
                     <label for="vip_level" class="form-label me-2">會員等級</label>
@@ -131,8 +126,8 @@ require("../../../db-connect.php");
             </div>
             <!-- submit -->
             <div class="w-100 text-center">
-                <a class="btn btn-outline-primary" href="couponList.php">取消</a>
-                <button class="btn btn-primary py-2 px-3" type="submit">儲存</button>
+                <a class="btn btn-outline-dark" href="couponList.php">取消</a>
+                <button class="btn btn-dark py-2 px-3" type="submit">儲存</button>
             </div>
         </form>
     </div>

@@ -58,16 +58,10 @@ $id=$_GET["id"];
     <?php require("../../component/sidemenu.php") ?>
     <div class="container py-5">
 
-        <h2>優惠折編輯</h2>
+        <h2>優惠編輯</h2>
 
         <form action="updateCoupon.php" class="d-flex flex-wrap mt-4" method="post">
-            <div class="d-flex align-items-center w-50 pe-4 mb-3">
-                <div class="mb-3">
-                    <label for="coupon_id" class="form-label mb-0 me-2">序號</label>
-                </div>
-
-                <input class="form-control" type="text" aria-label="readonly input example" readonly value=<?= $id ?> name="coupon_id" id="coupon_id">
-            </div>
+                <input class="form-control" type="hidden" aria-label="readonly input example" readonly value=<?= $id ?> name="coupon_id" id="coupon_id">
 
             <div class="d-flex align-items-center w-100 pe-4 mb-3">
                 <div class="mb-3">
@@ -166,10 +160,10 @@ $id=$_GET["id"];
             </div>
             <!-- submit -->
             <div class="w-100 text-center">
-                <a class="btn btn-outline-primary" href="couponList.php">取消</a>
+                <a class="btn btn-outline-dark" href="couponList.php">取消</a>
 
                 <!-- Button trigger modal -->
-                <button class="btn btn-primary py-2 px-3 " type="submit">
+                <button class="btn btn-dark py-2 px-3 " type="submit">
                 修改</button>
             </div>
         </form>
