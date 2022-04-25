@@ -20,11 +20,28 @@ VALUES ('$coupon_cate', '$name', '$discount','$rule_min','$rule_max', '$vip_leve
 
 if ($conn->query($sql) === TRUE) {
     // echo "新增資料完成<br>";
+    $last_id=$conn->insert_id;
+    $sql="SELECT id FROM user_list WHERE vip_level >= $vip_level";
+    $rs=$conn->query($sql);
+    $rows=$rs->fetch_All(MYSQLI_ASSOC);
+    // var_dump($rows);
+
+    if(count($rows)>0){
+        foreach($rows as $row){
+            $userId = (int)$row['id'];
+            $userCouSql = "INSERT INTO user_coupon (user_id, coupon_id) VALUES ('$userId', '$last_id')";
+            if ($conn->query($userCouSql) === TRUE){
+                // echo "優惠券發送成功";
+            }
+        }
+    }
+
+    // exit;
+
     echo "<script>alert('新增成功');</script>";
     echo "<script>location.href='couponList.php';</script>";
     // $last_id = $conn->insert_id;
     // echo "last id is $last_id";
-    exit;
     
    // $_SESSION["message"] = "成功";
    // echo $_SESSION["message"];
