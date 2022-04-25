@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-04-25 16:13:40
+-- 產生時間： 2022-04-25 17:37:24
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 8.1.4
 
@@ -68,12 +68,13 @@ INSERT INTO `order_list` (`id`, `user_id`, `logistics`, `logistics_state`, `orde
 ALTER TABLE `order_list`
   ADD PRIMARY KEY (`id`);
 COMMIT;
+
 -- phpMyAdmin SQL Dump
 -- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-04-25 16:14:56
+-- 產生時間： 2022-04-25 17:38:05
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 8.1.4
 
