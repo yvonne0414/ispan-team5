@@ -70,9 +70,7 @@ td {
     text-align: center;
 }
 .prd-list_img img {
-    max-height: 230px;
-    max-width: 230px;
-    margin: auto;
+    height: 100px;
     width: auto;
 
 }
