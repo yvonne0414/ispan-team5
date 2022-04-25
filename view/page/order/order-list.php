@@ -6,15 +6,15 @@ if (!isset($_GET["p"])) {
     $p = $_GET["p"];
 }
 //頁碼
-$sql = "SELECT * FROM order_list";
-$result = $conn->query($sql);
-$total = $result->num_rows;
+// $sql = "SELECT * FROM order_list";
+// $result = $conn->query($sql);
+// $total = $result->num_rows;
 
 
 
 $per_page = 10;
 
-$page_count = CEIL($total / $per_page);
+// $page_count = CEIL($total / $per_page);
 
 $start = ($p - 1) * $per_page;
 if (isset($_GET["user_id"])) {
@@ -24,8 +24,23 @@ if (isset($_GET["user_id"])) {
     JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
     WHERE order_list.user_id = '$user_id'
     ORDER BY order_list.order_time DESC
+    ";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    $total = $result->num_rows;
+    $page_count = CEIL($total / $per_page);
+    $start = ($p - 1) * $per_page;
+
+    $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
+    JOIN user_list ON order_list.user_id = user_list.id
+    JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
+    WHERE order_list.user_id = '$user_id'
+    ORDER BY order_list.order_time DESC
     LIMIT $start,$per_page
-";
+    ";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
 } else if (isset($_GET["logistics_state"])) {
     $logistics_state = $_GET["logistics_state"];
     $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
@@ -33,11 +48,42 @@ if (isset($_GET["user_id"])) {
     JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
     WHERE order_list.logistics_state = '$logistics_state'
     ORDER BY order_list.order_time DESC
+    ";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    $total = $result->num_rows;
+    $page_count = CEIL($total / $per_page);
+    $start = ($p - 1) * $per_page;
+
+    $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
+    JOIN user_list ON order_list.user_id = user_list.id
+    JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
+    WHERE order_list.logistics_state = '$logistics_state'
+    ORDER BY order_list.order_time DESC
     LIMIT $start,$per_page
     ";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
 } else if (isset($_GET["date1"]) && isset($_GET["date2"])) {
     $date1= $_GET["date1"];
     $date2= $_GET["date2"];
+
+    $date2time=date('Y-m-d H:i:s', strtotime("+1 day", strtotime($date2)));
+    $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
+    JOIN user_list ON order_list.user_id = user_list.id
+    JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
+    WHERE order_list.order_time >= '$date1' AND order_list.order_time <= '$date2time'
+    ORDER BY order_list.order_time DESC
+    ";
+
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    $total = $result->num_rows;
+    $page_count = CEIL($total / $per_page);
+    $start = ($p - 1) * $per_page;
+
     $date2time=date('Y-m-d H:i:s', strtotime("+1 day", strtotime($date2)));
     $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
     JOIN user_list ON order_list.user_id = user_list.id
@@ -46,28 +92,41 @@ if (isset($_GET["user_id"])) {
     ORDER BY order_list.order_time DESC
     LIMIT $start,$per_page
     ";
-    // var_dump($sql);
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
 } else {
     $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
     JOIN user_list ON order_list.user_id = user_list.id
     JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
     ORDER BY order_list.order_time DESC
+    ";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    $total = $result->num_rows;
+    $page_count = CEIL($total / $per_page);
+    $start = ($p - 1) * $per_page;
+
+    $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
+    JOIN user_list ON order_list.user_id = user_list.id
+    JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
+    ORDER BY order_list.order_time DESC
     LIMIT $start,$per_page
-";
+    ";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
 }
 
+// var_dump($sql);
+// exit;
 
 
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
 
 $stasql = "SELECT * FROM logistics_state_cate";
 $staresult = $conn->query($stasql);
 $starows = $staresult->fetch_all(MYSQLI_ASSOC);
 
-$total = $result->num_rows;
-$page_count = CEIL($total / $per_page);
-$start = ($p - 1) * $per_page;
+
 
 // var_dump($starow);
 // exit;
