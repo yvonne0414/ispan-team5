@@ -65,6 +65,10 @@ $stasql = "SELECT * FROM logistics_state_cate";
 $staresult = $conn->query($stasql);
 $starows = $staresult->fetch_all(MYSQLI_ASSOC);
 
+$total = $result->num_rows;
+$page_count = CEIL($total / $per_page);
+$start = ($p - 1) * $per_page;
+
 // var_dump($starow);
 // exit;
 
