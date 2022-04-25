@@ -277,7 +277,9 @@ $starows = $staresult->fetch_all(MYSQLI_ASSOC);
                     <ul class="pagination justify-content-center">
                         <?php for ($i = 1; $i <= $page_count; $i++) : ?>
                             <li class="page-item <?php if ($i == $p) echo "active"; ?>">
-                                <a class="page-link" href="order-list.php?p=<?= $i ?>"><?= $i ?></a>
+                                <a class="page-link" href="order-list.php?p=<?php if(isset($_GET["user_id"])) :?>&user_id=<?=$user_id?>&<?php endif;?>&
+                                    <?php if(isset($_GET["logistics_state"])) :?>&logistics_state=<?=$logistics_state?>&<?php endif;?>&
+                                    <?php if(isset($_GET["date1"]) && isset($_GET["date2"])):?>&date1=<?= $date1?>&date2=<?=$date2?>&<?php endif;?>p=<?=$i?>"><?= $i ?></a>
                             </li>
                         <?php endfor; ?>
                     </ul>
