@@ -39,12 +39,18 @@ if(empty($name) || empty($userid) || empty($pass_num) || empty($max_num)){
 date_default_timezone_set("Asia/Taipei");
 $now=date('Y-m-d H:i:s');
 
-if($now < $start_time){
+if(strtotime($now) <= strtotime($start_time)){
   $status=1;
 }else{
   $status=2;
 }
 
+// var_dump(strtotime($start_time));
+// var_dump(strtotime($now));
+// var_dump(strtotime($now) <= strtotime($start_time));
+// var_dump($status);
+
+// exit;
 
 // echo "$name, $email, $phones";
 $sql="INSERT INTO  group_list (name, disc, user_id, pass_num, now_num, max_num, is_official, status, start_time, end_time, activity_start_time) VALUES('$name', '$disc', '$userid', '$pass_num', 1,'$max_num', 2, $status, '$start_time','$end_time', '$activity_start_time')";

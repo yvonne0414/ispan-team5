@@ -66,11 +66,11 @@ if ($conn->query($sql) === TRUE) {
     echo "密碼新增完成<br>";
     
     $_SESSION["user"]=[
-        "id"=>$user["id"],
-        "name"=>$user["name"],
-        "email"=>$user["email"],
-        "phone"=>$user["phone"],
-        "role"=>$user["vip_level"]
+        "id"=>$last_id,
+        "name"=>$name,
+        "email"=>$email,
+        "phone"=>$phone,
+        "role"=>$role
     ];
     
     if($role==1){
