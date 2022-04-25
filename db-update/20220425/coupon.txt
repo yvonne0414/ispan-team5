@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-04-25 14:52:20
+-- 產生時間： 2022-04-25 16:13:15
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 8.1.4
 
@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 -- 資料表結構 `coupon_list`
 --
 
+DROP TABLE IF EXISTS `coupon_list`;
 CREATE TABLE `coupon_list` (
   `id` int(3) UNSIGNED NOT NULL,
   `coupon_cate` int(3) NOT NULL,
@@ -42,7 +43,7 @@ INSERT INTO `coupon_list` (`id`, `coupon_cate`, `name`, `discount`, `rule_min`, 
 (2, 1, '國慶優惠 200元', 200, 1000, 9999, 2, '2022-04-20', '2022-04-30'),
 (3, 1, '週年禮券', 600, 6000, 9999, 3, '2022-04-01', '2023-04-01'),
 (4, 1, '99 酒有揪起來', 199, 999, 9999, 3, '2022-04-24', '2022-04-30'),
-(5, 2, '8折優惠券', 8, 2000, 20000, 4, '2022-04-01', '2022-04-30'),
+(5, 2, '8折優惠券', 8, 2000, 20000, 4, '2022-05-01', '2022-05-30'),
 (6, 2, '當月9日,消費滿千打9折', 9, 1000, 10000, 3, '2022-05-09', '2022-05-10'),
 (7, 1, '母親節活動, 消費滿五千現折5百', 500, 5000, 100000, 3, '2022-04-25', '2022-05-09'),
 (8, 1, '現金券1000元', 1000, 10000, 300000, 4, '2022-04-24', '2022-05-07'),
@@ -69,13 +70,12 @@ ALTER TABLE `coupon_list`
 ALTER TABLE `coupon_list`
   MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
-
 -- phpMyAdmin SQL Dump
 -- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-04-25 14:53:18
+-- 產生時間： 2022-04-25 16:13:52
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 8.1.4
 
@@ -93,6 +93,7 @@ SET time_zone = "+00:00";
 -- 資料表結構 `user_coupon`
 --
 
+DROP TABLE IF EXISTS `user_coupon`;
 CREATE TABLE `user_coupon` (
   `id` int(3) UNSIGNED NOT NULL,
   `user_id` int(3) NOT NULL,
