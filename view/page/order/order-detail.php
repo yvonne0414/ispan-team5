@@ -157,15 +157,14 @@ $prdlistrow = $prdlistresult->fetch_assoc();;
           </thead>
           <tbody>
             <?php
-            $total=0;
+            $total = 0;
             foreach ($prdrows as $prdrow) :
               //echo "<hr>";
               //var_dump($prdrow["prd_id"]);
               $prd_id = $prdrow["prd_id"];
               //var_dump($prd_id);
               $prd_amount = $prdrow["amount"];
-              $prdlistsql = "SELECT prd_num, name, price FROM prd_list 
-            WHERE id =$prd_id";
+              $prdlistsql = "SELECT prd_num, name, price FROM prd_list WHERE id =$prd_id";
               $prdlistresult = $conn->query($prdlistsql);
               $prdlistrow = $prdlistresult->fetch_assoc();
 
@@ -180,18 +179,18 @@ $prdlistrow = $prdlistresult->fetch_assoc();;
               <tr>
                 <td><?= $prdlistrow['prd_num'] ?></td>
                 <td><?= $prdlistrow['name'] ?></td>
-                <td><?= '$'.$prdlistrow['price'] ?></td>
-                <td class="text-end"><?= $prd_amount?></td>
-                <td class="text-end"><?= '$'.$prdlistrow['price']*$prd_amount?></td>
-                <?php $total+=$prdlistrow['price']*$prd_amount?>
+                <td><?= '$' . $prdlistrow['price'] ?></td>
+                <td class="text-end"><?= $prd_amount ?></td>
+                <td class="text-end"><?= '$' . $prdlistrow['price'] * $prd_amount ?></td>
+                <?php $total += $prdlistrow['price'] * $prd_amount ?>
               </tr>
             <?php endforeach; ?>
           </tbody>
           <tfoot>
             <tr>
-            <td class="text-end" colspan="5">
-              總計: $<?=$total?>
-            </td>
+              <td class="text-end" colspan="5">
+                總計: $<?= $total ?>
+              </td>
             </tr>
           </tfoot>
         </table>
