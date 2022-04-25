@@ -35,6 +35,18 @@ if (isset($_GET["user_id"])) {
     ORDER BY order_list.order_time DESC
     LIMIT $start,$per_page
     ";
+} else if (isset($_GET["date1"]) && isset($_GET["date2"])) {
+    $date1= $_GET["date1"];
+    $date2= $_GET["date2"];
+    $date2time=date('Y-m-d H:i:s', strtotime("+1 day", strtotime($date2)));
+    $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
+    JOIN user_list ON order_list.user_id = user_list.id
+    JOIN logistics_state_cate ON order_list.logistics_state = logistics_state_cate.id
+    WHERE order_list.order_time >= '$date1' AND order_list.order_time <= '$date2time'
+    ORDER BY order_list.order_time DESC
+    LIMIT $start,$per_page
+    ";
+    // var_dump($sql);
 } else {
     $sql = "SELECT order_list.*, order_list.user_id, user_list.name AS user_list_name, order_list.logistics_state, logistics_state_cate.name AS logistics_state_cate_name FROM order_list
     JOIN user_list ON order_list.user_id = user_list.id
@@ -110,7 +122,7 @@ $starows = $staresult->fetch_all(MYSQLI_ASSOC);
             <a class="btn btn-primary" href="order-list.php">回所有訂單</a>
         </div> -->
         <div class="container ">
-            <div class="py-2 text-end">
+            <div class="py-2 d-flex justify-content-between">
                 <ul class="nav nav-pills  ">
                     <li class="nav-items">
                         <a class="nav-link <?= (!isset($_GET['logistics_state'])) ? "active" : "" ?>" href="order-list.php">全部</a>
@@ -128,6 +140,33 @@ $starows = $staresult->fetch_all(MYSQLI_ASSOC);
                         <a class="nav-link <?php if (isset($_GET['logistics_state'])) : ?><?= $_GET['logistics_state'] == 4 ? "active" : "" ?><?php endif; ?>" href="order-list.php?logistics_state=4">已取消</a>
                     </li>
                 </ul>
+                <div class=" text-end">
+                    <form action="">
+                        <div class="row justify-content-end align-items-center">
+                            <div class="col-auto">
+                                <input type="date" name="date1" class="form-control" placeholder="下單時間" required
+                                    <?php if (isset($_GET["date1"]) && isset($_GET["date2"])):?>
+                                    value="<?= $date1?>"
+                                    <?php endif;?>
+                                >
+                            </div>
+                            <span class="col-auto">~</span>
+                            <div class="col-auto">
+                                <input type="date" name="date2" class="form-control" placeholder="下單時間" required
+                                    <?php if (isset($_GET["date1"]) && isset($_GET["date2"])):?>
+                                    value="<?= $date2?>"
+                                    <?php endif;?>
+                                >
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-dark">
+                                    搜尋
+                                </button>
+                            </div>
+    
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="py-2">
 
