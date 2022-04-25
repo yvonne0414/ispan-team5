@@ -105,7 +105,7 @@ $prdlistrow = $prdlistresult->fetch_assoc();;
   <?php require("../../component/sidemenu.php") ?>
   <div class="container py-5">
     <div>
-      <a class="btn btn-primary" href="order-list.php">返回列表</a>
+      <a class="btn btn-dark" href="order-list.php">返回列表</a>
     </div>
     <div class="container py-5">
       <form>
