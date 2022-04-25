@@ -10,6 +10,9 @@ function  uuid(){
           . substr ( $chars, 20, 12 );  
   return $uuid ;  
 }  
+session_start();
+$user=$_SESSION["user"];
+$user_id = $user['id'];
 
 // echo  uuid();
 if(isset($_POST['choose_coupon'])){
@@ -18,7 +21,7 @@ if(isset($_POST['choose_coupon'])){
 
 
 $data=[
-    'user_id'=>3,
+    'user_id'=>$user_id,
     "prd_content"=>[
       [
         "id"=>1,
