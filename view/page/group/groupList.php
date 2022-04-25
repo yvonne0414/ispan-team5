@@ -209,7 +209,7 @@ require("../../../db-connect.php");
             <!-- 結團時間 -->
             <td><?= $end ?></td>
             <td class="text-end">
-              <a class="px-2" href=""><i class="fa-solid fa-eye"></i></a>
+              <a class="px-2" href="group-view.php?id=<?= $row['id'] ?>"><i class="fa-solid fa-eye"></i></a>
             </td>
           </tr>
         <?php endfor; ?>

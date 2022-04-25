@@ -1,10 +1,6 @@
 <?php
 
 
-// if(!isset($_POST["id"])){
-//     header("location: /ispan-team5/view/group/404.php");
-//     // 沒有變數的話跑到 404 頁面
-//   }
 
   
 $id=$_GET["id"];
