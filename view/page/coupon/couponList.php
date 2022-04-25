@@ -2,7 +2,6 @@
 require("../../../db-connect.php");
 //session_start();
 
-
 if (!isset($_GET["p"])) {
     $p = 1;
 } else {
@@ -27,16 +26,58 @@ switch ($type) {
         break;
 }
 
+// $sql = "SELECT * FROM coupon_list";
+// $result = $conn->query($sql);
 
-$sql = "SELECT * FROM coupon_list";
-$result = $conn->query($sql);
+// $total = $result->num_rows;
+// //檢查多少筆
+// $per_page = 4;
+// $page_count = CEIL($total / $per_page);
 
-$total = $result->num_rows;
-//檢查多少筆
-$per_page = 4;
-$page_count = CEIL($total / $per_page);
+// $start = ($p - 1) * $per_page;
 
-$start = ($p - 1) * $per_page;
+
+if (isset($_GET["date1"]) && isset($_GET["date2"])) {
+    $date1 = $_GET["date1"];
+    $date2 = $_GET["date2"];
+
+    // var_dump($date1);
+    // var_dump($date2);
+
+    $sql = "SELECT * FROM coupon_list 
+    WHERE start_time>= '$date1' AND end_time <= '$date2'
+    ORDER BY id $order ";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    //檢查多少筆
+    $total = $result->num_rows;
+    $per_page = 4;
+    $page_count = CEIL($total / $per_page);
+
+    $start = ($p - 1) * $per_page;
+
+    $sql = "SELECT * FROM coupon_list 
+    WHERE start_time>= '$date1' AND end_time <= '$date2'
+    ORDER BY id $order LIMIT $start,$per_page";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+} else {
+    $sql = "SELECT * FROM coupon_list ORDER BY id $order";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    //檢查多少筆
+    $total = $result->num_rows;
+    $per_page = 4;
+    $page_count = CEIL($total / $per_page);
+
+    $start = ($p - 1) * $per_page;
+
+    $sql = "SELECT * FROM coupon_list ORDER BY id $order LIMIT $start,$per_page";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+}
 
 ?>
 
@@ -64,21 +105,26 @@ $start = ($p - 1) * $per_page;
             ?></h1>
 
         <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
-            <form action="couponList.php" method="get">
-                <div class="d-flex ">
-                    <div class="me-2">
-                        <select class="form-control round-0 border-0 border-bottom w-auto" name="searchType" id="searchType">
-                            <option disabled>搜索類型</option>
-                            <option value="name" selected>名稱</option>
-                        </select>
-                    </div>
 
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="searchInput" placeholder="search" name="searchInput">
-                        <button class="btn btn-secondary  round-0" type="submit" id="searchBtn">搜尋</button>
+            <div>
+                <form action="couponList.php" method="get">
+                    <div class="row justify-content-end align-items-center">
+                        <div class="col-auto">
+                            <input type="date" name="date1" class="form-control" placeholder="開始時間" required <?php if (isset($_GET["date1"]) && isset($_GET["date2"])) : ?> value="<?= $date1 ?>" <?php endif; ?>>
+                        </div>
+                        <span class="col-auto">~</span>
+                        <div class="col-auto">
+                            <input type="date" name="date2" class="form-control" placeholder="結束時間" required <?php if (isset($_GET["date1"]) && isset($_GET["date2"])) : ?> value="<?= $date2 ?>" <?php endif; ?>>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-dark">
+                                搜尋
+                            </button>
+                        </div>
+
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
             <div>
                 <a class="btn btn-outline-dark" href="coupon-info.php">新增優惠券</a>
             </div>
@@ -92,20 +138,7 @@ $start = ($p - 1) * $per_page;
                 第 <?= $p ?> /<?= $page_count ?> 頁 ,共 <?= $total ?> 筆
             </div>
         </div>
-        <!-- <div class="d-flex justify-content-between align-items-center mt-4">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control round-0 border-0 border-bottom" id="searchInput">
-                <label for="searchInput">search</label>
-            </div>
-            <div class="d-flex flex-nowrap">
-                <div class="">
-                    <a class="btn btn-secondary" href="">歷史紀錄</a>
-                </div>
-                <div class="mx-2">
-                    <a class="btn btn-primary " href="coupon-info.php">新增優惠</a>
-                </div>
-            </div>
-        </div> -->
+
         <div class="py-2">
             <table class="table table-striped">
                 <thead>
@@ -133,9 +166,7 @@ $start = ($p - 1) * $per_page;
                     </td>
                 </tr> -->
 
-                    <?php $sql = "SELECT * FROM coupon_list ORDER BY id $order LIMIT $start,$per_page";
-                    $result = $conn->query($sql);
-                    $rows = $result->fetch_all(MYSQLI_ASSOC);
+                    <?php
                     for ($i = 0; $i < count($rows); $i++) :
                         $row = $rows[$i];
                     ?>
@@ -175,7 +206,6 @@ $start = ($p - 1) * $per_page;
             </nav>
         </div>
     </div>
-
 
     <?php require("../../component/footerLayout.php") ?>
 
