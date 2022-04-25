@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 04 月 25 日 04:43
+-- 產生時間： 2022 年 04 月 25 日 04:59
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.28
 
@@ -394,7 +394,16 @@ INSERT INTO `order_detail` (`id`, `order_id`, `prd_id`, `amount`, `is_packaging`
 (3, '4d9f2e41-1f19-ef4d-92f8-518d61a2158d', 3, 4, 0, 1),
 (4, '1d3b713c-f001-4139-8dd0-7f94b20185e6', 1, 2, 0, 1),
 (5, '1d3b713c-f001-4139-8dd0-7f94b20185e6', 2, 4, 0, 1),
-(6, '1d3b713c-f001-4139-8dd0-7f94b20185e6', 3, 4, 0, 1);
+(6, '1d3b713c-f001-4139-8dd0-7f94b20185e6', 3, 4, 0, 1),
+(7, 'abc0c7e6-f41f-e1a7-dc5b-77a90cd66643', 1, 2, 0, 1),
+(8, 'abc0c7e6-f41f-e1a7-dc5b-77a90cd66643', 2, 4, 0, 1),
+(9, 'abc0c7e6-f41f-e1a7-dc5b-77a90cd66643', 3, 4, 0, 1),
+(10, 'd508f789-3c26-6e91-2a0e-01ed72ad7793', 1, 2, 0, 1),
+(11, 'd508f789-3c26-6e91-2a0e-01ed72ad7793', 2, 4, 0, 1),
+(12, 'd508f789-3c26-6e91-2a0e-01ed72ad7793', 3, 4, 0, 1),
+(13, '3ed5d058-52b9-60aa-8614-abf8bd90656c', 1, 2, 0, 1),
+(14, '3ed5d058-52b9-60aa-8614-abf8bd90656c', 2, 4, 0, 1),
+(15, '3ed5d058-52b9-60aa-8614-abf8bd90656c', 3, 4, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -417,7 +426,10 @@ CREATE TABLE `order_list` (
 
 INSERT INTO `order_list` (`id`, `user_id`, `logistics`, `logistics_state`, `order_time`) VALUES
 ('1d3b713c-f001-4139-8dd0-7f94b20185e6', 3, 1, 1, '2022-04-24 13:21:16'),
-('4d9f2e41-1f19-ef4d-92f8-518d61a2158d', 3, 1, 1, '2022-04-24 13:09:59');
+('3ed5d058-52b9-60aa-8614-abf8bd90656c', 3, 1, 1, '2022-04-25 10:58:47'),
+('4d9f2e41-1f19-ef4d-92f8-518d61a2158d', 3, 1, 1, '2022-04-24 13:09:59'),
+('abc0c7e6-f41f-e1a7-dc5b-77a90cd66643', 3, 1, 1, '2022-04-25 10:57:15'),
+('d508f789-3c26-6e91-2a0e-01ed72ad7793', 3, 1, 1, '2022-04-25 10:57:57');
 
 -- --------------------------------------------------------
 
@@ -871,7 +883,10 @@ CREATE TABLE `user_list` (
 INSERT INTO `user_list` (`id`, `name`, `user_img`, `age`, `gender`, `email`, `address`, `phone`, `vip_level`, `point`, `consumption`, `create_time`) VALUES
 (1, '王富貴', NULL, 20, 'M', 'test11@test.com', '110台北市信義區信義路五段7號', '0912345678', 2, 0, 0, '2022-04-21 18:29:51'),
 (2, '後台小編11', NULL, 20, 'F', 'admin@admin.com', '', '0987654321', 1, 0, 0, '2022-04-21 18:38:04'),
-(3, '11', NULL, 20, 'M', 'test@gmail.com', '桃園市中壢區新生路二段421號', '0987654321', 3, 0, 0, '2022-04-22 03:25:21');
+(3, '11', NULL, 20, 'M', 'test@gmail.com', '桃園市中壢區新生路二段421號', '0987654321', 3, 0, 0, '2022-04-22 03:25:21'),
+(4, 'jill', NULL, 20, 'F', 'jill@test.com', '桃園市中壢區新生路二段421號', '0900000123', 2, 0, 0, '2022-04-25 04:51:07'),
+(5, 'shu', NULL, 20, 'F', 'shu@gmail.com', '桃園市中壢區新生路二段421號', '0912567834', 2, 0, 0, '2022-04-25 04:53:15'),
+(6, 'Chen', NULL, 22, 'M', 'chen@test.com', '桃園市中壢區新生路二段421號', '091234567', 2, 0, 0, '2022-04-25 04:54:41');
 
 -- --------------------------------------------------------
 
@@ -890,9 +905,12 @@ CREATE TABLE `user_pwd` (
 --
 
 INSERT INTO `user_pwd` (`user_id`, `passwd`) VALUES
-(1, 'f696282aa4cd4f614aa995190cf442fe'),
+(1, '827ccb0eea8a706c4c34a16891f84e7b'),
 (2, '827ccb0eea8a706c4c34a16891f84e7b'),
-(3, '827ccb0eea8a706c4c34a16891f84e7b');
+(3, '827ccb0eea8a706c4c34a16891f84e7b'),
+(4, '827ccb0eea8a706c4c34a16891f84e7b'),
+(5, 'e10adc3949ba59abbe56e057f20f883e'),
+(6, '827ccb0eea8a706c4c34a16891f84e7b');
 
 -- --------------------------------------------------------
 
@@ -1204,7 +1222,7 @@ ALTER TABLE `menu`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `packaging _cate`
@@ -1288,13 +1306,13 @@ ALTER TABLE `user_like`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user_list`
 --
 ALTER TABLE `user_list`
-  MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user_pwd`
 --
 ALTER TABLE `user_pwd`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `vip_level`
