@@ -41,7 +41,7 @@ require("../../../db-connect.php");
 
     <h2>新增酒譜</h2>
 
-    <form action="doCreat.php" class="d-flex flex-wrap mt-4" method="POST" enctype="multipart/form-data" onSubmit="return check();">
+    <form action="doCreat2.php" class="d-flex flex-wrap mt-4" method="POST" enctype="multipart/form-data" onSubmit="return check();">
       <!-- 名稱 -->
       <div class="d-flex align-items-center w-100 pe-4 mb-3">
         <div>
@@ -54,28 +54,28 @@ require("../../../db-connect.php");
 
       <!-- 材料 -->
 
-      <?php for ($i = 0; $i < 5; $i++) : ?>
+      <?php for ($i = 0; $i < 3; $i++) : ?>
         <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
           <div>
             <label for="bartd-name" class="form-label mb-0">材料</label>
           </div>
           <!-- 名稱 -->
           <div class="flex-grow-1">
-            <input type="text" class="form-control" name="bartd_name" id="bartd-name">
+            <input type="text" class="form-control" name="bartd_name[]" id="bartd-name">
           </div>
           <!-- 比例 -->
           <div class="flex-grow-1">
-            <input type="text" class="form-control" name="bartd_ratio" id="bartd-ratio">
+            <input type="text" class="form-control" name="bartd_ratio[]" id="bartd-ratio">
           </div>
           <!-- master_cate_l -->
           <div class="flex-grow-1">
-            <select class="form-select prd_cate_l" name="prd_cate_l" id="prd_cate_l">
+            <select class="form-select prd_cate_l" name="prd_cate_l[]" id="prd_cate_l">
               <option selected>材料類別</option>
             </select>
           </div>
           <!-- master_cate_m -->
           <div class="flex-grow-1">
-            <select class="form-select prd_cate_m" name="prd_cate_m" id="prd_cate_m">
+            <select class="form-select prd_cate_m" name="prd_cate_m[]" id="prd_cate_m">
               <option selected>請選擇</option>
             </select>
           </div>
@@ -84,18 +84,18 @@ require("../../../db-connect.php");
 
 
       <!-- 酒譜類別 -->
-      <?php for ($i = 0; $i < 5; $i++) : ?>
+      <?php for ($i = 0; $i < 3; $i++) : ?>
         <div class="d-flex align-items-center w-100 pe-4 mb-3">
           <div>
             <label for="bartd_cate_id_m" class="form-label mb-0">酒譜類別</label>
           </div>
           <div class="flex-grow-1">
-            <select class="form-select bartd_cate_id_m" name="bartd_cate_id_m" id="bartd_cate_id_m">
+            <select class="form-select bartd_cate_id_m" name="bartd_cate_id_m[]" id="bartd_cate_id_m">
               <option selected>酒譜類別</option>
             </select>
           </div>
           <div class="flex-grow-1">
-            <select class="form-select bartd_cate_id_s" name="bartd_cate_id_s" id="bartd_cate_id_s">
+            <select class="form-select bartd_cate_id_s" name="bartd_cate_id_s[]" id="bartd_cate_id_s">
               <option selected>請選擇</option>
             </select>
           </div>
@@ -147,7 +147,7 @@ require("../../../db-connect.php");
     let bartdCateM = document.querySelectorAll(".bartd_cate_id_m");
     let bartdCateS = document.querySelectorAll(".bartd_cate_id_s");
 
-    let rows = 5;
+    let rows = 3;
     for (let num = 0; num < rows; num++) {
       //呼叫產品大分類
       $.ajax({
