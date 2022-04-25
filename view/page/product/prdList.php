@@ -155,7 +155,7 @@ if(isset($_GET["searchType"]) && isset($_GET["searchInput"])){
       <ul class="pagination justify-content-center">
         <?php for($i=1; $i<=$page_count; $i++): ?>
             <li class="page-item <?php if($i==$p)echo "active";?>">
-              <a class="page-link " href="./prdList.php?p=<?=$i?>"><?=$i?></a>
+              <a class="page-link " href="./prdList.php?<?php if(isset($_GET["searchType"]) && isset($_GET["searchInput"])):?>&searchType=<?= $searchType?>&searchInput=<?=$searchInput?>&<?php endif;?>p=<?=$i?>"><?=$i?></a>
             </li>
         <?php endfor; ?>
       </ul>
