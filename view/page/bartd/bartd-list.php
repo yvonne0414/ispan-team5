@@ -7,7 +7,7 @@ if (!isset($_GET["p"])) {
     $p = $_GET["p"];
 }
 
-
+$per_page = 4;
 if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) {
     $searchType = $_GET["searchType"];
     $searchInput = $_GET["searchInput"];
@@ -19,7 +19,7 @@ if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) {
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     $total = $result->num_rows;
     // echo $total;
-    $per_page = 2;
+    // $per_page = 4;
 
     $page_count = CEIL($total / $per_page);
     $start = ($p - 1) * $per_page;
@@ -37,7 +37,7 @@ if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) {
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     $total = $result->num_rows;
     // echo $total;
-    $per_page = 2;
+    // $per_page = 4;
 
     $page_count = CEIL($total / $per_page);
     $start = ($p - 1) * $per_page;
@@ -112,9 +112,9 @@ if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) {
                         </td>
                         <td><?= $rows[$i]['name'] ?></td>
                         <td class="text-end">
-                        <a class="px-2" href="/ispan-team5/view/page/bartd/bartd-content.php?id=<?= $rows[$i]['id'] ?>"><i class="fa-solid fa-eye"></i></a>
+                            <a class="px-2" href="/ispan-team5/view/page/bartd/bartd-content.php?id=<?= $rows[$i]['id'] ?>"><i class="fa-solid fa-eye"></i></a>
                             <a class="px-2" href="/ispan-team5/view/page/bartd/bartd-edit.php?id=<?= $rows[$i]['id'] ?>"><i class="fa-solid fa-pen"></i></a>
-                            <a class="px-2" oncilck="delconfirm()" href="./doDelete.php?id=<?= $rows[$i]['id']?>"><i class="fa-solid fa-trash-can"></i></a>
+                            <a class="px-2" oncilck="delconfirm()" href="./doDelete.php?id=<?= $rows[$i]['id'] ?>"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>
                 <?php endfor; ?>
