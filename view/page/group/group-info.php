@@ -45,7 +45,7 @@ $user=$_SESSION['user'];
                 <label for="disc" class="form-label mb-0">活動描述</label>
                 </div>
                 <div  class="flex-grow-1">
-                <textarea class="form-control" name="disc" id="disc" rows="3" require></textarea>
+                <textarea class="form-control" name="disc" id="disc" rows="3" required></textarea>
                 </div>
             </div>
             <!-- 主辦人、 類型自動帶入 -->
@@ -57,7 +57,7 @@ $user=$_SESSION['user'];
                 <label for="vip_level" class="form-label mb-0">參加門檻</label>
                 </div>
                 <div class="flex-grow-1">
-                <select class="form-select" name="vip_level" id="vip_level">
+                <select class="form-select" name="vip_level" id="vip_level" required>
                     <?php
                     $vipsql="SELECT * FROM vip_level WHERE id!=1";
                     $viprs=$conn->query($vipsql);
@@ -79,7 +79,7 @@ $user=$_SESSION['user'];
                 <label for="price" class="form-label mb-0">參加費用</label>
                 </div>
                 <div class="flex-grow-1">
-                <input type="number" min="0" class="form-control" name="price" id="price">
+                <input type="number" min="0" class="form-control" name="price" id="price" required>
                 </div>
             </div>
             <div class="d-flex align-items-center w-50 pe-4 mb-3">
@@ -87,7 +87,7 @@ $user=$_SESSION['user'];
                 <label for="pass_num" class="form-label mb-0">成團人數</label>
                 </div>
                 <div class="flex-grow-1">
-                <input type="number" min="0" class="form-control" name="pass_num" id="pass_num">
+                <input type="number" min="0" class="form-control" name="pass_num" id="pass_num" required>
                 </div>
             </div>
             <div class="d-flex align-items-center w-50 pe-4 mb-3">
@@ -95,7 +95,7 @@ $user=$_SESSION['user'];
                 <label for="max_num" class="form-label mb-0">人數上限</label>
                 </div>
                 <div class="flex-grow-1">
-                <input type="number" min="0" class="form-control" name="max_num" id="max_num">
+                <input type="number" min="0" class="form-control" name="max_num" id="max_num" required>
                 </div>
             </div>
             
@@ -104,7 +104,7 @@ $user=$_SESSION['user'];
                     <label for="start_time" class="form-label mb-0">開團日期</label>
                 </div>
                 <div class="flex-grow-1">
-                    <input class="form-control" type="date" name="start_time">
+                    <input class="form-control" type="date" name="start_time" required>
                 </div>
             </div>
             <div class="d-flex align-items-center w-50 pe-4 mb-3">
@@ -112,7 +112,7 @@ $user=$_SESSION['user'];
                     <label for="end_time" class="form-label mb-0">結束日期</label>
                 </div>
                 <div class="flex-grow-1">
-                    <input class="form-control" type="date" name="end_time">
+                    <input class="form-control" type="date" name="end_time" required>
                 </div>
             </div>
             <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
@@ -120,7 +120,7 @@ $user=$_SESSION['user'];
                     <label for="activity_start_time" class="form-label mb-0">活動日期</label>
                 </div>
                 <div class="flex-grow-1">
-                    <input class="form-control" type="date" name="activity_start_time">
+                    <input class="form-control" type="date" name="activity_start_time" required>
                 </div>
             </div>
             
