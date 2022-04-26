@@ -200,7 +200,9 @@ if (isset($_GET["date1"]) && isset($_GET["date2"])) {
             <nav aria-label="Page navigation example d-flex">
                 <ul class="pagination justify-content-center">
                     <?php for ($i = 1; $i <= $page_count; $i++) : ?>
-                        <li class="page-item <?php if ($i == $p) echo "active"; ?>"><a class="page-link" href="couponList.php?p=<?= $i ?>"><?= $i ?></a></li>
+                        <li class="page-item <?php if ($i == $p) echo "active"; ?>">
+                        <a class="page-link" href="couponList.php?<?php if(isset($_GET["date1"]) && isset($_GET["date2"])):?>&date1=<?= $date1?>&date2=<?=$date2?>&<?php endif;?>p=<?=$i?>"><?=$i?></a>
+            </li>
                     <?php endfor; ?>
                 </ul>
             </nav>
