@@ -69,7 +69,7 @@ if ($_FILES["bartd_img"]["error"] == 0) {
         $conn->query($tdMaterial_sql);
         }
 
-        }
+        
     } else {
         echo "upload fail!";
     }
