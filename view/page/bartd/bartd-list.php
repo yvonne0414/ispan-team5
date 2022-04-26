@@ -48,6 +48,25 @@ if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) {
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
 }
+if (isset($_GET["DESC"])){
+    $sql = "SELECT * FROM bartd_list";
+    $result = $conn->query($sql);
+
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $total = $result->num_rows;
+    // echo $total;
+    // $per_page = 4;
+
+    $page_count = CEIL($total / $per_page);
+    $start = ($p - 1) * $per_page;
+    // echo $page_count;
+
+    $sql = "SELECT * FROM bartd_list
+    ORDER BY id DESC
+    LIMIT $start,$per_page";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+}
 
 ?>
 
@@ -87,7 +106,8 @@ if (isset($_GET["searchType"]) && isset($_GET["searchInput"])) {
                 </div>
             </form>
             <div>
-                <a class="btn btn-outline-dark" href="bartdinfo.php">新增商品</a>
+                <a class="btn btn-outline-dark <?php  if (isset($_GET["DESC"])){echo 'active';}  ?> " href="./bartd-list.php?DESC=1">序號倒敘</a>
+                <a class="btn btn-outline-dark" href="bartdinfo2.php">新增酒譜</a>
             </div>
         </div>
 

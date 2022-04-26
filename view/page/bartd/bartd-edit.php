@@ -12,7 +12,7 @@ $id = $_GET["id"];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../component/headerLayout.php">
-    <title>商品資訊</title>
+    <title>酒譜編輯</title>
     <?php require("../../component/headerLayout.php") ?>
     <style>
         .form-label {
@@ -61,12 +61,15 @@ $id = $_GET["id"];
 
 
                 <!-- image -->
-                <div class="d-flex align-items-center w-50 pe-4 mb-3 me-1">
+                <div class="d-flex align-items-center w-75 pe-4 mb-3 me-1">
                     <div>
                         <label for="prd_img" class="form-label mb-0">商品圖片</label>
                     </div>
                     <div class="justify-content-center align-items-center img_container my-2">
                         <img id="prdImg_show" src="../../../assets/img/test/<?= $row["img"] ?>" />
+                    </div>
+                    <div class="">
+                        <input type="file" value="YN-02.jpeg" class="form-control" name="bartd_img" id="prdImg" accept=".jpg, .jpeg, .png, .webp, .svg">
                     </div>
                 </div>
 
@@ -392,6 +395,34 @@ $id = $_GET["id"];
                     }
                 });
         })
+    </script>
+    <script>
+        // 圖片預覽
+        $("#prdImg").change(function() {
+
+            readURL(this);
+
+
+
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $(".img_container").css('display', "flex");
+
+                    $("#prdImg_show").attr('src', e.target.result);
+
+                }
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+
+        }
     </script>
 
 </body>

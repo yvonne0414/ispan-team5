@@ -54,18 +54,20 @@ if ($_FILES["bartd_img"]["error"] == 0) {
 
         $last_id = $conn->insert_id;
 
-        for($num = 0; $num < $count; $num ++){
-            echo $num;
+        for($num = 0; $num < 4; $num ++){
         
         $tdCateList_sql = "INSERT INTO bartd_cate_list(bartd_id, bartd_cate_id_m, bartd_cate_id_s)
         VALUE ('$last_id', '$bartd_cate_id_m[$num]', '$bartd_cate_id_s[$num]')";
         // echo $tdCateList_sql."<hr>";
         $conn->query($tdCateList_sql);
+        }
 
+        for($num = 0; $num < 3; $num ++){
         $tdMaterial_sql = "INSERT INTO bartd_material(bartd_id, name, mater_amount, mater_cate_l, mater_cate_m)
         VALUE ('$last_id', '$bartd_name[$num]', '$bartd_ratio[$num]', '$prd_cate_l[$num]', '$prd_cate_m[$num]')";
         // echo $tdMaterial_sql."<hr>";
         $conn->query($tdMaterial_sql);
+        }
 
         }
     } else {

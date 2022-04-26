@@ -5,6 +5,8 @@ require("../../../db-connect.php");
 $bartd_id=$_POST["bartd_id"];
 $bartd_num= $_POST["bartd_num"];
 
+$bartd_img = $_POST["bartd_img"];
+
 // 調酒描述
 $bartd_content = $_POST["bartd_content"];
 
@@ -22,7 +24,7 @@ $bartd_cate_id_s = $_POST["bartd_cate_id_s"];
 
 
 $tdList_sql="UPDATE bartd_list 
-SET name = '$bartd_num', recipe =  '$bartd_content'
+SET name = '$bartd_num', recipe =  '$bartd_content' , img='$bartd_img'
 WHERE id = $bartd_id";
 $conn->query($tdList_sql);
 

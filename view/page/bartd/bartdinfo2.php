@@ -12,7 +12,7 @@ require("../../../db-connect.php");
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../component/headerLayout.php">
-  <title>商品資訊</title>
+  <title>酒譜資訊</title>
   <?php require("../../component/headerLayout.php") ?>
   <style>
     .form-label {
@@ -48,24 +48,24 @@ require("../../../db-connect.php");
           <label for="prd_num" class="form-label mb-0">酒譜名稱</label>
         </div>
         <div class="flex-grow-1">
-          <input type="text" class="form-control" name="bartd_num" id="prd_num">
+          <input type="text" required class="form-control" name="bartd_num" id="prd_num">
         </div>
       </div>
 
       <!-- 材料 -->
 
-      <?php for ($i = 0; $i < 3; $i++) : ?>
+      <?php for ($i = 0; $i < 4; $i++) : ?>
         <div class="d-flex align-items-center w-100 pe-4 mb-3 me-1">
           <div>
             <label for="bartd-name" class="form-label mb-0">材料</label>
           </div>
           <!-- 名稱 -->
           <div class="flex-grow-1">
-            <input type="text" class="form-control" name="bartd_name[]" id="bartd-name">
+            <input type="text" required class="form-control" name="bartd_name[]" id="bartd-name">
           </div>
           <!-- 比例 -->
           <div class="flex-grow-1">
-            <input type="text" class="form-control" name="bartd_ratio[]" id="bartd-ratio">
+            <input type="text" required class="form-control" name="bartd_ratio[]" id="bartd-ratio">
           </div>
           <!-- master_cate_l -->
           <div class="flex-grow-1">
@@ -147,7 +147,7 @@ require("../../../db-connect.php");
     let bartdCateM = document.querySelectorAll(".bartd_cate_id_m");
     let bartdCateS = document.querySelectorAll(".bartd_cate_id_s");
 
-    let rows = 3;
+    let rows = 4;
     for (let num = 0; num < rows; num++) {
       //呼叫產品大分類
       $.ajax({
@@ -195,6 +195,9 @@ require("../../../db-connect.php");
             }
           });
       });
+    }
+    rows = 3;
+    for (let num = 0; num < rows; num++) {
 
       // 呼叫酒譜大分類
       $.ajax({
@@ -301,7 +304,7 @@ require("../../../db-connect.php");
 
       if (prd_numVal == "" || bartd_nameVal == "" || bartd_ratioVal == "" || prd_cate_lVal == "" || prd_cate_mVal == "" || bartd_cate_id_mVal == "" || bartd_cate_id_sVal == "" || prdImgVal == "" || prd_discVal == "") {
 
-        alert("有欄位未填");
+        alert("欄位未填完整");
         return false;
       } else {
         return true;
